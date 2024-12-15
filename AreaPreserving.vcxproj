@@ -244,7 +244,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>D:\OCC7.7.0-build\inc;D:\work\SurfaceHealing\deps\alglib\tests;D:\work\SurfaceHealing\deps\alglib\src;D:\work\SurfaceHealing;D:\work\SurfaceHealing\src;D:\work\SurfaceHealing\deps\opengl\include;D:\work\SurfaceHealing\deps\Interop_2023.1.0.1\include;D:\work\SurfaceHealing\deps\eigen-3.4.0;D:\work\SurfaceHealing\deps\ACIS_2023.1.0.1\license;D:\work\SurfaceHealing\deps\ACIS_2023.1.0.1\include;D:\work\SurfaceHealing\deps\MySQL Server 9.0\include;D:\work\SurfaceHealing\deps\glut\include\GL;D:\work\AnalysisSitus\3rdparty\Mobius\build\inc;D:\work\AnalysisSitus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\work\svn_hxy\deps\eigen-3.4.0;D:\OCC7.7.0-build\inc;D:\work\svn_hxy\deps\alglib\tests;D:\work\svn_hxy\deps\alglib\src;D:\work\svn_hxy;D:\work\svn_hxy\src;D:\work\svn_hxy\deps\opengl\include;D:\work\svn_hxy\deps\Interop_2023.1.0.1\include;D:\work\svn_hxy\deps\ACIS_2023.1.0.1\license;D:\work\svn_hxy\deps\ACIS_2023.1.0.1\include;D:\work\svn_hxy\deps\MySQL Server 9.0\include;D:\work\svn_hxy\deps\glut\include\GL;D:\work\AnalysisSitus\3rdparty\Mobius\build\inc;D:\work\AnalysisSitus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;NOMINMAX;ANSI_DECLARATORS;CDT_ONLY;NO_TIMER;TRILIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -334,7 +334,7 @@ mobiusNest.lib;
 mobiusPoly.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>x64/Debug/SDIViewSwitch.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>D:\work\AnalysisSitus\build\win64\vc14\libd;D:\work\AnalysisSitus\3rdparty\Mobius\build\win64\vc14\libd;D:\work\SurfaceHealing\deps\MySQL Server 9.0\lib;D:\work\SurfaceHealing\deps\glut\lib;D:\OCC7.7.0-build\win64\vc14\libd;D:\work\SurfaceHealing\opengl\lib;D:\work\SurfaceHealing\deps\Interop_2023.1.0.1\lib;D:\work\SurfaceHealing\deps\ACIS_2023.1.0.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\work\AnalysisSitus\build\win64\vc14\libd;D:\work\AnalysisSitus\3rdparty\Mobius\build\win64\vc14\libd;D:\work\svn_hxy\deps\MySQL Server 9.0\lib;D:\work\svn_hxy\deps\glut\lib;D:\OCC7.7.0-build\win64\vc14\libd;D:\work\svn_hxy\opengl\lib;D:\work\svn_hxy\deps\Interop_2023.1.0.1\lib;D:\work\svn_hxy\deps\ACIS_2023.1.0.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>Debug/SwitchSplit.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
