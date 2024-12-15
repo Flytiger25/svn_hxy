@@ -1,0 +1,56 @@
+>>> SOURCE LICENSE >>>
+This program is a trial version of the ALGLIB package  licensed
+to shandong university (Licensee, You).
+
+Only Licensee can use  it  according   to   the  ALGLIB   Trial
+License Agreement between Licensor (Sole  Proprietor  Bochkanov
+Sergey Anatolyevich) and Licensee.
+
+=============== ALGLIB TRIAL LICENSE AGREEMENT ================
+
+1. Only owners of e-mails below can use this trial version:
+* yangyijuny@gmail.com
+
+2. This trial version can be used only for 30 days  (expiration
+date is 09 Nov, 2013).
+
+It can be used only for evaluation  purposes. You can  not  use
+it to perform some "real" work.
+
+After this trial period is over, you MUST delete all  copies of
+software (including ones made for backup  purposes)  -  or  buy
+commercial license for ALGLIB.
+
+3. Following restrictions are applied:
+A. Trial version of ALGLIB can not be used by other individuals
+   or legal entities. It can not  be  distributed  in  any  way
+   (including rent, lease, other means of sharing software).
+B. Any application/product  developed  with  trial  version  of
+   ALGLIB may only be used for  evaluation  purposes  and  only
+   during evaluation period.
+   You may not  distribute  applications/products  linked  with
+   trial version of ALGLIB.
+   After evaluation period  is  over, you should  re-link  such
+   applications/products  with  Free  Edition  or  one  of  the
+   Commercial editions of ALGLIB - or delete them.
+C. You can not remove any  copyright  notice  from  the  Source
+   Codes/Binary Files
+   
+WARRANTIES:
+
+This trial version  is  provided  AS IS,  with  no  warranties,
+express or implied.  Licensor  does  NOT  provide  support  and
+maintenance for this trial version. If you need warranties  and
+support, you should buy commercial version of ALGLIB.
+
+COPYRIGHT:
+
+Title to the ALGLIB and all copies thereof remain with Licensor
+The ALGLIB is copyrighted and is protected by Russian copyright
+laws and international treaty provisions.  You  will not remove
+any copyright notice  from  the  ALGLIB  files.  You  agree  to
+prevent any unauthorized  copying  of  the  ALGLIB.  Except  as
+expressly provided herein, Licensor does not grant any  express
+or implied right to you  under  Licensor  patents,  copyrights,
+trademarks, or trade secret information.
+>>> END OF LICENSE >>>

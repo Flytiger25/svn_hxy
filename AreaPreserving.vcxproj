@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>SDIViewSwitch</ProjectName>
+    <ProjectGuid>{47ADAF26-1806-4243-8C22-90544801FD35}</ProjectGuid>
+    <RootNamespace>SDIViewSwitch</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\Programx86\MATLAB\R2015b\extern\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files (x86)\OpenMesh 2.4\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\Programx86\MATLAB\R2015b\extern\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files (x86)\OpenMesh 2.4\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/SwitchSplit.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>D:\Programx86\MATLAB\R2015b\extern\include;C:\Program Files (x86)\OpenMesh 5.1\include;..\MeshLib\Core;..\MeshLib\algorithm;..\;..\alglib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;NOMINMAX;ANSI_DECLARATORS;CDT_ONLY;NO_TIMER;TRILIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release/SwitchSplit.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;OpenMeshCore.lib;OpenMeshTools.lib;libeng.lib;libmx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release/SDIViewSwitch.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files\NVIDIA Corporation\Cg\lib;C:\Program Files (x86)\OpenMesh 5.1\lib;D:\Programx86\MATLAB\R2015b\extern\lib\win32\microsoft;C:\Program Files\Microsoft SDKs\Windows\v6.0A\Lib;D:\papers\code\matlab;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/SwitchSplit.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/SwitchSplit.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Release/SwitchSplit.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.\;.\deps\glut\include\GL;.\deps\opengl\include;$(EIGENDIR)\;$(ACISINTEROPDIR)\include;$(ACISDIR)\include;$(OCCDIR)\builds\inc;$(MYSQLDIR)\include;.\Lib3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;NOMINMAX;ANSI_DECLARATORS;CDT_ONLY;NO_TIMER;TRILIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release/SwitchSplit.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <BrowseInformation>false</BrowseInformation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;SPAIInterop.lib;SPAIAcis.lib;ExpToCasExe.lib;TKBin.lib;TKBinL.lib;TKBinTObj.lib;TKBinXCAF.lib;TKBO.lib;TKBool.lib;TKBRep.lib;TKCAF.lib;TKCDF.lib;TKernel.lib;TKExpress.lib;TKFeat.lib;TKFillet.lib;TKG2d.lib;TKG3d.lib;TKGeomAlgo.lib;TKGeomBase.lib;TKHLR.lib;TKIGES.lib;TKLCAF.lib;TKMath.lib;TKMesh.lib;TKMeshVS.lib;TKOffset.lib;TKOpenGl.lib;TKPrim.lib;TKRWMesh.lib;TKService.lib;TKShHealing.lib;TKStd.lib;TKStdL.lib;TKSTEP.lib;TKSTEP209.lib;TKSTEPAttr.lib;TKSTEPBase.lib;TKSTL.lib;TKTObj.lib;TKTopAlgo.lib;TKV3d.lib;TKVCAF.lib;TKVRML.lib;TKXCAF.lib;TKXDE.lib;TKXDECascade.lib;TKXDEIGES.lib;TKXDESTEP.lib;TKXMesh.lib;TKXml.lib;TKXmlL.lib;TKXmlTObj.lib;TKXmlXCAF.lib;TKXSBase.lib;freeglut.lib;libmysql.lib;mysqlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\x64\Release/SDIViewSwitch.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(ACISINTEROPDIR)\NT_VC16_64_DLL\code\lib;$(OCCDIR)\builds\win64\vc14\libd;.\deps\glut\lib;$(ACISDIR)\NT_VC16_64_DLL\code\lib;$(MYSQLDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/SwitchSplit.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/SwitchSplit.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/SwitchSplit.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\alglib\src;C:\Program Files (x86)\OpenMesh 5.1\include;..\MeshLib\Core;..\MeshLib\algorithm;..\;D:\papers\code\boost\boost_1_58_0;D:\Programx86\MATLAB\R2015b\extern\include;C:\freeglut-3.0.0\include;C:\Program Files\Microsoft SDKs\Windows\v6.0A\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;NOMINMAX;ANSI_DECLARATORS;CDT_ONLY;NO_TIMER;TRILIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug/SwitchSplit.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformationFile>Debug/</BrowseInformationFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;freeglut_staticd.lib;OpenMeshCored.lib;OpenMeshToolsd.lib;libeng.lib;libmx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>Debug/SDIViewSwitch.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>D:\papers\code\matlab;D:\Programx86\MATLAB\R2015b\extern\lib\win32\microsoft;C:\Program Files (x86)\OpenMesh 5.1\lib;C:\freeglut-3.0.0\build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>Debug/SwitchSplit.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/SwitchSplit.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Debug/SwitchSplit.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>D:\OCC7.7.0-build\inc;D:\work\SurfaceHealing\deps\alglib\tests;D:\work\SurfaceHealing\deps\alglib\src;D:\work\SurfaceHealing;D:\work\SurfaceHealing\src;D:\work\SurfaceHealing\deps\opengl\include;D:\work\SurfaceHealing\deps\Interop_2023.1.0.1\include;D:\work\SurfaceHealing\deps\eigen-3.4.0;D:\work\SurfaceHealing\deps\ACIS_2023.1.0.1\license;D:\work\SurfaceHealing\deps\ACIS_2023.1.0.1\include;D:\work\SurfaceHealing\deps\MySQL Server 9.0\include;D:\work\SurfaceHealing\deps\glut\include\GL;D:\work\AnalysisSitus\3rdparty\Mobius\build\inc;D:\work\AnalysisSitus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;NOMINMAX;ANSI_DECLARATORS;CDT_ONLY;NO_TIMER;TRILIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug/SwitchSplit.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformationFile>Debug/</BrowseInformationFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;
+glu32.lib;
+SpaACISd.lib
+;SPAIInteropd.lib
+;SPAIAcisd.lib
+;ExpToCasExe.lib;
+TKBin.lib
+;TKBinL.lib
+;TKBinTObj.lib
+;TKBinXCAF.lib;
+TKBO.lib;
+TKBool.lib
+;TKBRep.lib
+;TKCAF.lib;
+TKCDF.lib
+;TKernel.lib
+;TKExpress.lib
+;TKFeat.lib
+;TKFillet.lib
+;TKG2d.lib;
+TKG3d.lib;
+TKGeomAlgo.lib;
+TKGeomBase.lib;
+TKHLR.lib
+;TKIGES.lib
+;TKLCAF.lib
+;TKMath.lib
+;TKMesh.lib
+;TKMeshVS.lib;
+TKOffset.lib
+;TKOpenGl.lib;
+TKPrim.lib
+;TKRWMesh.lib
+;TKService.lib
+;TKShHealing.lib
+;TKStd.lib;
+TKStdL.lib;
+TKSTEP.lib
+;TKSTEP209.lib;
+TKSTEPAttr.lib
+;TKSTEPBase.lib
+;TKSTL.lib
+;TKTObj.lib
+;TKTopAlgo.lib;
+TKV3d.lib;
+TKVCAF.lib
+;TKVRML.lib;
+TKXCAF.lib
+;TKXDE.lib
+;TKXDECascade.lib;
+TKXDEIGES.lib;
+TKXDESTEP.lib
+;TKXMesh.lib
+;TKXml.lib;
+TKXmlL.lib;
+TKXmlTObj.lib
+;TKXmlXCAF.lib;
+TKXSBase.lib;
+freeglut.lib
+;asiAlgo.lib;asiActiveData.lib;
+libmysql.lib;
+mysqlclient.lib;mobiusCore.lib
+;mobiusCascade.lib;
+mobiusBSpl.lib;
+mobiusGeom.lib;
+mobiusNest.lib;
+mobiusPoly.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>x64/Debug/SDIViewSwitch.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>D:\work\AnalysisSitus\build\win64\vc14\libd;D:\work\AnalysisSitus\3rdparty\Mobius\build\win64\vc14\libd;D:\work\SurfaceHealing\deps\MySQL Server 9.0\lib;D:\work\SurfaceHealing\deps\glut\lib;D:\OCC7.7.0-build\win64\vc14\libd;D:\work\SurfaceHealing\opengl\lib;D:\work\SurfaceHealing\deps\Interop_2023.1.0.1\lib;D:\work\SurfaceHealing\deps\ACIS_2023.1.0.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>Debug/SwitchSplit.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/SwitchSplit.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>editbin /SUBSYSTEM:CONSOLE "$(OUTDIR)\$(ProjectName).exe"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AcisCheckInformation.cpp" />
+    <ClCompile Include="Action_ACIS_SEWING.cpp" />
+    <ClCompile Include="Action_ConstraitSolver.cpp" />
+    <ClCompile Include="Action_GORDEN.cpp" />
+    <ClCompile Include="Action_Intersection.cpp" />
+    <ClCompile Include="Action_NsidedHoleFilling.cpp" />
+    <ClCompile Include="Action_OCCFilling.cpp" />
+    <ClCompile Include="Action_OCC_SEWING.cpp" />
+    <ClCompile Include="Action_ReverseEngineering.cpp" />
+    <ClCompile Include="Action_SDLParameterization.cpp" />
+    <ClCompile Include="Action_SurfaceCovering.cpp" />
+    <ClCompile Include="Action_SurfaceHealing.cpp" />
+    <ClCompile Include="BRepSewing.cpp" />
+    <ClCompile Include="ColorFormView.cpp" />
+    <ClCompile Include="Compatible.cpp" />
+    <ClCompile Include="Complex_number.cpp" />
+    <ClCompile Include="convexFunction.cpp" />
+    <ClCompile Include="CParseSTEP.cpp" />
+    <ClCompile Include="DialogInputInformation.cpp" />
+    <ClCompile Include="Disline2D.cpp" />
+    <ClCompile Include="EntityList_Acis.cpp" />
+    <ClCompile Include="Entity_EDGE_ACIS.cpp" />
+    <ClCompile Include="Entity_FACE_ACIS.cpp" />
+    <ClCompile Include="Entity_VERTEX_ACIS.cpp" />
+    <ClCompile Include="FaceInputArea.cpp" />
+    <ClCompile Include="FitConstrainedBSplineSurf.cpp" />
+    <ClCompile Include="FormView3.cpp" />
+    <ClCompile Include="GeometricEngineSelect.cpp" />
+    <ClCompile Include="GuideGordon.cpp" />
+    <ClCompile Include="Interpolate.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MeshSetColor.cpp" />
+    <ClCompile Include="MySparseMatrix.cpp" />
+    <ClCompile Include="MySplitterWnd.cpp" />
+    <ClCompile Include="MyTreeView.cpp" />
+    <ClCompile Include="NurbsCurve.cpp" />
+    <ClCompile Include="ObjectViewer.cpp" />
+    <ClCompile Include="ParseM.cpp" />
+    <ClCompile Include="ParseNurbsCurve.cpp" />
+    <ClCompile Include="ParsePOLY.cpp" />
+    <ClCompile Include="ParseSmf.cpp" />
+    <ClCompile Include="PickStruct.cpp" />
+    <ClCompile Include="RenderMode.cpp" />
+    <ClCompile Include="Lib3D\SceneGraph3d.cpp" />
+    <ClCompile Include="SDIViewSwitch.cpp" />
+    <ClCompile Include="SDIViewSwitchDoc.cpp" />
+    <ClCompile Include="ShapeFile_Polygon_Header.cpp" />
+    <ClCompile Include="Shape_EDGE_OCC.cpp" />
+    <ClCompile Include="Shape_FACE_OCC.cpp" />
+    <ClCompile Include="Shape_VERTEX_OCC.cpp" />
+    <ClCompile Include="ShowSurfaceParameterDomain.cpp" />
+    <ClCompile Include="ShowTransformedParameterDomain.cpp" />
+    <ClCompile Include="SplitterView.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SurfaceInformation.cpp" />
+    <ClCompile Include="SurfaceModelingTool_ACIS.cpp" />
+    <ClCompile Include="SurfaceModelingTool_OCC.cpp" />
+    <ClCompile Include="SVM\Predictor.cpp" />
+    <ClCompile Include="SVM\svm.cpp" />
+    <ClCompile Include="SVNMesh.cpp" />
+    <ClCompile Include="Shape_OCC.cpp" />
+    <ClCompile Include="unlock_license.cpp" />
+    <ClCompile Include="urveIntersection.cpp" />
+    <ClCompile Include="Lib3D\Array3d.cpp" />
+    <ClCompile Include="Lib3D\Color.cpp" />
+    <ClCompile Include="Lib3D\ColorRamp.cpp" />
+    <ClCompile Include="Dib.cpp" />
+    <ClCompile Include="Lib3D\Material.cpp" />
+    <ClCompile Include="Point3D.cpp" />
+    <ClCompile Include="Lib3D\Texture.cpp" />
+    <ClCompile Include="Lib3D\Transform.cpp" />
+    <ClCompile Include="Lib3D\Utils3d.cpp" />
+    <ClCompile Include="Lib3D\Vector3d.cpp" />
+    <ClCompile Include="Lib3D\Vertex3d.cpp" />
+    <ClCompile Include="Lib3D\Edge3d.cpp" />
+    <ClCompile Include="Lib3D\Face3d.cpp" />
+    <ClCompile Include="Lib3D\Mesh3d.cpp" />
+    <ClCompile Include="Lib3D\Object3d.cpp" />
+    <ClCompile Include="C_DisLine3D.cpp" />
+    <ClCompile Include="C_NurbsSurf.cpp" />
+    <ClCompile Include="C_ParseNurbs.cpp" />
+    <ClCompile Include="curve.cpp" />
+    <ClCompile Include="InterFunction.cpp" />
+    <ClCompile Include="Nurbs3D.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AcisCheckInformation.h" />
+    <ClInclude Include="Action_ACIS_SEWING.h" />
+    <ClInclude Include="Action_ConstraitSolver.h" />
+    <ClInclude Include="Action_GORDEN.h" />
+    <ClInclude Include="Action_Intersection.h" />
+    <ClInclude Include="Action_NsidedHoleFilling.h" />
+    <ClInclude Include="Action_OCCFilling.h" />
+    <ClInclude Include="Action_OCC_SEWING.h" />
+    <ClInclude Include="Action_ReverseEngineering.h" />
+    <ClInclude Include="Action_SurfaceCovering.h" />
+    <ClInclude Include="Action_SurfaceHealing.h" />
+    <ClInclude Include="CFramebuffer.h" />
+    <ClInclude Include="Compatible.h" />
+    <ClInclude Include="CParseSTEP.h" />
+    <ClInclude Include="EntityList_ACIS.h" />
+    <ClInclude Include="Entity_EDGE_ACIS.h" />
+    <ClInclude Include="Entity_FACE_ACIS.h" />
+    <ClInclude Include="Entity_VERTEX_ACIS.h" />
+    <ClInclude Include="FitConstrainedBSplineSurf.h" />
+    <ClInclude Include="GeometricEngineSelect.h" />
+    <ClInclude Include="GuideGordon.h" />
+    <ClInclude Include="Interpolate.h" />
+    <ClInclude Include="ParseSmf.h" />
+    <ClInclude Include="Lib3D\SceneGraph3d.h" />
+    <ClInclude Include="Lib3D\Array3d.h" />
+    <ClInclude Include="Lib3D\Base3d.h" />
+    <ClInclude Include="Lib3D\Color.h" />
+    <ClInclude Include="Lib3D\ColorRamp.h" />
+    <ClInclude Include="Lib3D\Material.h" />
+    <ClInclude Include="PickStruct.h" />
+    <ClInclude Include="Point3D.h" />
+    <ClInclude Include="Lib3D\Texture.h" />
+    <ClInclude Include="Lib3D\Transform.h" />
+    <ClInclude Include="Lib3D\Utils3d.h" />
+    <ClInclude Include="Lib3D\Vector3d.h" />
+    <ClInclude Include="Lib3D\Vertex3d.h" />
+    <ClInclude Include="Lib3D\Edge3d.h" />
+    <ClInclude Include="Lib3D\Face3d.h" />
+    <ClInclude Include="Lib3D\Mesh3d.h" />
+    <ClInclude Include="Lib3D\Object3d.h" />
+    <ClInclude Include="C_NurbsSurf.h" />
+    <ClInclude Include="C_ParseNurbs.h" />
+    <ClInclude Include="Curve.h" />
+    <ClInclude Include="disline.h" />
+    <ClInclude Include="InterFunction.h" />
+    <ClInclude Include="Nurbs3D.h" />
+    <ClInclude Include="ClosenessEnergy.h" />
+    <ClInclude Include="ColorFormView.h" />
+    <ClInclude Include="Complex_number.h" />
+    <ClInclude Include="convexFunction.h" />
+    <ClInclude Include="DialogInputInformation.h" />
+    <ClInclude Include="Dib.h" />
+    <ClInclude Include="Disline2D.h" />
+    <ClInclude Include="FaceInputArea.h" />
+    <ClInclude Include="FormView3.h" />
+    <ClInclude Include="GeoMapLandMark.h" />
+    <ClInclude Include="IsotropicEnergy.h" />
+    <ClInclude Include="kdtree.h" />
+    <ClInclude Include="..\matlab\libmccdemol.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MeshSetColor.h" />
+    <ClInclude Include="MySparseMatrix.h" />
+    <ClInclude Include="MySplitterWnd.h" />
+    <ClInclude Include="MyTreeView.h" />
+    <ClInclude Include="NurbsCurve.h" />
+    <ClInclude Include="ObjectViewer.h" />
+    <ClInclude Include="ParseM.h" />
+    <ClInclude Include="ParseNurbsCurve.h" />
+    <ClInclude Include="ParsePOLY.h" />
+    <ClInclude Include="Polyomino_Edge_Subdivision.h" />
+    <ClInclude Include="ProjectToParameterDomain.h" />
+    <ClInclude Include="ReferenceLine.h" />
+    <ClInclude Include="RenderMode.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SDIViewSwitch.h" />
+    <ClInclude Include="SDIViewSwitchDoc.h" />
+    <ClInclude Include="ShapeFile_Polygon_Header.h" />
+    <ClInclude Include="Shape_EDGE_OCC.h" />
+    <ClInclude Include="Shape_Polygon.h" />
+    <ClInclude Include="Shape_VERTEX_OCC.h" />
+    <ClInclude Include="ShowSurfaceParameterDomain.h" />
+    <ClInclude Include="ShowTransformedParameterDomain.h" />
+    <ClInclude Include="SplitterView.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="SurfaceInformation.h" />
+    <ClInclude Include="SurfaceModelingTool_ACIS.h" />
+    <ClInclude Include="SurfaceModelingTool_OCC.h" />
+    <ClInclude Include="SVM\Predictor.h" />
+    <ClInclude Include="SVM\svm.h" />
+    <ClInclude Include="SVNMesh.h" />
+    <ClInclude Include="TShape_OCC.h" />
+    <ClInclude Include="urveIntersection.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="VectorField.h" />
+    <ClInclude Include="Action_AreaPreserving.h" />
+    <ClInclude Include="Actions_GeneralBilinear.h" />
+    <ClInclude Include="ActionsTab.h" />
+    <ClInclude Include="Transformation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SDIViewSwitch.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\data\Geo\colorbar\colorbar.PNG" />
+    <Image Include="..\data\Geo\colorbar\gray.png" />
+    <Image Include="..\data\Geo\colorbar\hot_colorbar.png" />
+    <Image Include="..\data\Geo\colorbar\inverse_hot_colorbar.png" />
+    <Image Include="..\data\Geo\colorbar\summer.png" />
+    <Image Include="..\data\Geo\colorbar\summer1.png" />
+    <Image Include="res\bitmap6.bmp" />
+    <Image Include="res\colorbar.bmp" />
+    <Image Include="res\colorbar.PNG" />
+    <Image Include="res\gray.png" />
+    <Image Include="res\hot_colorbar.png" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="..\..\scene.bmp" />
+    <Image Include="res\inverse_hot_colorbar.png" />
+    <Image Include="res\SDIViewSwitch.ico" />
+    <Image Include="res\summer.png" />
+    <Image Include="res\Toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\importre.bin" />
+    <None Include="..\G1continuouscurvesonNURBSsurfaces\facerepameterization\res\SDIViewSwitch.rc2" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SDIViewSwitch.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

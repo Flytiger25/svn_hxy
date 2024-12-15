@@ -1,0 +1,2348 @@
+// Microsoft Visual C++ generated resource script.
+//
+#pragma code_page(65001)
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 506, 422
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_DIALOG_SHOWSURFACEDOMAIN DIALOGEX 0, 0, 722, 481
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,121,319,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,429,319,50,14
+END
+
+IDD_DIALOG3 DIALOGEX 0, 0, 471, 301
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,205,280,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,414,280,50,14
+    EDITTEXT        IDC_EDIT1,7,7,457,271,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL
+END
+
+IDD_DIALOG4 DIALOGEX 0, 0, 259, 168
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,41,147,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,160,147,50,14
+    CONTROL         "Render Nurbs using NURBS Render",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,52,36,128,10
+    CONTROL         "Render Nurbs using Tessellation",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,52,58,118,10
+    GROUPBOX        "Render Mode",IDC_STATIC,23,18,220,79
+    CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,35,119,196,15
+    GROUPBOX        "Tessellation Resolution",IDC_STATIC,25,103,217,41
+END
+
+IDD_RicciFlow DIALOGEX 0, 0, 317, 184
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "RicciFlow",IDC_BUTTON_RICCIFLOW,21,17,88,14
+    GROUPBOX        "Ricci Flow",IDC_STATIC,14,7,120,40
+END
+
+IDD_POLYOMINO DIALOGEX 0, 0, 293, 612
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "PolyOmino",IDC_STATIC,0,2,283,593
+    PUSHBUTTON      "Generate Landmarks",IDC_GENERATELANDMARKS,184,58,74,14
+    PUSHBUTTON      "Rectification",IDC_Polyomino_Rectification,35,303,46,14
+    PUSHBUTTON      "MergeSlope",IDC_Polyomino_MergeSlope,217,224,52,14
+    PUSHBUTTON      "DeleteLandmark",IDC_Polyomino_DeleteLandmark,25,248,79,14
+    PUSHBUTTON      "MergeSameStyle",IDC_Polyomino_MergeSameStyle,110,248,79,14
+    PUSHBUTTON      "MergeThreeConnected",IDC_Polyomino_ThreeConnected,195,248,79,14
+    PUSHBUTTON      "ExtendSmall",IDC_Polyomino_ExtendSmall,21,323,46,14
+    PUSHBUTTON      "Export for Straightening",IDC_Polyomino_SaveLandmark,180,342,87,14
+    PUSHBUTTON      "MergeSmall",IDC_Polyomino_MergeSmall,91,302,42,14
+    PUSHBUTTON      "CurveStraight",IDC_Polyomino_CurveStraight,71,323,53,14
+    PUSHBUTTON      "SetCurrentMesh",IDC_Omino_SetCurrentMesh,122,58,60,14
+    PUSHBUTTON      "Split Landmark",IDC_Omino_SPLITLANDMARK,182,152,83,14
+    GROUPBOX        "Split Landmark",IDC_STATIC,25,141,254,44
+    CONTROL         "",IDC_Omino_SplitAngleSlider,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,59,167,212,15
+    LTEXT           "Angle:",IDC_STATIC,32,169,26,8
+    CONTROL         "AtpointsWithDifferentDirectionLandmark",IDC_SplitDirectionCHECK1,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,34,153,141,10
+    GROUPBOX        "Merge the inner landmarks with end angles below",IDC_STATIC,23,214,254,30
+    LTEXT           "Angle:",IDC_STATIC,29,228,26,8
+    CONTROL         "",IDC_Omino_MergeAngleSlider,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,50,225,159,15
+    PUSHBUTTON      "SlopingEdgeSubdivision",IDC_Polyomino_SloppingEdgeSubdivision,191,195,85,14
+    GROUPBOX        "Merge the inner landmarks with end angles below",IDC_STATIC,25,185,255,28
+    LTEXT           "Num:",IDC_STATIC,33,197,20,8
+    CONTROL         "",IDC_Omino_SloppingEdgeSubdivision,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,52,194,137,15
+    PUSHBUTTON      "Delete Landmarks",IDC_Polyomino_DeleteSelectedLandmarks,6,364,64,14
+    PUSHBUTTON      "USA Map",IDC_Omino_LoadUSAMap,4,12,42,14
+    PUSHBUTTON      "Merge LandMarks",IDC_Polyomino_MergeSeletedLandMarks,73,364,63,14
+    PUSHBUTTON      "Clear LandMark Selection",IDC_Polyomino_ClearLandMarkSelection,139,364,83,14
+    PUSHBUTTON      "Inverse Style",IDC_Polyomino_InverseSeletedLandMarkStyle,225,364,48,14
+    PUSHBUTTON      "Save  LandMark",IDC_Polyomino_Save_Landmark,94,342,77,14
+    PUSHBUTTON      "Load  LandMark",IDC_Polyomino_LoadLandmark,22,341,65,14
+    GROUPBOX        "Selectection Operations",IDC_STATIC,3,355,272,122
+    PUSHBUTTON      "Smooth All LandMarks",IDC_Polyomino_SmoothLandMarks,18,480,74,14
+    PUSHBUTTON      "Smooth Selected LandMarks",IDC_Polyomino_SmoothSelectedLandMarks,94,479,101,14
+    PUSHBUTTON      "Triangulate",IDC_Polyomino_Triangulate,95,494,95,14
+    PUSHBUTTON      "Slpit Landmarks",IDC_Polyomino_SplitLandmarks,5,380,63,14
+    PUSHBUTTON      "Clear Vertex Selection",IDC_Polyomino_ClearVertexSelection,134,379,72,14
+    PUSHBUTTON      "Invalid Edges",IDC_Polyomino_CheckInvalidEdges,198,479,71,14
+    PUSHBUTTON      "Add Landmark",IDC_Polyomino_AddLandmark,69,380,64,14
+    PUSHBUTTON      "Backup LandMarks",IDC_Polyomino_BackUpLandMarks,17,495,75,14
+    PUSHBUTTON      "Set Auxillary ",IDC_Polyomino_SetAuxillaryLandmark,207,380,63,14
+    PUSHBUTTON      "AuxillaryVisiable",IDC_Polyomino_AuxillaryVisiable,197,495,70,14
+    GROUPBOX        "Merge the small landmarks",IDC_STATIC,23,263,254,57
+    LTEXT           "Length:",IDC_STATIC,34,274,26,8
+    CONTROL         "",IDC_Omino_SmallLandmarkLengthSlider,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,58,271,212,15
+    LTEXT           "Angle:",IDC_STATIC,34,289,26,8
+    CONTROL         "",IDC_Omino_MergeSmallAngleSlider,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,58,286,212,15
+    PUSHBUTTON      "Delete Auxillary Landmarks",IDC_Polyomino_DeleteAuxillaryLandmarks,5,395,90,14
+    PUSHBUTTON      "Fix Points",IDC_Polyomino_FixPoints,137,303,38,14
+    PUSHBUTTON      "Unfix Points",IDC_Polyomino_UnFixPoints,177,304,41,14
+    PUSHBUTTON      "Copy Fix Points",IDC_Polyomino_CopyFixPoints,220,304,51,14
+    PUSHBUTTON      "USA Streighten",IDC_Omino_LoadUSAStreighten,48,12,53,14
+    PUSHBUTTON      "Uniform Grid Initialization",IDC_UniformGrid_Initialization,1,86,92,14
+    PUSHBUTTON      "Progressive Mesh Iteration ",IDC_UniformGrid_Progessive_Mesh_Iteration,95,86,101,14
+    PUSHBUTTON      "ShortestPath",IDC_Polyomino_ShortestPath,97,395,64,14
+    PUSHBUTTON      "Save M Landmark",IDC_Polyomino_Save_M_Landmark,162,394,63,14
+    PUSHBUTTON      "Tuttle Embedding",IDC_Polyomino_TuteEmbedding,5,412,65,14
+    PUSHBUTTON      "Load Data",IDC_Omino_LoadData,2,72,43,14
+    PUSHBUTTON      "Add Vertex Selection",IDC_Polyomino_AddVertexSelection,71,412,74,14
+    PUSHBUTTON      "Add Edge Selection",IDC_Polyomino_AddEdgeSelection,147,412,70,14
+    PUSHBUTTON      "Morph",IDC_Omino_DataDrivenMorph,91,43,29,14
+    PUSHBUTTON      "M Optimization",IDC_Omino_DataDrivenMorphOptimization,122,43,53,14
+    PUSHBUTTON      "Area",IDC_Polyomino_SetFaceArea,227,394,42,14
+    PUSHBUTTON      "Save Face Area",IDC_Omino_SAVEFACEAREA,1,58,58,14
+    PUSHBUTTON      "Load Face Area",IDC_Omino_LOADFACEAREA,61,58,59,14
+    PUSHBUTTON      "Add Merge Constraints",IDC_Omino_AddMergeConstraints,48,72,77,14
+    PUSHBUTTON      "Save Constraints",IDC_Omino_SaveMergeConstraints,127,71,61,14
+    PUSHBUTTON      "Load Constraints",IDC_Omino_LoadMergeConstraints,190,71,68,14
+    PUSHBUTTON      "Load Debug",IDC_Omino_LoadDebugInformation,46,43,43,14
+    PUSHBUTTON      "Georgia Map",IDC_Omino_LoadGeorgiaMap,103,12,47,14
+    PUSHBUTTON      "VisualizeData",IDC_Omino_UniformGrid,177,43,53,14
+    PUSHBUTTON      "JianZhi",IDC_Omino_JianZhi,0,43,45,14
+    PUSHBUTTON      "Check Triangulation",IDC_Polyomino_CheckTriangulation,18,510,75,14
+    PUSHBUTTON      "Georgia Streighten",IDC_Omino_LoadGeorgiaStreighten,152,12,65,14
+    PUSHBUTTON      "Illinois Map",IDC_Omino_LoadIllinoisMap,219,12,47,14
+    PUSHBUTTON      "Illinois Streighten",IDC_Omino_LoadIllinoisStreighten,4,27,65,14
+    PUSHBUTTON      "Inverse Landmark Selection",IDC_Polyomino_InverseLandmarkSelection,6,428,96,14
+    PUSHBUTTON      "Inverse All Landmark Style",IDC_Polyomino_InverseAllLandmarkStyle,104,428,93,14
+    PUSHBUTTON      "KD-Tree",IDC_BUTTON_KDTREE,175,27,50,14
+    PUSHBUTTON      "KD-Tree Iter",IDC_BUTTON_KDTREE_ITERATION,225,27,50,14
+    LISTBOX         IDC_LIST_CHOOSE_DATA,232,43,48,14,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "OpenMesh",IDC_Polyomino_OpenMesh,208,323,64,14
+    PUSHBUTTON      "World Map",IDC_BUTTON_LOADWORLDMAP,69,27,50,14
+    PUSHBUTTON      "SaveSimplifiedM",IDC_BUTTON_SAVESIMPLIFIEDMFILE,120,27,55,14
+    PUSHBUTTON      "SaveSelectedPoints",IDC_BUTTON_SAVESELECTEDPOINTS,89,459,84,14
+    PUSHBUTTON      "LoadSelectedPoints",IDC_BUTTON_LOADSELECTEDPOINTS,5,459,84,14
+    PUSHBUTTON      "CurveStraight Select",IDC_Polyomino_CurveStraight_Selected,128,323,76,14
+    PUSHBUTTON      "Subdivide E",IDC_BUTTON_SUBDIVIDE_EDGE,68,103,43,14
+    PUSHBUTTON      "Search Landmark",IDC_BUTTON_SEARCH_LANDMARK,3,103,62,14
+    PUSHBUTTON      "Subdivide E SLOP H",IDC_BUTTON_SUBDIVIDE_EDGE_SLOPPING_HORIZONTAL,114,103,68,14
+    PUSHBUTTON      "Subdivide E SLOP V",IDC_BUTTON_SUBDIVIDE_EDGE_SLOPPING_VERTICAL,184,103,68,14
+    PUSHBUTTON      "Search Landmark Connect",IDC_BUTTON_SEARCH_LANDMARK2,197,87,83,14
+    PUSHBUTTON      "Fix Append",IDC_Polyomino_Mesh_FixVertices,3,120,43,14
+    PUSHBUTTON      "Fix  New",IDC_Polyomino_Mesh_FixVertices2,48,120,35,14
+    PUSHBUTTON      "Fix Save",IDC_Polyomino_Mesh_FixVertices3,85,120,32,14
+    PUSHBUTTON      "Fix Load",IDC_Polyomino_Mesh_FixVertices4,119,120,32,14
+    PUSHBUTTON      "Sharpe V Save",IDC_Polyomino_Mesh_SharpeVertex_Save,152,120,53,14
+    PUSHBUTTON      "Sharpe V Load",IDC_Polyomino_Mesh_SharpeVertex_Load,207,120,53,14
+    PUSHBUTTON      "SelectLandmarksBetweenTwoPoints",IDC_BUTTON_SELECTLANDMARKS_TWOPOINTS,5,444,119,14
+    PUSHBUTTON      "SaveSelectedLandmarks",IDC_BUTTON_SAVESELECTEDLANDMARK,197,427,84,14
+    PUSHBUTTON      "LoadSelectedLandmarks",IDC_BUTTON_LOADSELECTEDLANDMARK,195,442,84,14
+    PUSHBUTTON      "SelectLandmarks",IDC_BUTTON_AddLandmarks,124,444,70,14
+    PUSHBUTTON      "DeleteOnePointLandmark",IDC_BUTTON_ONEPOINTLANDMARK,173,459,94,14
+    PUSHBUTTON      "Open Landmark",IDC_BUTTON_DETECT_OPENLANDMARK,217,412,57,14
+    PUSHBUTTON      "Delete Duplicate Landmark",IDC_BUTTON_DELETE_DUPLICATE_LANDMARK,94,509,94,14
+    PUSHBUTTON      "Subdivide Edge",IDC_BUTTON_SUBDIVIDESHARPEEDGE,191,509,76,14
+END
+
+IDD_Harmonic DIALOGEX 0, 0, 317, 454
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Harmonic Teichmuller",IDC_BUTTON_HARMONIC,25,114,268,14
+    GROUPBOX        "Harmonic Mapping",IDC_STATIC,14,24,289,277
+    GROUPBOX        "Boundary",IDC_STATIC,25,22,88,35
+    CONTROL         "Uniform",IDC_HARMONIC_BOUNDARY_UNIFORM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,31,39,41,10
+    CONTROL         "Chord",IDC_HARMONIC_BOUNDARY_CHORD,"Button",BS_AUTORADIOBUTTON,74,39,46,10
+    GROUPBOX        "Weight",IDC_STATIC,123,22,161,35
+    CONTROL         "Uniform",IDC_HARMONIC_WEIGHTS_UNIFORM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,130,38,41,10
+    CONTROL         "Laplace",IDC_HARMONIC_WEIGHTS_LAPLACE,"Button",BS_AUTORADIOBUTTON,175,38,40,10
+    CONTROL         "Mean",IDC_HARMONIC_WEIGHTS_MEANVALUE,"Button",BS_AUTORADIOBUTTON,224,38,33,10
+    PUSHBUTTON      "Load Test",IDC_BUTTON_LOADTEST,25,80,82,14
+    PUSHBUTTON      "Dynamic Harmonic",IDC_BUTTON_DYNAMICHARMONIC,25,130,266,14
+    PUSHBUTTON      "Dynamic Harmonic Initialize",IDC_BUTTON_DYNAMICHARMONIC_Initialize,26,180,92,14
+    PUSHBUTTON      "Dynamic Harmonic Iteration",IDC_BUTTON_DYNAMICHARMONIC_Iteration,121,181,94,14
+    PUSHBUTTON      "Free of Flip",IDC_BUTTON_DYNAMICHARMONIC_FREEOFFLIP,217,181,78,14
+    PUSHBUTTON      "Get Mesh Swap Sequence",IDC_BUTTON_MESH_SWAPSEQUENCE,109,80,102,14
+    PUSHBUTTON      "Modify Topology",IDC_BUTTON_MESH_MODIFYTOPOLOGY,216,80,87,14
+    PUSHBUTTON      "SimpleExamplewithsingularity",IDC_BUTTON_LOADEXAMPLEWITHSINGULARITY,25,62,109,14
+    PUSHBUTTON      "Generate Georgia",IDC_BUTTON_GENERATEGEOGIAGEBOUNDARY,139,63,72,14
+    PUSHBUTTON      "Georgia Hybrid",IDC_BUTTON_GENERATEGEOGIAGEHYBRID,215,63,82,14
+    PUSHBUTTON      "Streighten Landmark",IDC_BUTTON_STREIGHTENLANDMARK,26,201,82,14
+    PUSHBUTTON      "Streighten Landmark Chord Length",IDC_BUTTON_STREIGHTENLANDMARK2,112,202,126,14
+    PUSHBUTTON      "Chord Length Ratio",IDC_BUTTON_STREIGHTENLANDMARK3,24,220,98,14
+    PUSHBUTTON      "Up",IDC_BUTTON_STREIGHTENLANDMARK4,131,241,54,14
+    PUSHBUTTON      "Down",IDC_BUTTON_STREIGHTENLANDMARK5,131,274,54,14
+    PUSHBUTTON      "Left",IDC_BUTTON_STREIGHTENLANDMARK6,99,250,26,33
+    PUSHBUTTON      "Right",IDC_BUTTON_STREIGHTENLANDMARK7,191,251,26,33
+    PUSHBUTTON      "Clear",IDC_BUTTON_STREIGHTENLANDMARK8,125,221,60,14
+    PUSHBUTTON      "Load Georgia Original",IDC_BUTTON_STREIGHTENLANDMARK9,192,221,100,14
+    PUSHBUTTON      "USA Geomap Dynamic Harmonic",IDC_BUTTON_DYNAMICHARMONIC2,24,294,266,14
+    PUSHBUTTON      "Kd Tree",IDC_BUTTON_DYNAMICHARMONIC3,23,312,266,14
+    GROUPBOX        "Tuttle Embedding",IDC_STATIC,15,333,287,35
+    PUSHBUTTON      "Tuttle Embedding",IDC_BUTTON1,109,347,69,14
+    PUSHBUTTON      "Load Face",IDC_BUTTON_FACEMODEL,221,376,78,14
+    PUSHBUTTON      "Landmark Same Style",IDC_BUTTON9,183,348,91,14
+    PUSHBUTTON      "Load  UShape",IDC_BUTTON_USHAPE,23,376,78,14
+    PUSHBUTTON      "Load  UShape Triangulated",IDC_BUTTON_USHAPE_TRIAGULATED,109,376,105,14
+    PUSHBUTTON      "Harmonic Original",IDC_BUTTON_HARMONIC_ORIGINAL,25,97,268,14
+    PUSHBUTTON      "Load Data",IDC_BUTTON10,22,346,78,14
+    PUSHBUTTON      "Harmonic Straighten",IDC_BUTTON_HARMONIC_STRAIGHTENING,25,165,268,14
+    PUSHBUTTON      "Load  Example1",IDC_BUTTON_EXAMPLE1,22,392,78,14
+    PUSHBUTTON      "Harmonic Horizontal/Vertical Straighten ",IDC_BUTTON_HARMONIC_HV_STRAIGHTENING,25,147,268,14
+    PUSHBUTTON      "Load  Example2",IDC_BUTTON_EXAMPLE2,109,392,102,14
+END
+
+IDD_DIALOG_EDGESWAP DIALOGEX 0, 0, 311, 431
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_DIALOG_TOOTH DIALOGEX 0, 0, 293, 399
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Boundary Detection",IDC_BUTTON_TOOTH_BOUNDARYDETECTION,14,14,104,14
+    PUSHBUTTON      "Mesh Smooth",IDC_BUTTON_TOOTH_MESHSMOOTH,127,14,104,14
+    PUSHBUTTON      "Load Path",IDC_BUTTON_TOOTH_LOADPATH,15,38,101,14
+    PUSHBUTTON      "Delete Sharp Edge",IDC_BUTTON_TOOTH_DeleteSharpEdge,18,65,101,14
+    PUSHBUTTON      "Add Sharp Edge",IDC_BUTTON_TOOTH_AddSharpEdge2,125,66,101,14
+    PUSHBUTTON      "Clear Sharp Edge Selection",IDC_BUTTON_TOOTH_ClearSharpEdgeSelection,19,87,101,14
+    PUSHBUTTON      "Save Path",IDC_BUTTON_TOOTH_SAVEPATH,128,38,101,14
+    PUSHBUTTON      "Clear Sharp Vertex Selection",IDC_BUTTON_TOOTH_ClearSharpVertexSelectio,124,87,101,14
+    PUSHBUTTON      "Delete Sharp Edge between Two Points",IDC_BUTTON_TOOTH_DeleteSharpEdge_TwoPoints,18,110,144,14
+    PUSHBUTTON      "Swap Edge",IDC_BUTTON_TOOTH_SwapEdge,21,131,86,14
+    PUSHBUTTON      "Swap Edge & Add Sharp Edge",IDC_BUTTON_TOOTH_SwapEdge_SharpEdge,111,254,127,14
+    PUSHBUTTON      "Path Smooth",IDC_BUTTON_TOOTH_PathSmooth,27,276,86,14
+    PUSHBUTTON      "Path Projection",IDC_BUTTON_TOOTH_PathProjection,122,278,86,14
+    PUSHBUTTON      "Check Tooth",IDC_BUTTON_CHECKTEETH,30,299,86,14
+END
+
+IDD_DIALOG_BOOLOPERATION DIALOGEX 0, 0, 309, 316
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Compute Intersection Curve",IDC_BUTTON_BOOLOPERATION_INTERSECTIONCURVES,29,23,121,14
+END
+
+IDD_DIALOG_SDL DIALOGEX 0, 0, 254, 373
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Reference Ratio",IDC_STATIC,15,58,212,25
+    CONTROL         "",IDC_SLIDERREFERENCERATIO,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,19,68,197,11
+    PUSHBUTTON      "Load Bezier Example1",IDC_BUTTON_BezierExample1,19,16,209,15
+    PUSHBUTTON      "Calculate SDL Coefficients",ID_OPENMESH_CALCULATE_SDL_COEFFICIENTS2,19,43,209,15
+    PUSHBUTTON      "Calculate epsilon-Optiaml SDL Parameterization",ID_OPENMESH_CALCULATE_eOPTIMAL_SDL,19,142,209,15
+    EDITTEXT        IDC_EDIT_SDL_MINRATIO,40,116,67,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SDL_MAXRATIO,146,115,79,14,ES_AUTOHSCROLL
+    LTEXT           "Min:",IDC_STATIC,24,119,14,8
+    LTEXT           "Max:",IDC_STATIC,127,118,16,8
+    GROUPBOX        "MinMaxRatio",IDC_STATIC,19,106,209,29
+    PUSHBUTTON      "Calculate Optiaml SDL Parameterization",ID_OPENMESH_CALCULATE_OPTIMAL_SDL,19,89,209,15
+END
+
+IDD_DIALOG_OCC DIALOGEX 0, 0, 230, 224
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Sewing",IDC_BUTTON_SEWING,55,36,50,14
+END
+
+IDD_DIALOG_ACIS DIALOGEX 0, 0, 266, 248
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Fix Gap",IDC_BUTTON_FIXGAP,46,43,50,14
+    PUSHBUTTON      "Load Two Surface",IDC_BUTTON_ACIS_TWOSURFACE,15,7,73,14
+END
+
+IDD_DIALOG10 DIALOGEX 0, 0, 133, 101
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Acis",IDC_ENGINE_ACIS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,33,40,29,10
+    CONTROL         "OCC",IDC_ENGINE_OCC,"Button",BS_AUTORADIOBUTTON,75,40,31,10
+    GROUPBOX        "Geometric Engine",IDC_STATIC,26,22,90,42
+    DEFPUSHBUTTON   "确定",IDOK,14,72,50,14
+    PUSHBUTTON      "取消",IDCANCEL,68,72,50,14
+END
+
+IDD_DIALOG_ReverseEngineering DIALOGEX 0, 0, 210, 276
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Detect Plane",IDC_BUTTON_DetectPlane,19,115,163,14
+    PUSHBUTTON      "GenerateSmallerMesh",IDC_BUTTON_GenerateSmallerMesh2,21,21,163,14
+    EDITTEXT        IDC_EDIT_ANGLE_TOLERANCE,20,68,161,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TRIANGLE_GROUP_NUMBER,20,93,160,14,ES_AUTOHSCROLL
+    GROUPBOX        "Angle Tolerance",IDC_STATIC,17,58,150,30
+    GROUPBOX        "Group Number",IDC_STATIC,17,85,172,30
+END
+
+IDD_DIALOG_SURFACEHEALING DIALOGEX 0, 0, 310, 655
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Check Entity",IDC_BUTTON_ACIS_CHECK_ENTITY,39,5,201,14
+    EDITTEXT        IDC_EDIT_OCC_HAUSDORFF_MIN,44,36,65,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_OCC_HAUSDORFF_MAX,173,34,54,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Hausdorff  Check",IDC_BUTTON_HAUSDORFFDISTANCECHECK,41,62,189,14
+    GROUPBOX        "Hausdorff Distance  Check",IDC_STATIC,34,27,203,54
+    PUSHBUTTON      "Check Files",IDC_BUTTON_ACIS_CHECK_FILES,37,149,189,14
+    EDITTEXT        IDC_EDIT_OCC_FACELACK_MIN,40,94,65,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_OCC_FACELACK_MAX,169,92,54,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "FACE LACK Check Edge Number",IDC_BUTTON_FACELACKCHECK,37,115,189,14
+    GROUPBOX        "Face  Lack Check",IDC_STATIC,30,80,203,54
+    PUSHBUTTON      "Connect to MYSQL",IDC_BUTTON_MYSQL,37,168,189,14
+    PUSHBUTTON      "FACE LACK Check Area",IDC_BUTTON_FACELACKCHECK_AREA,37,132,189,14
+    PUSHBUTTON      "Hausdorff Distance ACIS",IDC_BUTTON_HAUSDORFFDISTANCE_ACIS,36,190,189,14
+    PUSHBUTTON      "Hausdorff Distance Verification with ACIS",IDC_BUTTON_VERIFICATION_HAUSDORFFDISTANCE_ACIS,33,210,189,14
+    PUSHBUTTON      "Load First Face Lack Model",IDC_BUTTON_LOADFIRSTMODEL,14,266,90,14
+    PUSHBUTTON      "Load Next Face Lack Model",IDC_BUTTON_LOADNEXTMODEL,108,266,104,14
+    LTEXT           "Current Model Index / Total Models",IDC_SURFACEHEALING_MODELINFO,16,459,161,8
+    PUSHBUTTON      "Close Face Lack Model",IDC_BUTTON_CLOSEFACELACKMODEL,217,266,84,14
+    LTEXT           "Current Model Path",IDC_SURFACEHEALING_CURRENTMODELPATH,16,448,266,8
+    EDITTEXT        IDC_EDIT_MODEL_DESCRIPTION,19,294,280,41,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL
+    LTEXT           "Current Model Information",IDC_SURFACEHEALING_CURRENTMODELINFO,16,393,266,8
+    LTEXT           "Current Model LeftBottom",IDC_SURFACEHEALING_LEFTBOTTOM,16,404,266,8
+    LTEXT           "Current Model RightTop",IDC_SURFACEHEALING_RIGHTTOP,16,415,266,8
+    LTEXT           "Current Model Read Time Debug:",IDC_SURFACEHEALING_READTIMEDEBUG,16,426,266,8
+    LTEXT           "Current Model Read Time Release:",IDC_SURFACEHEALING_READTIMERELEASE,16,437,266,8
+    LTEXT           "Current Model Face Lack Information",IDC_SURFACEHEALING_CURRENTMODELFACELACK,16,360,266,8
+    LTEXT           "Current Model Gap Number",IDC_SURFACEHEALING_CURRENTMODELGAPNUMBER,16,371,266,8
+    LTEXT           "Current Model Max Hausdorff:",IDC_SURFACEHEALING_CURRENTMODELMAXHAUSDORFF,16,382,266,8
+    PUSHBUTTON      "Modify Model Description",IDC_BUTTON_MODIFYMODELDESCRIPTION,20,340,90,14
+    PUSHBUTTON      "Add to Huawei Gap DataSet",IDC_BUTTON_ADDTOHUAWEIGAPDATASET,110,340,97,14
+    PUSHBUTTON      "Add to Huawei Lack DataSet",IDC_BUTTON_ADDTOHUAWEILackDATASET,208,340,97,14
+    LTEXT           "Huawei Gap Model Number:",IDC_SURFACEHEALING_HUAWEIGAPMODELNUM,16,470,270,8
+    LTEXT           "Huawei Lack Model Number:",IDC_SURFACEHEALING_HUAWEILACKMODELNUM,16,481,270,8
+    LTEXT           "Description: English Only!",IDC_STATIC,18,282,82,8
+    EDITTEXT        IDC_EDIT_MODEL_DESCRIPTION2,20,495,280,148,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL
+    EDITTEXT        IDC_HEALING_EDIT_MODELINDEX,15,249,40,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Load Model",IDC_BUTTON_LOADTHEMODEL,58,249,54,14
+    PUSHBUTTON      "Load ACIS Model",IDC_BUTTON_LOADTHEACISMODEL,116,249,69,14
+    PUSHBUTTON      "ADD to Lack Face Database",IDC_BUTTON_ADDTOFACELACKSET,189,249,109,14
+    EDITTEXT        IDC_HEALING_EDIT_MODELID,15,231,40,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Load Model ID",IDC_BUTTON_LOADTHEMODELWITHID,59,231,54,14
+    PUSHBUTTON      "Face Lack Automatic",IDC_BUTTON_FACELACKAUTOMATIC,116,232,71,14
+    PUSHBUTTON      "GAP Detection Automatic",IDC_BUTTON_GAPDETECTIONAUTOMATIC,192,233,92,14
+END
+
+IDD_DIALOG11 DIALOGEX 0, 0, 471, 301
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,205,279,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,414,279,50,14
+    EDITTEXT        IDC_EDIT_SURFACEINFORMATION,7,7,457,271,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL
+END
+
+IDD_DIALOG_SURFACECOVERING DIALOGEX 0, 0, 459, 643
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Surface Covering",IDC_BUTTON_SURFACECOVERING,27,28,194,14
+    PUSHBUTTON      "Load G1 Coons Example1",IDC_BUTTON1_Load_G1Coons_Example1,127,50,94,14
+    PUSHBUTTON      "Load G1 Coons Example2",IDC_BUTTON1_Load_G1Coons_Example2,29,70,94,14
+    PUSHBUTTON      "Load Boundary Example1",IDC_BUTTON1_Load_Boundary_Example1,29,50,94,14
+    PUSHBUTTON      "Load G1 Coons Example3",IDC_BUTTON1_Load_G1Coons_Example3,127,70,94,14
+    PUSHBUTTON      "G1 Coons Generation",IDC_BUTTON1_G1COONS_GENERATION,27,117,198,14
+    PUSHBUTTON      "G0 Coons Generation",IDC_BUTTON1_G0COONS_GENERATION,27,95,197,14
+    PUSHBUTTON      "Point Pair Calculation",IDC_BUTTON1_POINTPAIRCALCULATION,27,143,198,14
+    PUSHBUTTON      "BSpline Curve Offset",IDC_BUTTON_BSPLINECURVEOFFSET,27,167,197,14
+END
+
+IDD_DIALOG_NSIDEDHOLEFILLING DIALOGEX 0, 0, 310, 384
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "N-sided hole filling",IDC_BUTTON_NSIDEDHOLEFILLING,21,37,224,14
+END
+
+IDD_DIALOG_OCCFILLING DIALOGEX 0, 0, 310, 424
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "OCC FILLING",IDC_BUTTON_OCCFILLING,42,25,198,14
+END
+
+IDD_DIALOG_GORDEN DIALOGEX 0, 0, 310, 357
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Gorden",IDC_BUTTON_GORDEN,38,33,193,14
+    PUSHBUTTON      "myGordon",IDC_BUTTON_MYGORDON,41,75,189,17
+    PUSHBUTTON      "AnalysisSitus Gordon",IDC_BUTTON_Analysis,47,121,181,19
+END
+
+IDD_DIALOG_CONSTRAINTSOLVER DIALOGEX 0, 0, 310, 347
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "添加约束",IDC_BUTTON_ADDCONSTRAINT,51,24,179,14
+END
+
+IDD_DIALOG_SURFSURFINTER DIALOGEX 0, 0, 310, 376
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Load Example",IDC_BUTTON_INTERSECTION_EXAMPLE,43,19,215,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 499
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 415
+    END
+
+    IDD_DIALOG_SHOWSURFACEDOMAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 718
+        TOPMARGIN, 7
+    END
+
+    IDD_DIALOG3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 464
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 294
+    END
+
+    IDD_DIALOG4, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 161
+    END
+
+    IDD_RicciFlow, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 310
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 177
+    END
+
+    IDD_POLYOMINO, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 608
+    END
+
+    IDD_Harmonic, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 310
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 447
+    END
+
+    IDD_DIALOG_EDGESWAP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 304
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 424
+    END
+
+    IDD_DIALOG_TOOTH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 286
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 392
+    END
+
+    IDD_DIALOG_BOOLOPERATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 309
+    END
+
+    IDD_DIALOG_SDL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 247
+        TOPMARGIN, 17
+        BOTTOMMARGIN, 366
+    END
+
+    IDD_DIALOG10, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 126
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+    END
+
+    IDD_DIALOG_ReverseEngineering, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 203
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 269
+    END
+
+    IDD_DIALOG_SURFACEHEALING, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 643
+    END
+
+    IDD_DIALOG11, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 464
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 293
+    END
+
+    IDD_DIALOG_SURFACECOVERING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 328
+    END
+
+    IDD_DIALOG_NSIDEDHOLEFILLING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 377
+    END
+
+    IDD_DIALOG_OCCFILLING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 417
+    END
+
+    IDD_DIALOG_GORDEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 350
+    END
+
+    IDD_DIALOG_CONSTRAINTSOLVER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 340
+    END
+
+    IDD_DIALOG_SURFSURFINTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 369
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU
+BEGIN
+    POPUP "Surface"
+    BEGIN
+        MENUITEM "Show Parameter",              ID_SURFACE_SHOWPARAMETER
+        MENUITEM "ShowSurfaceInformation",      ID_SURFACE_SHOWSURFACEINFORMATION
+        MENUITEM "Subdivide",                   ID_SURFACE_SUBDIVIDE
+        MENUITEM "Normalize",                   ID_SURFACE_NORMALIZE
+        MENUITEM "Save as ...",                 ID_SURFACE_SAVEAS
+        MENUITEM "Save as TM file...",          32817
+        MENUITEM "Delete",                      ID_SURFACE_DELETE
+        MENUITEM "PovRay",                      ID_SURFACE_POVRAY
+        MENUITEM "ConvertToTspline",            ID_SURFACE_CONVERTTOTSPLINE
+        MENUITEM "ComputeConformalEnergy",      ID_SURFACE_COMPUTECONFORMALENERGY
+        MENUITEM SEPARATOR
+        MENUITEM "ShowCoordinateAxis",          IDC_ShowCoordinateAxis_Object
+        MENUITEM "ShowColorBoundary",           ID_SURFACE_SHOWCOLORBOUNDARY, CHECKED
+        MENUITEM "ShowIsoParameterCurves",      ID_SURFACE_SHOWISOPARAMETERCURVES, CHECKED
+        MENUITEM "ShowSubdivisionCurves",       ID_SURFACE_SHOWSUBDIVISIONCURVES, CHECKED
+        MENUITEM "ShowSurface",                 ID_SURFACE_SHOWSURFACE
+        MENUITEM "OnlyShowMe",                  ID_SURFACE_ONLYSHOWME
+        MENUITEM "ShowOptimalIsoParameterCurves", ID_SURFACE_SHOWOPTIMALISOPARAMETERCURVES, CHECKED
+        MENUITEM "ShowControlPointNetwork",     ID_SURFACE_SHOWCONTROLPOINTNETWORK
+        MENUITEM "ShowSubSurfaceCoordinate",    ID_SURFACE_SHOWSUBSURFACECOORDINATE
+        MENUITEM "ShowBilinearCoefficients",    ID_SURFACE_SHOWBILINEARCOEFFICIENTS
+        POPUP "Transformation"
+        BEGIN
+            MENUITEM "Mobius",                      ID_SURFACE_MOBIUS
+            MENUITEM "Mobius + bilinear",           ID_SURFACE_TRANSFORMATIONOFMOBIUSANDBILINEAR
+            MENUITEM "Mobius + cubic ",             ID_SURFACE_TRANSFORMATIONOFMOBIUSANDCUBIC
+            MENUITEM "iso",                         ID_SURFACE_SHOWISOLINE
+        END
+        MENUITEM "ShowOptimalAreaPreserving",   ID_SURFACE_SHOWOPTIMALAREAPRESERVING
+        MENUITEM "ShowOptimalAreaPreservingModified", ID_SURFACE_SHOWOPTIMALAREAPRESERVINGMODIFIED
+        MENUITEM "ShowColorOrthogonality",      ID_SURFACE_SHOWCOLORORTHOGONALITY
+        MENUITEM "ShowTransformedParameterDomain", ID_SURFACE_SHOWTRANSFORMEDPARAMETERDOMAIN
+        MENUITEM "ShowGeneralBilinearIsoParameterCurves", ID_SURFACE_SHOWGENERALBILINEARISOPARAMETERCURVES
+    END
+END
+
+IDR_MENU2 MENU
+BEGIN
+    POPUP "Zoom"
+    BEGIN
+        MENUITEM "ZoomAll",                     ID_ZOOM_ZOOMALL
+    END
+END
+
+IDR_MENU7 MENU
+BEGIN
+    POPUP "Surface"
+    BEGIN
+        MENUITEM "ShowSurfaceInformation",      ID_SURFACE_SHOWSURFACEINFORMATION
+        MENUITEM "ShowIsoParameterCurves",      ID_SURFACE_SHOWISOPARAMETERCURVES, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "ShowSurface",                 ID_SURFACE_SHOWSURFACE, CHECKED
+        MENUITEM "OnlyShowMe",                  ID_SURFACE_ONLYSHOWME
+        MENUITEM "ShowControlPointNetwork",     ID_SURFACE_SHOWCONTROLPOINTNETWORK
+        MENUITEM "ShowEdge",                    ID_SURFACE_SHOWEDGE
+        MENUITEM "ShowVertex",                  ID_SURFACE_SHOWVERTEX
+        MENUITEM "ShowGapEdge",                 ID_SURFACE_SHOWGAPEDGE
+        MENUITEM "ShowFaceLackBoundary",        ID_SURFACE_SHOWFACELACKBOUNDARY
+        MENUITEM "ShowFaceIndex",               ID_SURFACE_SHOWFACEINDEX
+        MENUITEM "ShowEdgeIndex",               ID_SURFACE_SHOWEDGEINDEX
+        MENUITEM "ShowVertexIndex",             ID_SURFACE_SHOWVERTEXINDEX
+        MENUITEM "ShowSelectedEdge",            ID_SURFACE_SHOWSELECTEDEDGE
+        MENUITEM "DeleteThisFace",              ID_SURFACE_DELETETHISFACE
+        POPUP "ShowDEBUGINFO"
+        BEGIN
+            MENUITEM "ShowFaceLackTessellationPoints", ID_SHOWDEBUGINFO_SHOWFACELACKTESSELLATIONPOINTS
+            MENUITEM "ShowFittingPlane",            ID_SHOWDEBUGINFO_SHOWFITTINGPLANE
+            MENUITEM "ShowProjectedPoints",         ID_SHOWDEBUGINFO_SHOWPROJECTEDPOINTS
+        END
+        MENUITEM "ClearAllChildrenCheck",       ID_SURFACE_CLEARALLCHILDRENCHECK
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_Harmonic AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_POLYOMINO AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_EDGESWAP AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_TOOTH AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_BOOLOPERATION AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_SDL AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+END
+
+IDD_DIALOG10 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_ReverseEngineering AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG11 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_SURFACECOVERING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_NSIDEDHOLEFILLING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_OCCFILLING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_GORDEN AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_CONSTRAINTSOLVER AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_SURFACEHEALING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_SURFSURFINTER AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_PNG1                PNG                     "res\\colorbar.PNG"
+
+IDB_PNG2                PNG                     "res\\gray.png"
+
+IDB_PNG3                PNG                     "res\\hot_colorbar.png"
+
+IDB_PNG4                PNG                     "res\\inverse_hot_colorbar.png"
+
+IDB_PNG5                PNG                     "res\\summer.png"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP6             BITMAP                  "res\\colorbar.bmp"
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英语(美国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 265, 71
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About CAD Software"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "CAD Software Version 1.0",IDC_STATIC,71,14,140,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2024,  XJTU Geometric Center",IDC_STATIC,61,29,141,8
+    DEFPUSHBUTTON   "OK",IDOK,226,7,32,14,WS_GROUP
+    LTEXT           "Please contact by Email: yangyijun@xjtu.edu.cn",IDC_STATIC,40,47,200,8
+END
+
+IDD_FORMVIEW3 DIALOGEX 0, 0, 299, 927
+STYLE DS_ABSALIGN | DS_SETFONT | DS_3DLOOK | WS_CHILD | WS_VSCROLL
+EXSTYLE WS_EX_CLIENTEDGE | WS_EX_APPWINDOW
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_TAB2,"SysTabControl32",0x0,6,0,292,561
+END
+
+IDD_ProjectBackToParameterDomain DIALOGEX 0, 0, 604, 374
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,125,353,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,345,353,50,14
+END
+
+IDD_DIALOG5 DIALOGEX 0, 0, 724, 581
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,205,560,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,667,560,50,14
+    CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,53,407,585,15
+    CONTROL         "",IDC_SLIDER2,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,53,425,585,15
+    CONTROL         "",IDC_SLIDER4,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,53,442,585,15
+    CONTROL         "",IDC_SLIDER6,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,53,460,585,15
+    CONTROL         "",IDC_SLIDER5,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,54,479,585,15
+    CONTROL         "",IDC_SLIDER7,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,54,497,585,15
+    CONTROL         "",IDC_SLIDER8,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,54,514,585,15
+    CONTROL         "",IDC_SLIDER9,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,54,532,585,15
+    LTEXT           "c00",IDC_STATIC,34,411,17,9
+    LTEXT           "c01",IDC_STATIC,33,430,17,9
+    LTEXT           "c02",IDC_STATIC,33,446,17,9
+    LTEXT           "c10",IDC_STATIC,34,464,17,9
+    LTEXT           "c12",IDC_STATIC,35,481,17,9
+    LTEXT           "c20",IDC_STATIC,34,500,17,9
+    LTEXT           "c21",IDC_STATIC,36,516,17,9
+    LTEXT           "c22",IDC_STATIC,35,534,17,9
+END
+
+IDD_DIALOG6 DIALOGEX 0, 0, 745, 527
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,260,505,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,386,506,50,14
+    CONTROL         "",IDC_GENERAL_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,75,18,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER2,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,412,18,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER3,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,75,38,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER4,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,412,38,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER5,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,75,58,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER6,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,412,58,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER8,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,412,77,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER9,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,75,96,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER10,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,412,96,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER11,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,75,114,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER12,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,412,114,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER13,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,75,133,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER14,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,412,133,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER15,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,75,152,247,15
+    CONTROL         "",IDC_GENERAL_SLIDER16,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,412,152,247,15
+    LTEXT           "a1:",IDC_STATIC,53,20,16,12
+    LTEXT           "a2:",IDC_STATIC,390,20,16,12
+    LTEXT           "a3:",IDC_STATIC,53,39,16,12
+    LTEXT           "a4:",IDC_STATIC,390,39,16,12
+    LTEXT           "a5:",IDC_STATIC,53,58,16,12
+    LTEXT           "a6:",IDC_STATIC,390,58,16,12
+    LTEXT           "a7:",IDC_STATIC,53,77,16,12
+    LTEXT           "a8:",IDC_STATIC,390,77,16,12
+    CONTROL         "",IDC_GENERAL_SLIDER7,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,75,77,247,15
+    LTEXT           "a9:",IDC_STATIC,53,96,16,12
+    LTEXT           "a11:",IDC_STATIC,53,115,16,12
+    LTEXT           "a13:",IDC_STATIC,53,134,16,12
+    LTEXT           "a15:",IDC_STATIC,53,153,16,12
+    LTEXT           "a10:",IDC_STATIC,390,96,16,12
+    LTEXT           "a12:",IDC_STATIC,390,115,16,12
+    LTEXT           "a14:",IDC_STATIC,390,134,16,12
+    LTEXT           "a16:",IDC_STATIC,390,153,16,12
+END
+
+IDD_DIALOG7 DIALOGEX 0, 0, 527, 473
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_AreaPreserving DIALOGEX 0, 0, 197, 356
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Face Step 1",IDC_FaceExample,14,49,78,14
+    PUSHBUTTON      "Face Step 2",IDC_FaceExample2,104,49,78,14
+    GROUPBOX        "Face Surface",IDC_STATIC,12,36,174,34
+    GROUPBOX        "Bezier Surface",IDC_STATIC,12,9,174,25
+    PUSHBUTTON      "Step 1",IDC_BezierExampleStep1,14,17,78,14
+    GROUPBOX        "Venus Surface",IDC_STATIC,12,73,172,46
+    PUSHBUTTON      "Venus Step 1",IDC_VENUS_STEP1,16,82,74,14
+    PUSHBUTTON      "Venus Step 2",IDC_VENUS_STEP2,90,82,76,14
+    PUSHBUTTON      "Venus Step 3",IDC_VENUS_STEP3,16,100,76,14
+    GROUPBOX        "Bone Surface",IDC_STATIC,10,118,169,27
+    PUSHBUTTON      "Bone Step 1",IDC_BONESTEP1,16,126,74,14
+    PUSHBUTTON      "Bone Step 2",IDC_BONESTEP2,94,126,70,14
+    GROUPBOX        "Vase Surface",IDC_STATIC,10,145,170,28
+    PUSHBUTTON      "Vase Step 1",IDC_BUTTON6,16,153,71,14
+    PUSHBUTTON      "Vase Step 2",IDC_BUTTON7,94,153,71,14
+    GROUPBOX        "Face2 Surface",IDC_STATIC,10,172,174,34
+    PUSHBUTTON      "Face Step 1",IDC_FACE2STEP1,18,185,68,14
+    PUSHBUTTON      "Face Step 2",IDC_FACE2STEP2,94,185,70,14
+    GROUPBOX        "Cartop Surface",IDC_STATIC,10,205,174,34
+    PUSHBUTTON      "Car Top Step 1",IDC_CARTOPSTEP1,18,217,68,14
+    PUSHBUTTON      "Car Top Step 2",IDC_CARTOPSTEP2,93,217,70,14
+    PUSHBUTTON      "CompositeRepara",IDC_COMPOSITEREPARABEZIER,101,17,78,14
+    GROUPBOX        "Face Surface 2 Composite",IDC_STATIC,10,238,174,33
+    PUSHBUTTON      "Face Composite Transformation",IDC_FACECOMPOSITETRANSFORMATION,19,250,148,14
+END
+
+IDD_ActionsGeneral DIALOGEX 0, 0, 194, 355
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Check Area Preserving",IDC_CheckAreaPreserving,10,73,170,14
+    PUSHBUTTON      "Area Preserve",IDC_AREAPRESERVE,10,94,170,14
+    PUSHBUTTON      "ShowConvexFunction",IDC_ShowConvexFunction,10,115,170,14
+    PUSHBUTTON      "Add Knot",IDC_ADDKNOT,10,52,170,14
+    PUSHBUTTON      "Bilinear Reparameterize",IDC_BILINEAR_PARAMETERIZE,10,31,170,14
+    PUSHBUTTON      "Quadratic Reparameterize",IDC_Quadratic_Reparameterization,10,10,169,14
+    PUSHBUTTON      "Optimization Test",IDC_BUTTON3,10,136,170,14
+    PUSHBUTTON      "Project To Parameter Domain",IDC_ProjectToParameterDomain,10,157,170,14
+    PUSHBUTTON      "Read View Point",IDC_ReadViewPoint,11,178,168,14
+    PUSHBUTTON      "Read BSF file ",IDC_READBSFFILE,10,199,168,14
+    PUSHBUTTON      "Animation",IDC_MeshAnimation,10,234,78,14
+    PUSHBUTTON      "Final Result",IDC_FinalMesh,100,234,78,14
+    PUSHBUTTON      "Rotate Parameterization",IDC_ROTATION_PARAMETERIZATION,10,217,168,14
+    PUSHBUTTON      "AnimationSequence",IDC_AnimationSequence,11,257,167,16
+    PUSHBUTTON      "Stop",IDC_StopSequence,15,306,78,16
+    LTEXT           "0s/z",IDC_START,14,295,17,8
+    PUSHBUTTON      "SaveFile",IDC_SaveFile,15,325,78,16
+    PUSHBUTTON      "ReadFile",IDC_ReadFile,97,326,78,14
+    CONTROL         "5s/z",IDC_END,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,169,293,14,8
+    CONTROL         "",IDC_TIMESLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,7,279,172,15
+    PUSHBUTTON      "Continue",IDC_Continue,97,305,78,14
+    GROUPBOX        "Animation",IDC_STATIC,7,246,180,102
+END
+
+IDD_TransformationsTAB DIALOGEX 0, 0, 230, 330
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TransformationTAB,"SysTabControl32",0x0,7,7,216,316
+END
+
+IDD_objViewerTab DIALOGEX 0, 0, 230, 516
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,16,206,193,11
+    GROUPBOX        "BsplineDiscreteUNum",IDC_STATIC,14,195,203,24
+    CONTROL         "",IDC_SLIDER2,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,16,233,193,11
+    GROUPBOX        "BsplineDiscreteVNum",IDC_STATIC,14,223,203,24,BS_FLAT
+    PUSHBUTTON      "Texture",IDC_Texture,7,247,99,10
+    PUSHBUTTON      "Isoparametric Line",ID_IsoParametric_Line,19,176,193,15
+    GROUPBOX        "ShowSurface",IDC_STATIC,8,166,215,107
+    CONTROL         "ShowTexture",IDC_ShowTexture,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,107,247,55,12
+    CONTROL         "Show coordinate axis",IDC_ShowCoordinateAxis,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,259,79,10
+    CONTROL         "",IDC_Objects,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_EDITLABELS | TVS_SHOWSELALWAYS | TVS_CHECKBOXES | TVS_INFOTIP | WS_BORDER | WS_HSCROLL | WS_TABSTOP,8,7,215,158,WS_EX_CLIENTEDGE
+    GROUPBOX        "Speed",IDC_STATIC,14,271,209,25
+    CONTROL         "",IDC_SLIDERMOVESPEED,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,11,282,193,11
+    GROUPBOX        "Fovy",IDC_STATIC,14,296,209,25
+    CONTROL         "",IDC_SLIDERFOV,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,12,306,193,11
+    PUSHBUTTON      "Zoom All",ID_ZOOMALL,27,326,176,15
+    PUSHBUTTON      "UpdateTreeControl",ID_UPDATE_TREECONTROL,27,344,176,15
+    PUSHBUTTON      "Clear Selection",ID_CLEAR_OBJECT_SELECTION,27,362,176,15
+    PUSHBUTTON      "Clear All Objects",ID_CLEAR_OBJECTS,27,380,176,15
+END
+
+IDD_MobiusTransTab DIALOGEX 0, 0, 212, 79
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_Mobius_Alpha,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,14,17,169,11
+    CONTROL         "",IDC_Mobius_Beta,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,13,45,169,11
+    GROUPBOX        "alpha",IDC_STATIC,12,10,178,22
+    GROUPBOX        "beta",IDC_STATIC,14,37,177,24
+END
+
+IDD_BilinearTransTab DIALOGEX 0, 0, 204, 71
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_Bilinear_Alpha1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,11,17,89,11
+    GROUPBOX        "alpha1",IDC_STATIC,11,9,87,20
+    CONTROL         "",IDC_Bilinear_Alpha2,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,101,17,89,11
+    GROUPBOX        "alpha2",IDC_STATIC,101,9,87,20
+    CONTROL         "",IDC_Bilinear_Beta1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,13,43,89,11
+    GROUPBOX        "beta1",IDC_STATIC,13,35,87,20
+    CONTROL         "",IDC_Bilinear_Beta2,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,103,43,89,11
+    GROUPBOX        "beta2",IDC_STATIC,103,35,87,20
+END
+
+IDD_QuadraticTransTab DIALOGEX 0, 0, 221, 63
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "beta1",IDC_STATIC,13,30,63,20
+    GROUPBOX        "beta2",IDC_STATIC,77,30,63,20
+    CONTROL         "",IDC_Quadratic_Beta2,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,77,38,63,11
+    CONTROL         "",IDC_Quadratic_Beta1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,13,38,63,11
+    GROUPBOX        "beta3",IDC_STATIC,145,31,63,20
+    CONTROL         "",IDC_Quadratic_Beta3,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,145,39,63,11
+    GROUPBOX        "alpha3",IDC_STATIC,145,8,63,20
+    CONTROL         "",IDC_Quadratic_Alpha3,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,145,16,63,11
+    GROUPBOX        "alpha2",IDC_STATIC,77,7,63,20
+    CONTROL         "",IDC_Quadratic_Alpha2,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,77,15,63,11
+    GROUPBOX        "alpha1",IDC_STATIC,12,7,63,20
+    CONTROL         "",IDC_Quadratic_Alpha1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,12,15,63,11
+END
+
+IDD_GeneralBilinearTransTab DIALOGEX 0, 0, 227, 203
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_e00,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,10,13,97,12
+    GROUPBOX        "e00",IDC_STATIC,9,7,96,19
+    GROUPBOX        "e01",IDC_STATIC,108,6,101,20
+    CONTROL         "",IDC_e01,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,109,13,97,12
+    CONTROL         "",IDC_e10,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,10,34,97,12
+    GROUPBOX        "e11",IDC_STATIC,108,26,101,20
+    CONTROL         "",IDC_e11,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,110,33,97,12
+    CONTROL         "",IDC_f00,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,9,56,97,12
+    GROUPBOX        "f01",IDC_STATIC,107,50,101,20
+    CONTROL         "",IDC_f01,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,108,56,97,12
+    GROUPBOX        "e10",IDC_STATIC,9,27,96,19
+    GROUPBOX        "f00",IDC_STATIC,9,49,96,19
+    CONTROL         "",IDC_f10,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,9,79,97,12
+    GROUPBOX        "f11",IDC_STATIC,107,72,101,20
+    CONTROL         "",IDC_f11,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,107,79,97,12
+    GROUPBOX        "f10",IDC_STATIC,9,72,96,19
+    CONTROL         "",IDC_g00,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,11,103,97,12
+    GROUPBOX        "g00",IDC_STATIC,11,96,96,19
+    GROUPBOX        "g01",IDC_STATIC,109,96,101,20
+    CONTROL         "",IDC_g01,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,111,103,97,12
+    CONTROL         "",IDC_g10,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,11,123,97,12
+    GROUPBOX        "g11",IDC_STATIC,109,115,101,20
+    CONTROL         "",IDC_g11,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,111,123,97,12
+    CONTROL         "",IDC_h00,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,11,146,97,12
+    GROUPBOX        "h01",IDC_STATIC,109,139,101,20
+    CONTROL         "",IDC_h01,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,109,146,97,12
+    GROUPBOX        "g10",IDC_STATIC,11,117,96,19
+    GROUPBOX        "h00",IDC_STATIC,11,139,96,19
+    CONTROL         "",IDC_h10,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,11,168,97,12
+    GROUPBOX        "h11",IDC_STATIC,109,162,101,20
+    CONTROL         "",IDC_h11,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,109,168,97,12
+    GROUPBOX        "h10",IDC_STATIC,11,162,96,19
+END
+
+IDD_ActionsTab DIALOGEX 0, 0, 287, 556
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,7,7,273,542
+END
+
+IDD_ActionsGeneralBilinear DIALOGEX 0, 0, 216, 332
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Bezier",IDC_Actions_GeneralBilinear_Bezier,25,61,161,14
+    PUSHBUTTON      "Generate Sub Mesh",IDC_IDC_Actions_GeneralBilinear_GenerateSubMesh,25,15,161,14
+    PUSHBUTTON      "Optimization",IDC_Actions_GeneralBilinear_Optimization,25,205,161,14
+    CONTROL         "",IDC_Orthogonality_Weight,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,22,40,169,11
+    GROUPBOX        "Othogonality weight",IDC_STATIC,16,31,178,22,0,WS_EX_RIGHT
+    PUSHBUTTON      "Terrain Povray",IDC_GENERALBILINEAR_POVRAY,25,187,161,14
+    PUSHBUTTON      "Car Top",IDC_BUTTON_CARTOP,25,79,161,14
+    PUSHBUTTON      "Face",IDC_BUTTON_Face,25,97,161,14
+    PUSHBUTTON      "Bone",IDC_BUTTON_Bone,25,115,161,14
+    PUSHBUTTON      "Venus",IDC_BUTTON_Venus,25,133,161,14
+    PUSHBUTTON      "Sophie",IDC_BUTTON_Sophie,25,151,161,14
+    PUSHBUTTON      "Terrain",IDC_BUTTON_Terrain,25,169,161,14
+    PUSHBUTTON      "Plot",IDC_Actions_GeneralBilinear_Plot,25,223,161,14
+    PUSHBUTTON      "InitialValue",IDC_BUTTON_GeneralBilinearInitialValue,25,244,161,14
+END
+
+IDD_ActionsBilinear DIALOGEX 0, 0, 191, 344
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Optimize",IDC_BILINEAR_OPTIMIZE,44,11,98,14
+END
+
+IDD_ActionRender DIALOGEX 0, 0, 270, 257
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_LeastSquareMethod DIALOGEX 0, 0, 261, 310
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Derivative Vector Field",IDC_DerivativeVectorField,23,174,77,14
+    PUSHBUTTON      "B-spline Fitting",IDC_BsplineFitting,23,15,77,14
+    PUSHBUTTON      "Optimization",IDC_BsplineFittingOptimization,129,16,77,14
+    PUSHBUTTON      "Conformality Opt. 11",IDC_ConformalityOpt11,129,174,77,14
+    PUSHBUTTON      "Conformality Opt. 22",IDC_ConformalityOpt22,129,196,77,14
+    PUSHBUTTON      "Check Conformity",IDC_CHECKCONFORMITY,23,197,77,14
+    PUSHBUTTON      "Least Square MethodAll",IDC_LeastSquareMethod,23,40,97,14
+    PUSHBUTTON      "Button1",IDC_TEST,129,220,77,14
+    CONTROL         "Conformality",IDC_Conformality,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,43,65,10
+    GROUPBOX        "Least Square Method",IDC_STATIC,21,31,218,134
+    CONTROL         "FixBoundary",IDC_CHECK_FIXBOUNDARY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,29,64,74,10
+    EDITTEXT        IDC_FITTINGSURFACE_NS,44,86,170,14,ES_AUTOHSCROLL
+    LTEXT           "ns:",IDC_STATIC,27,88,14,12
+    LTEXT           "nt:",IDC_STATIC,28,106,10,8
+    EDITTEXT        IDC_FITTINGSURFACE_NT,44,103,170,14,ES_AUTOHSCROLL
+    GROUPBOX        "Fitting Surface Control Points",IDC_STATIC,24,75,202,45
+    PUSHBUTTON      "LeastSquare Seperate",IDC_LeastSquareMethod_Seperate,27,127,97,14
+    PUSHBUTTON      "Tessellation",IDC_hierarchical_TESSELLATION,25,247,178,14
+END
+
+IDD_TSPLINE DIALOGEX 0, 0, 272, 253
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Generate Tspline",IDC_BUTTON_TSPLINE_GEN,21,17,88,14
+    PUSHBUTTON      "Tspline Simplification",IDC_TSPLINE_SIMPLIFICATION,124,17,88,14
+END
+
+IDD_TSPLINE_PREIMAGE DIALOGEX 0, 0, 2475, 590
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_HSCROLL | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_LANDMARK DIALOGEX 0, 0, 295, 287
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Read Land Mark",IDC_READLANDMARK,23,17,108,14
+    PUSHBUTTON      "Read Surfaces with Graph",IDC_READSURFACEWITH,140,17,108,14
+    PUSHBUTTON      "Read Plane",IDC_READSURFACEPLANE,21,37,108,14
+    PUSHBUTTON      "Read Lion Surfaces with Graph",IDC_READLIONSURFACEWITHGRAPH,138,37,108,14
+    PUSHBUTTON      "CopySelected Vertex To Anchor Points",IDC_COPYSELECTEDPOINTSTOANCHORPOINTS,22,55,224,14
+    PUSHBUTTON      "Save Anchor Points",IDC_SAVEANCHORPOINTS,20,74,228,14
+    PUSHBUTTON      "Original Parameterization Compute Mu",IDC_LANDMARK_COMPUTEMU,19,93,228,14
+    PUSHBUTTON      "Original Parameterization Compute Area Stretch",IDC_LANDMARK_COMPUTEAREASTRETCH,18,112,228,14
+    PUSHBUTTON      "Registration Compute Mu",IDC_LANDMARK_COMPUTEMU_Registration,19,130,228,14
+    PUSHBUTTON      "Registration Compute Area Stretch",IDC_LANDMARK_COMPUTEAREASTRETCH_Regitration,19,149,228,14
+END
+
+IDD_CompositeMobiusTransTab DIALOGEX 0, 0, 176, 393
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Static",IDC_LABEL_COMPOSITE_UKNOT,81,31,19,8
+    CONTROL         "",IDC_SPIN__COMPOSITE_UKNOT,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,104,29,10,14
+    LTEXT           "Static",IDC_LABEL_COMPOSITE_VKNOT,81,66,19,8
+    CONTROL         "",IDC_SPIN__COMPOSITE_VKNOT,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,104,63,10,14
+    LTEXT           "Static",IDC_LABEL_COMPOSITE_SKNOT,81,101,19,8
+    CONTROL         "",IDC_SPIN__COMPOSITE_SKNOT,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,104,98,10,14
+    LTEXT           "Static",IDC_LABEL_COMPOSITE_TKNOT,81,136,19,8
+    CONTROL         "",IDC_SPIN__COMPOSITE_TKNOT,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,104,132,10,14
+    LTEXT           "Static",IDC_LABEL_COMPOSITE_ALPHA,81,170,19,8
+    CONTROL         "",IDC_SPIN__COMPOSITE_ALPHA,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,104,166,10,14
+    LTEXT           "Static",IDC_LABEL_COMPOSITE_BETA,81,203,19,8
+    CONTROL         "",IDC_SPIN__COMPOSITE_BETA,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,104,199,10,14
+    EDITTEXT        IDC_EDIT_COMPOSITE_UKNOT,37,29,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_COMPOSITE_UKNOT,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,22,20,121,11
+    EDITTEXT        IDC_EDIT_COMPOSITE_VKNOT,37,63,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_COMPOSITE_VKNOT,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,22,53,121,11
+    EDITTEXT        IDC_EDIT_COMPOSITE_SKNOT,37,98,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_COMPOSITE_SKNOT,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,22,89,121,11
+    EDITTEXT        IDC_EDIT_COMPOSITE_TKNOT,37,132,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_COMPOSITE_TKNOT,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,22,123,121,11
+    EDITTEXT        IDC_EDIT_COMPOSITE_ALPHA,37,166,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_COMPOSITE_ALPHA,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,23,157,121,11
+    EDITTEXT        IDC_EDIT_COMPOSITE_BETA,37,199,40,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_COMPOSITE_BETA,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,24,189,121,11
+    GROUPBOX        "Uknot",IDC_STATIC,20,12,135,33
+    GROUPBOX        "Vknot",IDC_STATIC,20,46,135,34
+    GROUPBOX        "Sknot",IDC_STATIC,20,82,137,33
+    GROUPBOX        "Tknot",IDC_STATIC,20,116,139,33
+    GROUPBOX        "Alpha",IDC_STATIC,21,149,139,33
+    GROUPBOX        "Beta",IDC_STATIC,22,181,140,34
+    PUSHBUTTON      "Update",IDC_BUTTON_COMPOSITE_MOBIUS_UPDATE,37,219,87,14
+    PUSHBUTTON      "GenerateSurface",IDC_BUTTON_GENERATE_COMPOSITESURFACE,37,239,87,14
+END
+
+IDD_DIALOG_VECTORFIELD DIALOGEX 0, 0, 747, 501
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,114,480,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,690,480,50,14
+END
+
+IDD_SETFACEAREA DIALOGEX 0, 0, 316, 70
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,45,41,91,14
+    PUSHBUTTON      "Cancel",IDCANCEL,163,42,102,14
+    EDITTEXT        IDC_EDITFACEAREA,55,17,195,14,ES_AUTOHSCROLL
+    LTEXT           "Area:",IDC_STATIC,23,19,21,16
+END
+
+IDD_INPUTINFORMATION DIALOGEX 0, 0, 316, 70
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,59,41,91,14
+    PUSHBUTTON      "Cancel",IDCANCEL,175,42,102,14
+    EDITTEXT        IDC_EDITSETFACEAREA,55,17,65,14,ES_AUTOHSCROLL
+    LTEXT           "ID:",IDC_STATIC,23,19,21,16
+    PUSHBUTTON      "Add Vertex",IDC_BUTTON_ADDVERTEX,137,17,50,14
+    PUSHBUTTON      "Add Edge",IDC_BUTTON_ADDEDGE,193,18,50,14
+END
+
+IDD_MESH_SETCOLORS DIALOGEX 0, 0, 316, 183
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Mesh Set Colors"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,205,162,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,259,162,50,14
+    PUSHBUTTON      "Set Sharp Edge Color",IDC_BUTTON_MESH_SETSHARPEDGECOLOR,33,7,250,14
+    PUSHBUTTON      "Set Face Color",IDC_BUTTON_MESH_SETFACECOLOR,33,30,250,14
+    PUSHBUTTON      "Set Edge Color",IDC_BUTTON_MESH_SETEDGECOLOR,33,53,250,14
+END
+
+IDD_LEVY_LEASTSQUARE DIALOGEX 0, 0, 316, 183
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Two Point",IDC_LEVY_TWOPOINT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,38,42,47,10
+    CONTROL         "Uniform Boundary",IDC_LEVY_UNIFORM_BOUNDARY,"Button",BS_AUTORADIOBUTTON,92,42,73,10
+    CONTROL         "Chord Boundary",IDC_LEVY_CHORD_BOUNDARY,"Button",BS_AUTORADIOBUTTON,166,43,68,10
+    PUSHBUTTON      "Least Square",IDC_LEVY_LEAST_SQUARE,55,150,188,14
+    GROUPBOX        "Levy Least Square ",IDC_STATIC,19,14,290,162
+    GROUPBOX        "Pin Method",IDC_STATIC,26,28,276,35
+END
+
+IDD_TeichmullerMap DIALOGEX 0, 0, 316, 183
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Teichmuller Map",IDC_BUTTON_TEICHMULLER,52,145,225,14
+    GROUPBOX        "Boundary",IDC_STATIC,25,22,126,35
+    CONTROL         "Uniform",IDC_TEICHMULLER_BOUNDARY_UNIFORM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,31,39,41,10
+    CONTROL         "Chord",IDC_TEICHMULLER_BOUNDARY_CHORD,"Button",BS_AUTORADIOBUTTON,96,39,46,10
+END
+
+IDD_DIALOG_ConstrainedRegistration DIALOGEX 0, 0, 309, 634
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Load Face",IDC_ConstrainedRegistration_LoadFace,17,18,83,14
+    PUSHBUTTON      "Constrained Harmonic",IDC_ConstrainedRegistration_ConstrainedHarmonic,17,416,75,14
+    PUSHBUTTON      "Load Example2",IDC_ConstrainedRegistration_LoadFace2,109,18,83,14
+    PUSHBUTTON      "Load Sophia",IDC_ConstrainedRegistration_LoadSophia,201,18,83,14
+    PUSHBUTTON      "Load Sophia",IDC_ConstrainedRegistration_LoadSophia2,20,57,118,14
+    PUSHBUTTON      "ChangeLandmarkIndex",IDC_ConstrainedRegistration_ChangeLandmarkIndex,7,335,78,14
+    PUSHBUTTON      "Set Target Mesh As UV Of Source Mesh",IDC_ConstrainedRegistration_SetMeshUV,19,193,264,14
+    GROUPBOX        "Mesh Operations",IDC_STATIC,14,154,274,175
+    PUSHBUTTON      "Set Source Mesh",IDC_BUTTON_SetMeshUV_Mesh,21,158,71,14
+    LTEXT           "Undefined",IDC_BUTTON_SetMeshUV_Mesh_Text,98,162,44,8
+    PUSHBUTTON      "Set Target Mesh",IDC_BUTTON_SetMeshUV_UV,147,159,74,14
+    LTEXT           "Undefined",IDC_BUTTON_SetMeshUV_UV_Text,225,163,52,8
+    GROUPBOX        "Load Sophia Landmark1",IDC_STATIC,17,48,270,105
+    PUSHBUTTON      "Load Sophia_Source_Holomorphic quad",IDC_ConstrainedRegistration_LoadSophia_Holomorphic,148,56,133,14
+    PUSHBUTTON      "Sophia Conformal Parameterization quad",IDC_ConstrainedRegistration_ConformalParameterization_Quad,85,335,134,14
+    PUSHBUTTON      "Copy Vertex Color from Source Mesh to Target Mesh",IDC_ConstrainedRegistration_CopyVertexColor,18,210,264,14
+    PUSHBUTTON      "Sophia Conformal Circle",IDC_ConstrainedRegistration_ConformalParameterization_Circle,19,349,113,14
+    PUSHBUTTON      "Sophia Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle,128,367,92,14
+    PUSHBUTTON      "Load Brain",IDC_ConstrainedRegistration_LoadBrain,125,35,50,14
+    PUSHBUTTON      "Brain Conformal Circle",IDC_ConstrainedRegistration_Brain_ConformalParameterization_Circle,19,366,103,14
+    PUSHBUTTON      "ExtractBoundaryEdges",IDC_ConstrainedRegistration_ExtractBoundaryEdges,174,399,85,14
+    PUSHBUTTON      "Sophia Registration",IDC_ConstrainedRegistration_ConstrainedHarmonic_Sophia,221,366,69,14
+    PUSHBUTTON      "Load Sophia Straightening Circle",IDC_ConstrainedRegistration_LoadSophiaStraightening,156,73,119,14
+    PUSHBUTTON      "Load Search Registration Results",IDC_ConstrainedRegistration_LoadSophia_SearchStep,156,90,119,14,WS_GROUP
+    PUSHBUTTON      "Copy Vertex Color from Source Mesh to Target Mesh Different Topology",IDC_ConstrainedRegistration_CopyVertexColor_DifferentTopology,18,227,264,14
+    PUSHBUTTON      "Load Initial Harmonic Registration (Flip)",IDC_ConstrainedRegistration_LoadSophia_InitialRegistration_Harmonic,19,90,134,14
+    PUSHBUTTON      "Copy UV from Source Mesh to Target Mesh Different Topology",IDC_ConstrainedRegistration_CopyUV_DifferentTopology,18,244,264,14
+    PUSHBUTTON      "Set Target Mesh As Reference Mesh Of Source Mesh",IDC_ConstrainedRegistration_SetReferenceMesh,18,176,264,14
+    PUSHBUTTON      "Load ECCV Sophia Example",IDC_ConstrainedRegistration_LoadBrain2,18,35,106,14
+    PUSHBUTTON      "Copy Normal from Source Mesh to Target Mesh",IDC_ConstrainedRegistration_CopyUV_DifferentTopology2,18,261,264,14
+    PUSHBUTTON      "Set Vertex Color of Both Meshes as MU",IDC_ConstrainedRegistration_TargetVertexColor_MU,18,275,130,14
+    PUSHBUTTON      "Load Sophia_Conformal_Circle",IDC_ConstrainedRegistration_LoadSophia_ConformalCircle,19,73,133,14
+    PUSHBUTTON      "MapRectangleToCircle",IDC_ConstrainedRegistration_MapRectangleToCircle,195,417,85,14
+    PUSHBUTTON      "Sophia Conformal  Circle_Holomorphic",IDC_ConstrainedRegistration_ConformalParameterization_Circle_Holomorphic,137,349,143,14
+    PUSHBUTTON      "Brain 1627 Straightening circle",IDC_ConstrainedRegistration_1627brain_strainghtening,132,453,136,14
+    PUSHBUTTON      "Load Budata",IDC_ConstrainedRegistration_LoadExample2_Budata,23,105,57,14
+    PUSHBUTTON      "Load Holomorphic quad",IDC_ConstrainedRegistration_LoadExample2_Holomorphic,83,105,79,14
+    PUSHBUTTON      "Budata  Straightening Rectangle Holomorphic",IDC_ConstrainedRegistration_ConformalStraightening_Rectangle_Holomorphic_Budata,18,399,152,14
+    PUSHBUTTON      "Load Straightening quad",IDC_ConstrainedRegistration_LoadExample2_Straightening,167,105,83,14
+    PUSHBUTTON      "Budata Constrained Harmonic ",IDC_ConstrainedRegistration_ConstrainedHarmonic_Budata,160,383,103,14
+    PUSHBUTTON      "Budata Bijective Registration",IDC_ConstrainedRegistration_ConstrainedHarmonic_Budata_BijectiveRegistration,94,416,97,14
+    PUSHBUTTON      "Load Registration(flip)",IDC_ConstrainedRegistration_LoadExample2_Registration_Flip,21,121,85,14
+    PUSHBUTTON      "Budata AN Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_AN,16,470,118,14
+    PUSHBUTTON      "Budata DI Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_DI,138,470,118,14
+    PUSHBUTTON      "Budata FE Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_FE,16,489,118,14
+    PUSHBUTTON      "Budata HA Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_HA,139,488,118,14
+    PUSHBUTTON      "Budata NE Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_NE,16,508,118,14
+    PUSHBUTTON      "Budata SA Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_SA,138,508,118,14
+    PUSHBUTTON      "Budata SU Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_SU,16,526,118,14
+    PUSHBUTTON      "Load Budata1",IDC_ConstrainedRegistration_LoadExample2_Budata2,112,121,57,14
+    PUSHBUTTON      "Load Feature points",IDC_ConstrainedRegistration_LoadFeaturePoints,173,121,90,14
+    PUSHBUTTON      "Budata Landmark",IDC_ConstrainedRegistration_LoadFeaturePoints_Landmark,22,136,69,14
+    PUSHBUTTON      "Load Budata2",IDC_ConstrainedRegistration_LoadExample2_Budata3,95,136,50,14
+    PUSHBUTTON      "E2 F1 NE Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_AN2,16,433,98,14
+    PUSHBUTTON      "E2 M4 Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Budata_AN3,136,527,118,14
+    PUSHBUTTON      "E2 NE Registration",IDC_ConstrainedRegistration_ConstrainedHarmonic_Sophia2,205,434,75,14
+    PUSHBUTTON      "Load Model",IDC_ConstrainedRegistration_LoadExample2_Budata4,150,137,44,14
+    PUSHBUTTON      "Signature",IDC_ConstrainedRegistration_LoadExample2_Budata5,199,137,44,14
+    PUSHBUTTON      "Brain Straightening Circle",IDC_ConstrainedRegistration_ConformalStraightening_Circle_Brain_,117,433,84,14
+    PUSHBUTTON      "Mesh Normalization",IDC_ConstrainedRegistration_MeshNormalization,18,306,66,14
+    PUSHBUTTON      "DeleteFeaturePoints",IDC_ConstrainedRegistration_DeteleteFeaturePoints,18,321,86,14
+    PUSHBUTTON      "Brain 1527 Straightening circle",IDC_ConstrainedRegistration_Brain_ConformalParameterization_Circle2,20,452,103,14
+    PUSHBUTTON      "Brain Conformal Circle",IDC_ConstrainedRegistration_Brain_ConformalParameterization_Circle3,24,383,103,14
+    PUSHBUTTON      "Mesh CopyColorFromImagetoSourceMesh",IDC_ConstrainedRegistration_CopyImagetoSourceMesh,83,306,142,14
+    PUSHBUTTON      "SetNormalAsColorofSourceMesh",IDC_ConstrainedRegistration_SetNormalAsColor,107,321,109,14
+    PUSHBUTTON      "SetMeanCurvatureAsColorofSourceMesh",IDC_ConstrainedRegistration_SetCurvaturelAsColor,150,275,137,14
+    PUSHBUTTON      "SetGaussCurvatureAsColorofSourceMesh",IDC_ConstrainedRegistration_SetGaussCurvaturelAsColor,17,291,137,14
+    PUSHBUTTON      "CopyImagetoMesh",IDC_ConstrainedRegistration_CopyImagetoMesh,155,291,64,14
+    PUSHBUTTON      "SmoothGaussCurv",IDC_ConstrainedRegistration_SmoothGaussCurvature,220,291,64,14
+    PUSHBUTTON      "Detect Teeth Line",IDC_ConstrainedRegistration_DetectTeetchLine,224,307,64,14
+    PUSHBUTTON      "SharpenGaussCurv",IDC_ConstrainedRegistration_SharpenGaussCurvature,218,322,74,14
+END
+
+IDD_DIALOG_EDGE_SUBDIVISION DIALOGEX 0, 0, 269, 44
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,151,15,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,210,15,50,14
+    EDITTEXT        IDC_EDIT_EDGE_SUBDIVISION,75,15,67,14,ES_AUTOHSCROLL
+    LTEXT           "Input Segments:",IDC_STATIC,12,18,54,8
+END
+
+IDD_POLYOMINO2 DIALOGEX 0, 0, 309, 579
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_NUM_POLYOMINO_MININDEX,15,361,50,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,66,361,10,14
+    EDITTEXT        IDC_EDIT_NUM_POLYOMINO_MAXINDEX,78,361,49,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN2,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,128,361,11,14
+    EDITTEXT        IDC_EDIT_NUM_POLYOMINO_PUZZLESIZE,141,362,37,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN3,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,180,363,11,14
+    PUSHBUTTON      "Set Source Mesh",IDC_BUTTON_SetMeshUV_Mesh_Polyomino,21,10,71,14
+    LTEXT           "Undefined",IDC_BUTTON_SetMeshUV_Mesh_Text_Polyomino,98,14,44,8
+    PUSHBUTTON      "Set Target Mesh",IDC_BUTTON_SetMeshUV_UV_Polyomino,147,11,74,14
+    LTEXT           "Undefined",IDC_BUTTON_SetMeshUV_UV_Text_Polyomino,225,15,52,8
+    PUSHBUTTON      "Copy Landmark Vertex Position",IDC_BUTTON_COPYSELECTEDLANDMARKVERTEXPOSITION,16,28,112,14
+    PUSHBUTTON      "Load Final Rectilinear Geomap",IDC_BUTTON_LOADFINALRECTILINEARMAP,160,28,112,14
+    PUSHBUTTON      "UP",IDC_BUTTON_UP_POLYOMINO,35,397,35,14
+    PUSHBUTTON      "RIGHT",IDC_BUTTON_RIGHT_POLYOMINO,68,410,25,36
+    PUSHBUTTON      "LEFT",IDC_BUTTON_LEFT_POLYOMINO,12,407,25,33
+    PUSHBUTTON      "DOWN",IDC_BUTTON_DOWN_POLYOMINO,34,440,34,14
+    EDITTEXT        IDC_EDIT_STEP_POLYOMINO,88,325,80,14,ES_AUTOHSCROLL
+    LTEXT           "Step:",IDC_STATIC,65,327,18,8
+    PUSHBUTTON      "Update",IDC_BUTTON_UPDATE_STEP_POLYOMINO,169,324,50,14
+    PUSHBUTTON      "Load First Uniform Grid",IDC_BUTTON_LOAD_FIRSTUNIFORMGRID,16,46,112,14
+    PUSHBUTTON      "Initializet Uniform Grid",IDC_BUTTON_INITIALIZEUNIFORMGRID,16,64,112,14
+    PUSHBUTTON      "Clear Selected Sharp Edges",IDC_BUTTON_CLEARSELECTEDSHARPEDGES,160,64,112,14
+    PUSHBUTTON      "Source Sharp Edge",IDC_BUTTON_SetSourceSharpEdge,18,286,78,14
+    PUSHBUTTON      "Target Sharp Edge",IDC_BUTTON_SetTargetSharpEdge2,107,286,78,14
+    PUSHBUTTON      "Source To Target",IDC_BUTTON_MoveSourceToTarget,188,286,78,14
+    PUSHBUTTON      "Update Sharp Edge Structure",IDC_BUTTON_UpdateSharpStructure,16,82,112,14
+    PUSHBUTTON      "Subdivide Sharp Edge",IDC_BUTTON_SUBDIVIDESHARPEDGE,160,82,112,14
+    EDITTEXT        IDC_EDIT_NUM_POLYOMINO2,16,344,52,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "DeleteSelectedSharpEdges",IDC_BUTTON_DeleteSelectedSharpEdges,16,100,112,14
+    PUSHBUTTON      "UP",IDC_BUTTON_UP_POLYOMINO2,122,396,40,14
+    PUSHBUTTON      "RIGHT",IDC_BUTTON_RIGHT_POLYOMINO2,160,411,25,35
+    PUSHBUTTON      "LEFT",IDC_BUTTON_LEFT_POLYOMINO2,96,408,25,36
+    PUSHBUTTON      "DOWN",IDC_BUTTON_DOWN_POLYOMINO2,116,445,45,14
+    PUSHBUTTON      "Generate New Line Up/Left",IDC_BUTTON_DeleteSelectedSharpEdges2,22,250,95,14
+    PUSHBUTTON      "Generate New Line Down/Right",IDC_BUTTON_DeleteSelectedSharpEdges3,118,250,107,14
+    PUSHBUTTON      "Generate New Line",IDC_BUTTON_DeleteSelectedSharpEdges4,225,250,74,14
+    PUSHBUTTON      "Generate New Point",IDC_BUTTON_Polyomino_GenerateNewPoint,22,268,74,14
+    PUSHBUTTON      "Generate Two Point Line",IDC_BUTTON_Polyomino_GenerateTwoPointLine,210,269,89,14
+    PUSHBUTTON      "Generate New Point 2 Line",IDC_BUTTON_Polyomino_GenerateNewPoint2Line,97,268,100,14
+    PUSHBUTTON      "Load Final Uniform Grid",IDC_BUTTON_LOAD_FinalUNIFORMGRID,160,46,112,14
+    PUSHBUTTON      "VisualizationPopulation",IDC_BUTTON_VisualizationPopulation,160,100,112,14
+    PUSHBUTTON      "Middle Center",IDC_BUTTON_MIDDLECENTER,16,118,112,14
+    PUSHBUTTON      "Average Horizontal",IDC_BUTTON_AVERAGE_HORIZONTAL,21,233,122,14
+    PUSHBUTTON      "Average Vertical",IDC_BUTTON_AVERAGE_VERTICAL,155,233,126,14
+    PUSHBUTTON      "Add Puzzle",IDC_BUTTON_ADDPUZZLE,19,304,77,14
+    PUSHBUTTON      "Save Puzzle",IDC_BUTTON_SAVEPUZZLE,105,305,77,14
+    PUSHBUTTON      "LOAD Puzzle",IDC_BUTTON_LOADPUZZLE,191,305,77,14
+    EDITTEXT        IDC_EDIT_NUM_POLYOMINO_XNUMBER,71,344,47,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN4,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,120,344,10,14
+    EDITTEXT        IDC_EDIT_NUM_POLYOMINO_YNUMBER,133,344,40,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN5,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,177,344,11,14
+    PUSHBUTTON      "UP",IDC_BUTTON_UP_POLYOMINO_BASE,217,396,40,14
+    PUSHBUTTON      "RIGHT",IDC_BUTTON_RIGHT_POLYOMINO_BASE,255,411,25,35
+    PUSHBUTTON      "LEFT",IDC_BUTTON_LEFT_POLYOMINO_BASE,191,407,25,36
+    PUSHBUTTON      "DOWN",IDC_BUTTON_DOWN_POLYOMINO_BASE,211,444,45,14
+    PUSHBUTTON      "Face Points Selected",IDC_BUTTON_SETFACEPOINTS_SELECTED,195,343,77,14
+    PUSHBUTTON      "Face Points Delete",IDC_BUTTON_SETFACEPOINTS_DELETE,195,360,77,14
+    PUSHBUTTON      "Save Deleted Faces",IDC_BUTTON_SaveDeletedFaces,17,377,77,14
+    PUSHBUTTON      "Save Puzzle Piece",IDC_BUTTON_SavePUZZLEPIECE,98,378,60,14
+    PUSHBUTTON      "Save Puzzle",IDC_BUTTON_SavePUZZLEPIECE2,162,379,46,14
+    PUSHBUTTON      "Load Puzzle",IDC_BUTTON_LoadPUZZLEPIECE,211,378,46,14
+    PUSHBUTTON      "Check Points with Five Regions",IDC_BUTTON_CHECKPOINTWITHFIVEREGIONS,160,115,112,14
+    PUSHBUTTON      "US Rasterization",IDC_BUTTON_USRASTRERIZATION,16,134,112,14
+    PUSHBUTTON      "Load China",IDC_BUTTON_LOADCHINA,158,129,112,14
+    PUSHBUTTON      "Load China Triangulate",IDC_BUTTON_LOADCHINA_TRIANGULATE,16,150,112,14
+    PUSHBUTTON      "Set All Landmark Regular",IDC_BUTTON_SETALLLANDMARK_REGULAR,22,218,122,14
+    PUSHBUTTON      "DeleteDuplicatePointsInLandmark",IDC_BUTTON_DELETEDUPLICATEPOINTSINLANDMARK,155,217,123,14
+    PUSHBUTTON      "Load China Triangulate Straightened",IDC_BUTTON_LOADCHINASTRAIGHTENED,155,148,129,14
+    PUSHBUTTON      "SaveDataFromMesh",IDC_BUTTON_SAVEDATAFROMMESH,161,167,109,14
+    PUSHBUTTON      "LoadRectilinearMesh",IDC_BUTTON_LOADRECTILINEARMESH,18,167,110,14
+    PUSHBUTTON      "ModifyRectilinearMesh3414",IDC_BUTTON_MODIFYRECTILINEAR3414,17,184,110,14
+    PUSHBUTTON      "ModifyRectilinearMesh3350",IDC_BUTTON_MODIFYRECTILINEARMESH3350,152,185,119,14
+    PUSHBUTTON      "LoadFinalChinaPolyomino",IDC_BUTTON_LoadFinalChinaPolyomino,18,201,108,14
+END
+
+IDD_DIALOG_DynamicQuasi DIALOGEX 0, 0, 255, 502
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Load 3D Surface Para",IDC_DYNAMIC_QUASI_LOAD3DSURFACE,7,7,88,14
+    PUSHBUTTON      "Compute Harmonic Energy",IDC_DYNAMIC_COMPUTEHARMONICENERGY,7,25,98,14
+    PUSHBUTTON      "Check Delaunay",IDC_DYNAMIC_CHECKDELAUNAY,109,26,62,14
+    PUSHBUTTON      "Load Two Triangles",IDC_DYNAMIC_QUASI_LOADTWOTRIANGLES,97,7,74,14
+    GROUPBOX        "Convex Parameterization",IDD_DIALOG_DynamicQuasi_ConvexPara_Static,7,127,241,184
+    GROUPBOX        "Target Parameterization",IDD_DIALOG_DynamicQuasi_TargetPara_Static,7,312,241,184
+    PUSHBUTTON      "Set Target Boundary",IDC_DYNAMIC_SETTARGETBOUNDARY,7,44,80,14
+    PUSHBUTTON      "Save Target Para",IDC_DYNAMIC_SAVETARGETPARAMESH,92,44,68,14
+    PUSHBUTTON      "Load Target Para",IDC_DYNAMIC_LOADTARGETPARAMESH,163,44,73,14
+    PUSHBUTTON      "DynamicHarmonic",IDC_DYNAMIC_DYNAMICHARMONIC,7,63,80,14
+    PUSHBUTTON      "HarmonicMappingSequences",IDC_DYNAMIC_DYNAMICHARMONIC_MAPPINGSEQUENCES,95,63,104,14
+    CONTROL         "",IDC_SLIDER_DYNAMICQUASICONFORMAL_SLIDER,
+                    "msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,6,78,210,15
+    CONTROL         "",IDC_DYNAMICQUASICONFORMAL_SPIN,"msctls_updown32",UDS_ARROWKEYS,214,78,11,14
+    EDITTEXT        IDC_DYNAMICQUASI_EDIT,227,78,21,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_DYNAMICQUASI_COMBO,174,7,74,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "ShowInitialConvexPara",IDC_DynamicQuasi_ShowInitialConvexPara,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,97,90,10
+    CONTROL         "ShowInitialTargetPara",IDC_DynamicQuasi_ShowInitialTargetPara,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,100,98,87,10
+    CONTROL         "ShowIntermediateTargetPara",IDC_DynamicQuasi_ShowIntermediateTargetPara,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,109,111,10
+    CONTROL         "ShowIndex",IDC_DynamicQuasi_ShowIndex,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,118,109,52,10
+    CONTROL         "ShowCircle",IDC_DynamicQuasi_ShowCircle,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,176,111,51,10
+    PUSHBUTTON      "Optimal Harmonic",IDC_DYNAMIC_OPTIMALHARMONIC,176,25,62,14
+END
+
+IDD_DIALOG_DATA_ANALYSIS DIALOGEX 0, 0, 238, 513
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "LoadFirst",IDC_BUTTON_DATAANALYSIS_LOADFIRST,16,14,198,14
+    PUSHBUTTON      "LoadNext",IDC_BUTTON_DATAANALYSIS_LOADNEXT,15,33,200,14
+    PUSHBUTTON      "AddToSet",IDC_BUTTON_DATAANALYSIS_ADDTOSET,17,69,199,14
+    PUSHBUTTON      "SaveFileSet",IDC_BUTTON_DATAANALYSIS_SAVEFILESET,17,88,199,14
+    PUSHBUTTON      "LoadFileSet",IDC_BUTTON_DATAANALYSIS_LOADFILESET,17,50,199,14
+    PUSHBUTTON      "LoadSetFirst",IDC_BUTTON_DATAANALYSIS_LOADSETFIRST,17,104,198,14
+    PUSHBUTTON      "LoadSetNext",IDC_BUTTON_DATAANALYSIS_LOADSETNEXT,16,121,200,14
+    PUSHBUTTON      "Data Analysis SVM",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS,15,138,199,14
+    PUSHBUTTON      "Data Analysis CNN",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_CNN,15,155,199,14
+    PUSHBUTTON      "Data Analysis Data Normalize By Subtract Neutral",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_CNN_NORMALIZE,17,218,199,14
+    PUSHBUTTON      "Data Analysis Compute Data",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_COMPUTEDATA,15,200,199,14
+    PUSHBUTTON      "Data Analysis Data Normalize By Pre Neutral",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_PRENEUTRAL,17,234,199,14
+    PUSHBUTTON      "Data Analysis Data Normalize By PreNeutral only leave 4 level",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_PRENEUTRAL_FourLevel,17,249,199,14
+    PUSHBUTTON      "Normalize By PreNeutral only leave 4 level 3D Data",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_PRENEUTRAL_FourLevel2,16,265,199,14
+    PUSHBUTTON      "Image CNN",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_IMAGE_CNN,17,179,199,14
+    PUSHBUTTON      "CNN Matlab",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_CNN_MATLAB,16,283,199,14
+    PUSHBUTTON      "Optimal Harmonic",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC,15,299,199,14
+    EDITTEXT        IDC_EDIT_ZOOM_CENTER_VERTEX,153,344,56,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Zoom Centered at",IDC_BUTTON_ZOOM_CENTERED_ATVERTEX,15,344,106,14
+    LTEXT           "Vertex:",IDC_STATIC,124,347,25,8
+    PUSHBUTTON      "Read Saved Mesh",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_READSAVEDMESH,18,363,199,14
+    GROUPBOX        "Mesh Operations",IDC_STATIC,7,378,224,57
+    PUSHBUTTON      "Set Source Mesh",IDC_BUTTON_SetMeshUV_DATAANALYSIS_Mesh,7,386,63,14
+    LTEXT           "Undefined",IDC_BUTTON_SetMeshUV_Mesh_DATAANALYSIS_Text,71,390,42,8
+    PUSHBUTTON      "Set Target Mesh",IDC_BUTTON_SetMeshUV_DATAANALYSIS_TARGET,108,387,57,14
+    LTEXT           "Undefined",IDC_BUTTON_SetMeshUV_TARGET_DATAANALYSIS_Text,169,391,52,8
+    PUSHBUTTON      "Generate Morph Mesh",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_GENERATEMORPHMESH,15,403,199,14
+    CONTROL         "",IDC_SLIDER_DATAANALYSIS_MORPH_SLIDER,
+                    "msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,12,418,210,15
+    PUSHBUTTON      "Optimal Harmonic Test",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONICTEST,15,329,199,14
+    PUSHBUTTON      "Pre",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_PRE,26,444,40,14
+    PUSHBUTTON      "Iterations",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_ITERATIONS,67,444,53,14
+    PUSHBUTTON      "Edge Swap",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_ITERATIONS_EDGESWAP,121,444,48,14
+    PUSHBUTTON      "After",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_AFTER,173,444,40,14
+    GROUPBOX        "Edge Swap",IDC_STATIC,7,435,215,27
+    GROUPBOX        "CDT",IDC_STATIC,7,463,215,27
+    PUSHBUTTON      "Pre",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_PRE_CDT,9,470,23,14
+    PUSHBUTTON      "Iterations",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_ITERATIONS_CDT,61,470,35,14
+    PUSHBUTTON      "Edge Swap",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_ITERATIONS_EDGESWAP_CDT,145,470,42,14
+    PUSHBUTTON      "After",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_AFTER_CDT,187,470,29,14
+    PUSHBUTTON      "Optimal Harmonic CDT",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_CDT,15,314,199,14
+    PUSHBUTTON      "CDT",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_PRE_CDT2,35,470,23,14
+    PUSHBUTTON      "Move",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_ITERATIONS_EDGESWAP_CDT_MOVE,99,470,42,14
+    PUSHBUTTON      "CDT Example1",IDC_BUTTON_DATAANALYSIS_DATAANALYSIS_OPTIMALHARMONIC_CDT_EXAMPLE1,7,492,63,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 258
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
+    END
+
+    IDD_FORMVIEW3, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 245
+        BOTTOMMARGIN, 925
+    END
+
+    IDD_ProjectBackToParameterDomain, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 597
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 367
+    END
+
+    IDD_DIALOG5, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 717
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 574
+    END
+
+    IDD_DIALOG6, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 738
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 520
+    END
+
+    IDD_DIALOG7, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 520
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 466
+    END
+
+    IDD_AreaPreserving, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 190
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 349
+    END
+
+    IDD_ActionsGeneral, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 187
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 348
+    END
+
+    IDD_TransformationsTAB, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 323
+    END
+
+    IDD_objViewerTab, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 509
+    END
+
+    IDD_MobiusTransTab, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 205
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_BilinearTransTab, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 197
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
+    END
+
+    IDD_QuadraticTransTab, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+
+    IDD_GeneralBilinearTransTab, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 196
+    END
+
+    IDD_ActionsTab, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 280
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 549
+    END
+
+    IDD_ActionsGeneralBilinear, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 209
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 325
+    END
+
+    IDD_ActionsBilinear, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 184
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 337
+    END
+
+    IDD_ActionRender, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 263
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 250
+    END
+
+    IDD_LeastSquareMethod, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 254
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 303
+    END
+
+    IDD_TSPLINE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 265
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 246
+    END
+
+    IDD_TSPLINE_PREIMAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 1468
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 572
+    END
+
+    IDD_LANDMARK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 288
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 280
+    END
+
+    IDD_CompositeMobiusTransTab, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 386
+    END
+
+    IDD_DIALOG_VECTORFIELD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 740
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 494
+    END
+
+    IDD_SETFACEAREA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 63
+    END
+
+    IDD_INPUTINFORMATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 63
+    END
+
+    IDD_MESH_SETCOLORS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_LEVY_LEASTSQUARE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_TeichmullerMap, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_DIALOG_ConstrainedRegistration, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 627
+    END
+
+    IDD_DIALOG_EDGE_SUBDIVISION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 262
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 37
+    END
+
+    IDD_POLYOMINO2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 572
+    END
+
+    IDD_DIALOG_DynamicQuasi, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 495
+    END
+
+    IDD_DIALOG_DATA_ANALYSIS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 231
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 506
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Close",                       ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "Render"
+    BEGIN
+        MENUITEM "Set Render Mode",             ID_RENDER_SETRENDERMODE
+    END
+    POPUP "Actions"
+    BEGIN
+        MENUITEM "KillCurrentThread",           ID_ACTIONS_KILLCURRENTT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About CAD Software",         ID_APP_ABOUT
+    END
+END
+
+IDR_MENU3 MENU
+BEGIN
+    POPUP "Mesh"
+    BEGIN
+        MENUITEM "Save as ...",                 ID_SURFACE_SAVEAS
+        MENUITEM "Save as TM file...",          ID_SAVEASTMFILE
+        MENUITEM "Save as M file...",           ID_MESH_SAVEASMFILE
+        MENUITEM "Delete",                      ID_SURFACE_DELETE
+        MENUITEM "PovRay",                      ID_SURFACE_POVRAY
+        MENUITEM "GenerateBspineSurface",       ID_MESH_GENERATEBSPINESURFACE
+        MENUITEM "GenerateOptimalBilinearTransformation", ID_MESH_GENERATEOPTIMALBILINEARTRANSFORMATION
+        MENUITEM "BsplineFittingError",         32824
+        MENUITEM "Normalize",                   ID_MESH3D_NORMALIZE
+        MENUITEM "SetColorrs",                  ID_MESH_SETCOLORRS
+        MENUITEM "ShowMeshInformation",         ID_MESH_SHOWMESHINFORMATION
+        MENUITEM "ExtractParameterDomain",      ID_MESH_EXTRACTPARAMETERDOMAIN
+        MENUITEM "SetCurrentMesh",              IDC_Omino_SetCurrentMesh_Menu
+        MENUITEM "ZoomAll",                     ID_MENU_MESH_ZOOMALL
+        MENUITEM "ZoomOnlyCurrentToFitCurrentMesh", ID_MENU_ZOOM_CURRENTMESH_TOFIT
+        MENUITEM "ZoomAllToFitCurrentMesh",     32897
+        MENUITEM "OnlyMoveMe",                  ID_MESH_ONLYMOVEME
+        MENUITEM SEPARATOR
+        MENUITEM "ShowCoordinateAxis",          IDC_ShowCoordinateAxis
+        MENUITEM "ShowSurface",                 ID_SURFACE_SHOWSURFACE
+        MENUITEM "OnlyShowMe",                  ID_SURFACE_ONLYSHOWME
+        MENUITEM "GenerateQuadMesh",            ID_MESH_GENERATEQUADMESH
+        MENUITEM "ShowFace",                    ID_MESH_SHOWFACE
+        MENUITEM "ShowEdge",                    ID_MESH_SHOWEDGE
+        MENUITEM "ShowSelectedSharpEdge",       ID_MESH_SHOWSELECTEDSHARPEDGE
+        MENUITEM "ShowLandMarkEdge",            ID_MESH_SHOWLANDMARKEDGE
+        MENUITEM "ShowSelectedLandmark",        ID_MESH_SHOWSELECTEDLANDMARK
+        MENUITEM "ShowMergeConstraints",        ID_MESH_SHOWMERGECONSTRAINTS
+        MENUITEM "ShowLandMarkVertex",          ID_MESH_SHOWLANDMARKVERTEX
+        MENUITEM "ShowVertex",                  ID_MESH_SHOWVERTEX
+        MENUITEM "ShowSelectedVertex",          ID_MESH_SHOWSELECTEDVERTEX
+        MENUITEM "ShowSelectedEdge",            ID_MESH_SHOWSELECTEDEDGE
+        MENUITEM "ShowSelectedVertexIndex",     ID_MESH_SHOWSELECTEDVERTEXINDEX
+        MENUITEM "ShowAnchorPoints",            ID_MESH_SHOWANCHORPOINTS
+        MENUITEM "ShowPointsOnSurface",         ID_MESH_SHOWPOINTS_ONSURFACE
+        MENUITEM "ShowFeatureVertex",           ID_MESH_SHOWFEATUREVERTEX
+        MENUITEM "ShowFeatureVertexIndex",      ID_MESH_SHOWFEATUREVERTEXINDEX
+        MENUITEM "ShowSelectedFace",            ID_MESH_SHOWSELECTEDFACE
+        MENUITEM "ShowVertexIndex",             ID_MESH_SHOWVERTEXINDEX
+        MENUITEM "ShowEdgeIndex",               ID_MESH_SHOWEDGEINDEX
+        MENUITEM "ShowFaceIndex",               ID_MESH_SHOWFACEINDEX
+        MENUITEM "ShowLandmarkIndex",           ID_MESH_SHOWLANDMARKINDEX
+        MENUITEM "ShowLandmarkEndVertexIndex",  ID_MESH_SHOWLANDMARKENDVERTEXINDEX
+        MENUITEM "ShowFaceArea",                ID_MESH_SHOWFACEAREA
+        MENUITEM "ShowTargetFaceArea",          ID_MESH_SHOWTargetFaceArea
+        MENUITEM "ShowAreaDifference",          ID_MESH_SHOWAREADIFFERENCE
+        MENUITEM "ShowXYIndex",                 ID_MESH_SHOWXYINDEX
+        MENUITEM "ShowUniformGrid",             ID_MESH_SHOWUNIFORMGRID
+        MENUITEM "ShowDistrictIndex",           ID_MESH_SHOWDISTRICTINDEX
+        MENUITEM "ShowStateName",               ID_MESH_SHOWSTATENAME
+        MENUITEM "ShowJianZhi",                 ID_MESH_SHOWJIANZHI
+        MENUITEM "ShowPuzzleGraph",             ID_ShowPuzzleGraph
+        MENUITEM "ShowTriangleColorMU",         ID_MESH_SHOWTRIANGLEMU
+        MENUITEM "ShowVertexColorMU",           ID_MESH_SHOWVERTEXMU
+        MENUITEM "ShowVertexMuVectorField",     ID_MESH_SHOWVERTEXMUVECTORFIELD
+        MENUITEM "ShowVectorDisplacement",      ID_MESH_SHOWVECTORDISPLACEMENT
+        MENUITEM "ShowGridCellXYIndex",         ID_MESH_SHOWCELLXYINDEX
+        MENUITEM "ShowRectilinearGrid",         ID_MESH_SHOWRECTILINEARGRID
+        POPUP "ShowSharpEdge"
+        BEGIN
+            MENUITEM "ShowSharpEdgeIndex",          ID_MESH_SHOWSHARPEDGEINDEX
+            MENUITEM "ShowSharpEdge",               ID_MESH_SHOWSHARPEDGE
+            MENUITEM "ShowSharpEdgeBaseNum",        ID_MESH_SHOWSHARPEDGEBASENUM
+            MENUITEM "ShowSharpSelectedVertex",     ID_MESH_SHOWSHARPSELECTEDVERTEX
+        END
+    END
+END
+
+IDR_MENU4 MENU
+BEGIN
+    POPUP "Tspline"
+    BEGIN
+        MENUITEM "PlotPreImage",                ID_TSPLINE_PLOTPREIMAGE
+        MENUITEM SEPARATOR
+        MENUITEM "ShowControlPointNetwork",     ID_SURFACE_SHOWCONTROLPOINTNETWORK
+        MENUITEM "ShowIsoParameterCurves",      ID_SURFACE_SHOWISOPARAMETERCURVES, CHECKED
+        MENUITEM "ShowSurface",                 ID_SURFACE_SHOWSURFACE
+        MENUITEM "OnlyShowMe",                  ID_SURFACE_ONLYSHOWME
+        MENUITEM "Save as...",                  ID_TSPLINE_SAVEAS
+        MENUITEM "Delete",                      ID_SURFACE_DELETE
+    END
+END
+
+IDR_MENU_NURBSCURVE MENU
+BEGIN
+    POPUP "NurbCurve"
+    BEGIN
+        MENUITEM "ShowControlPoint",            ID_CURVE_SHOWCONTROLPOINTS
+        MENUITEM "ShowControlPolygon",          ID_NURBCURVE_SHOWCONTROLPOLYGON
+        MENUITEM "ShowApproximateLineSegment",  ID_NURBCURVE_SHOWAPPROXIMATELINESEGMENTS
+        MENUITEM "ShowReferenceLine",           ID_NURBCURVE_SHOWREFERENCELINE
+        MENUITEM "ShowOriginalBezierParameterization_Sampling", ID_NURBCURVE_SHOWORIGINALBEZIERPARAMETERIZATION_UNIFORMSAMPLING
+        MENUITEM "ShowOriginalBezierParameterization_Energy", ID_NURBCURVE_SHOWORIGINALBEZIERPARAMETERIZATION_ENERGY
+        MENUITEM "ShowSDL_Sampling",            ID_NURBCURVE_SHOWSDL_UNIFORMSAMPLING
+        MENUITEM "ShowSDL_Energy",              ID_NURBCURVE_SHOWSDL_ENERGY
+        MENUITEM "ShowChord_Sampling",          ID_NURBCURVE_SHOWORIGINALBEZIERPARAMETERIZATION_UNIFORMSAMPLING
+        MENUITEM "ShowChord_Energy",            ID_NURBCURVE_SHOWORIGINALBEZIERPARAMETERIZATION_ENERGY
+        MENUITEM "ShowMultipleChord_Sampling",  ID_NURBCURVE_SHOWMultipleCHORDLENGTH_UNIFORMSAMPLING
+        MENUITEM "ShowMultipleChord_Energy",    ID_NURBCURVE_SHOWMultipleCHORDLENGTH_ENERGY
+    END
+END
+
+IDR_MENU6 MENU
+BEGIN
+    POPUP "Polygon"
+    BEGIN
+        MENUITEM "Delete",                      ID_POLYGON_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "ShowPolygonLine",             ID_POLYGON_SHOWPOLYGONLINE
+        MENUITEM "ShowPolygonIndex",            ID_POLYGON_SHOWPOLYGONINDEX
+        MENUITEM "ShowPolygonInnerRings",       ID_POLYGON_SHOWPOLYGONINNERRINGS
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_MESH_SETCOLORS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_LeastSquareMethod AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_ConstrainedRegistration AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_EDGE_SUBDIVISION AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_objViewerTab AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+END
+
+IDD_POLYOMINO2 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG7 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_DynamicQuasi AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_LANDMARK AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_DATA_ANALYSIS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\SDIViewSwitch.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\SDIViewSwitch.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "written by Philip Spory"
+            VALUE "CompanyName", "Microsoft"
+            VALUE "FileDescription", "SwitchSplit MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "SwitchSplit"
+            VALUE "LegalCopyright", "Copyright (C) 1998"
+            VALUE "OriginalFilename", "SwitchSplit.exe"
+            VALUE "ProductName", "SwitchSplit Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "Optimal reparameterization"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "SwitchSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    IDS_NEW_SWITCH_SPLIT_FILE 
+                            "Please type in a file name for a new SwitchSplit file"
+    IDS_CANNOT_CREATE_NEW_SWITCHSPLIT 
+                            "%1 cannot be created.  Make sure to create new files on read-write media."
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_FORMVIEW1       "Form View 1\nForm View 1"
+    ID_VIEW_FORMVIEW2       "Form View 2\nForm View 2"
+    ID_VIEW_EDITVIEW        "Edit View\nEdit View"
+    ID_VIEW_LISTVIEW        "List View\nList View"
+    ID_VIEW_SPLITTER        "Splitter View\nSplitter View"
+    ID_ADD_FORM_VIEW        "Add Form View 3\nAdd Form View 3"
+    ID_REMOVE_FORM_VIEW     "Remove Form View 3\nRemove Form View 3"
+    IDM_MICROSOFT_HOME      "Microsoft Home Page\n Microsoft Home Page"
+    ID_MICROSOFT_HOME       "Go to the Microsoft Home Page (you must be connected to the internet)\nMicrosoft Home Page"
+END
+
+#endif    // 英语(美国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\SDIViewSwitch.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
