@@ -1069,7 +1069,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 		return;
 	}
 
-	
+	/*
 	// 直接输入一个面
 	STEPControl_Reader reader;
 	char* filename = "D:\\work\\data\\input\\11coons.step";
@@ -1091,7 +1091,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 		face4 = TopoDS::Face(explorer.Current());
 		break;
 	}
-	
+	*/
 	
 	// try guide
 	std::vector<Handle(Geom_BSplineCurve)> guideCurves;
@@ -1115,7 +1115,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 		}
 	}
 	Handle(Geom_BSplineSurface) guidedGordonSurf;
-	GuideGordon::GuideGordonSurf3(BRep_Tool::Surface(face4), uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
+	GuideGordon::GuideGordonSurf3(BRep_Tool::Surface(face), uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
 	TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedGordonSurf, Precision::Confusion());
 	export_step_OCC(guidedFace, "D:\\work\\data\\guidedGordon\\guidedGordonSurf.step");
 	
