@@ -751,65 +751,6 @@ void Action_GORDEN::OnBnClickedButtonGorden()
 	}
 }
 
-// Analysis sample
-//void Action_GORDEN::OnBnClickedButtonGordensample2()
-//{
-//	// TODO: 在此添加控件通知处理程序代码
-//	std::vector<TopoDS_Edge> profiles;
-//	std::vector<TopoDS_Edge> guides;
-//	Handle(Geom_BSplineSurface) resSurf;
-//	TopoDS_Face                 resFace;
-//
-//	std::vector<gp_Pnt> v_points1 = { gp_Pnt(0, 0, 0), gp_Pnt(5, 10, 0), gp_Pnt(10, 5, 0), gp_Pnt(15, 15, 0), gp_Pnt(20, 0, 0) };
-//
-//	TopoDS_Edge v_edge1 = createSplineEdge(v_points1);
-//	profiles.push_back(v_edge1);
-//
-//	// Define the second set of points
-//	std::vector<gp_Pnt> v_points2 = { gp_Pnt(0, 10, 5), gp_Pnt(5, 5, 5), gp_Pnt(10, 15, 5), gp_Pnt(15, 10, 5), gp_Pnt(20, 10, 5) };
-//	TopoDS_Edge v_edge2 = createSplineEdge(v_points2);
-//	profiles.push_back(v_edge2);
-//
-//	// Define the third set of points
-//	std::vector<gp_Pnt> v_points3 = { gp_Pnt(0, 20, 10), gp_Pnt(5, 15, 10), gp_Pnt(10, 20, 10), gp_Pnt(15, 5, 10), gp_Pnt(20, 20, 10) };
-//	TopoDS_Edge v_edge3 = createSplineEdge(v_points3);
-//	profiles.push_back(v_edge3);
-//
-//	// Define the fourth set of points
-//	std::vector<gp_Pnt> v_points4 = { gp_Pnt(0, 15, 15), gp_Pnt(5, 10, 15), gp_Pnt(10, 15, 15), gp_Pnt(15, 0, 15), gp_Pnt(20, 15, 15) };
-//	TopoDS_Edge v_edge4 = createSplineEdge(v_points4);
-//	profiles.push_back(v_edge4);
-//
-//	// Define u-direction points
-//	std::vector<gp_Pnt> u_points1 = { gp_Pnt(0, 0, 0), gp_Pnt(0, 10, 5), gp_Pnt(0, 20, 10), gp_Pnt(0, 15, 15) };
-//	TopoDS_Edge u_edge1 = createSplineEdge(u_points1);
-//	guides.push_back(u_edge1);
-//
-//	std::vector<gp_Pnt> u_points2 = { gp_Pnt(10, 5, 0), gp_Pnt(10, 15, 5), gp_Pnt(10, 20, 10), gp_Pnt(10, 15, 15) };
-//	TopoDS_Edge u_edge2 = createSplineEdge(u_points2);
-//	guides.push_back(u_edge2);
-//
-//	std::vector<gp_Pnt> u_points3 = { gp_Pnt(20, 0, 0), gp_Pnt(20, 10, 5), gp_Pnt(20, 20, 10), gp_Pnt(20, 15, 15) };
-//	TopoDS_Edge u_edge3 = createSplineEdge(u_points3);
-//	guides.push_back(u_edge3);
-//
-//	// Build Gordon surface.
-//	asiAlgo_BuildGordonSurf buildGordon(nullptr, nullptr);
-//
-//	if (!buildGordon.Build(profiles, guides, resSurf, resFace))
-//	{
-//		AfxMessageBox("Cannot build Gordon surface!");
-//	}
-//	else
-//	{
-//		export_step_OCC(resFace, "D:\\SurfaceHealing\\data\\step\\GordonSurf.step");
-//		export_brep_OCC(resFace, "D:\\SurfaceHealing\\data\\brep\\GordonSurf.brep");
-//		face_visualization_OCC(resFace);
-//		pDoc->UpdateTreeControl();
-//		AfxMessageBox("Gordon surface sample is created successfully");
-//	}
-//}
-
 // ACIS 输入u、v方向的曲线，生成gordon并显示
 void Action_GORDEN::OnBnClickedButtonCreategordon()
 {
@@ -1009,6 +950,120 @@ void Action_GORDEN::export_step_ACIS(ENTITY* ent, std::string filePath)
 
 }
 
+void Action_GORDEN::GeomLib_ChangeUBounds(Handle(Geom_BSplineSurface)& aSurface,
+	const Standard_Real newU1,
+	const Standard_Real newU2)
+{
+	TColStd_Array1OfReal  knots(1, aSurface->NbUKnots());
+	aSurface->UKnots(knots);
+	BSplCLib::Reparametrize(newU1, newU2, knots);
+	aSurface->SetUKnots(knots);
+}
+
+void Action_GORDEN::GeomLib_ChangeVBounds(Handle(Geom_BSplineSurface)& aSurface,
+	const Standard_Real newV1,
+	const Standard_Real newV2)
+{
+	TColStd_Array1OfReal  knots(1, aSurface->NbVKnots());
+	aSurface->VKnots(knots);
+	BSplCLib::Reparametrize(newV1, newV2, knots);
+	aSurface->SetVKnots(knots);
+}
+
+void Action_GORDEN::GeomLib_ChangeCurveBounds(Handle(Geom_BSplineCurve)& aCurve,
+	const Standard_Real newU1,
+	const Standard_Real newU2)
+{
+	TColStd_Array1OfReal  knots(1, aCurve->NbKnots());
+	aCurve->Knots(knots);
+	BSplCLib::Reparametrize(newU1, newU2, knots);
+	aCurve->SetKnots(knots);
+}
+
+Standard_Integer Action_GORDEN::SetSameDistribution(Handle(Geom_BSplineCurve)& C1,
+	Handle(Geom_BSplineCurve)& C2)
+{
+	Standard_Integer nbp1 = C1->NbPoles();
+	Standard_Integer nbk1 = C1->NbKnots();
+	TColgp_Array1OfPnt      P1(1, nbp1);
+	TColStd_Array1OfReal    W1(1, nbp1);
+	W1.Init(1.);
+	TColStd_Array1OfReal    K1(1, nbk1);
+	TColStd_Array1OfInteger M1(1, nbk1);
+
+	C1->Poles(P1);
+	if (C1->IsRational())
+		C1->Weights(W1);
+	C1->Knots(K1);
+	C1->Multiplicities(M1);
+
+	Standard_Integer nbp2 = C2->NbPoles();
+	Standard_Integer nbk2 = C2->NbKnots();
+	TColgp_Array1OfPnt      P2(1, nbp2);
+	TColStd_Array1OfReal    W2(1, nbp2);
+	W2.Init(1.);
+	TColStd_Array1OfReal    K2(1, nbk2);
+	TColStd_Array1OfInteger M2(1, nbk2);
+
+	C2->Poles(P2);
+	if (C2->IsRational())
+		C2->Weights(W2);
+	C2->Knots(K2);
+	C2->Multiplicities(M2);
+
+	Standard_Real K11 = K1(1);
+	Standard_Real K12 = K1(nbk1);
+	Standard_Real K21 = K2(1);
+	Standard_Real K22 = K2(nbk2);
+
+	if ((K12 - K11) > (K22 - K21)) {
+		BSplCLib::Reparametrize(K11, K12, K2);
+		C2->SetKnots(K2);
+	}
+	else if ((K12 - K11) < (K22 - K21)) {
+		BSplCLib::Reparametrize(K21, K22, K1);
+		C1->SetKnots(K1);
+	}
+	else if (Abs(K12 - K11) > 1.e-15) {
+		BSplCLib::Reparametrize(K11, K12, K2);
+		C2->SetKnots(K2);
+	}
+
+	Standard_Integer NP, NK;
+	if (BSplCLib::PrepareInsertKnots(C1->Degree(), Standard_False,
+		K1, M1, K2, &M2, NP, NK, 1.e-15,
+		Standard_False)) {
+		TColgp_Array1OfPnt      NewP(1, NP);
+		TColStd_Array1OfReal    NewW(1, NP);
+		TColStd_Array1OfReal    NewK(1, NK);
+		TColStd_Array1OfInteger NewM(1, NK);
+		BSplCLib::InsertKnots(C1->Degree(), Standard_False,
+			P1, &W1, K1, M1, K2, &M2,
+			NewP, &NewW, NewK, NewM, 1.e-15,
+			Standard_False);
+		if (C1->IsRational()) {
+			C1 = new Geom_BSplineCurve(NewP, NewW, NewK, NewM, C1->Degree());
+		}
+		else {
+			C1 = new Geom_BSplineCurve(NewP, NewK, NewM, C1->Degree());
+		}
+		BSplCLib::InsertKnots(C2->Degree(), Standard_False,
+			P2, &W2, K2, M2, K1, &M1,
+			NewP, &NewW, NewK, NewM, 1.e-15,
+			Standard_False);
+		if (C2->IsRational()) {
+			C2 = new Geom_BSplineCurve(NewP, NewW, NewK, NewM, C2->Degree());
+		}
+		else {
+			C2 = new Geom_BSplineCurve(NewP, NewK, NewM, C2->Degree());
+		}
+	}
+	else {
+		throw Standard_ConstructionError(" ");
+	}
+
+	return C1->NbPoles();
+}
 
 void Action_GORDEN::OnBnClickedButtonMygordon()
 {
@@ -1020,7 +1075,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	TopoDS_Shape shape;
 	BRep_Builder b;
 	std::ifstream is;
-	is.open("D:\\work\\data\\input\\djwCases\\11_UResult.brep");
+	is.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\11_UResult.brep");
 	//is.open("D:\\work\\data\\input\\badCases\\uCreateGordenCurves.brep");
 	BRepTools::Read(shape, is, b);
 	is.close();
@@ -1041,7 +1096,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	TopoDS_Shape shape2;
 	BRep_Builder b2;
 	std::ifstream is2;
-	is2.open("D:\\work\\data\\input\\djwCases\\11_VResult.brep");
+	is2.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\11_VResult.brep");
 	//is2.open("D:\\work\\data\\input\\badCases\\vCreateGordenCurves.brep");
 	BRepTools::Read(shape2, is2, b2);
 	is2.close();
@@ -1072,7 +1127,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	
 	// 直接输入一个面
 	STEPControl_Reader reader;
-	char* filename = "D:\\work\\data\\input\\11coons.step";
+	char* filename = "D:\\work\\svn_hxy\\data\\input\\11coons.step";
 	IFSelect_ReturnStatus status = reader.ReadFile(filename);
 
 	if (status != IFSelect_ReturnStatus::IFSelect_RetDone)
@@ -1099,7 +1154,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	BRep_Builder b3;
 	std::ifstream is3;
 	//is3.open("D:\\work\\data\\input\\newCases\\test1\\internal.brep");
-	is3.open("D:\\work\\data\\input\\internal\\11_internal.brep");
+	is3.open("D:\\work\\svn_hxy\\data\\input\\internal\\11_internal.brep");
 	BRepTools::Read(shape3, is3, b3);
 	is3.close();
 
@@ -1115,9 +1170,9 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 		}
 	}
 	Handle(Geom_BSplineSurface) guidedGordonSurf;
-	GuideGordon::GuideGordonSurf3(BRep_Tool::Surface(face4), uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
+	GuideGordon::GuideGordonSurf(BRep_Tool::Surface(face4), uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
 	TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedGordonSurf, Precision::Confusion());
-	export_step_OCC(guidedFace, "D:\\work\\data\\guidedGordon\\guidedGordonSurf.step");
+	export_step_OCC(guidedFace, "D:\\work\\svn_hxy\\data\\guidedGordon\\guidedGordonSurf.step");
 	
 
 	face_visualization_OCC(guidedFace);
@@ -1405,55 +1460,9 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 		return;
 	}
 	TopoDS_Face face1 = BRepBuilderAPI_MakeFace(L1, Precision::Confusion());
-	export_step_OCC(face1, "D:\\work\\data\\loft\\cxuloft.step");
+	export_step_OCC(face1, "D:\\work\\svn_hxy\\data\\loft\\cxuloft.step");
 	TopoDS_Face face2 = BRepBuilderAPI_MakeFace(L2, Precision::Confusion());
-	export_step_OCC(face1, "D:\\work\\data\\loft\\cxvloft.step");
-
-	/*
-	// Analysis插值
-	t_ptr<t_bsurf> P12S;
-	std::vector< std::vector<t_xyz> > pointGrid;
-	std::vector<double> uParams;
-	std::vector<double> uKnots;
-	std::vector<double> vParams;
-	std::vector<double> vKnots;
-
-	std::vector<double> paramU, paramV;
-	for (int j = 0; j < vsize; j++)
-	{
-		double add = 0;
-		for (int i = 0; i < usize; i++)
-		{
-			add += interParaMatrixU(i, j);
-		}
-		paramU.push_back(add / vsize);
-	}
-	for (int i = 0; i < vsize; i++)
-	{
-		double add = 0;
-		for (int j = 0; j < usize; j++)
-		{
-			add += interParaMatrixV(i, j);
-		}
-		paramV.push_back(add / usize);
-	}
-
-	GetPointGrid(uCurves, vCurves, interParaMatrixU, interParaMatrixV, pointGrid);
-	uKnots = InterPolateTool::CalKnots(paramU, 2);
-	vKnots = InterPolateTool::CalKnots(paramV, 2);
-	//TColStd_Array1OfReal uKnotsTCol = L1->VKnots();
-	//TColStd_Array1OfReal vKnotsTCol = L2->VKnots();
-	//for (int i = 1; i <= uKnotsTCol.Size(); i++)
-	//{
-	//	uKnots.push_back(uKnotsTCol(i));
-	//}
-	//for (int i = 1; i <= vKnotsTCol.Size(); i++)
-	//{
-	//	vKnots.push_back(vKnotsTCol(i));
-	//}
-	InterpolateSurf(pointGrid, 2, 2, paramV, vKnots, paramU, uKnots, P12S);
-	Handle(Geom_BSplineSurface) P12Socc = cascade::GetOpenCascadeBSurface(P12S);
-	*/
+	export_step_OCC(face2, "D:\\work\\svn_hxy\\data\\loft\\cxvloft.step");
 
 	// cx
 	TColStd_Array1OfReal uKnotsTCol = L2->UKnots();
@@ -1483,7 +1492,7 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 
 	T = InterPolateTool::Interpolate(Pnts, PntParams, uKnots, vKnots, uMults, vMults, vDegree1, uDegree1);
 	TopoDS_Face face0 = BRepBuilderAPI_MakeFace(T, Precision::Confusion());
-	export_step_OCC(face0, "D:\\work\\data\\interpolate\\cxInterpolate.step");
+	export_step_OCC(face0, "D:\\work\\svn_hxy\\data\\interpolate\\cxInterpolate.step");
 
 	//这个地方的度数待定，不一定是Curve的度数了
 	L1->IncreaseDegree(uCurves[0]->Degree(), vCurves[0]->Degree());
@@ -1648,305 +1657,5 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 		knotsV, multsU, multsV, degreeU, degreeV);
 
 	face = BRepBuilderAPI_MakeFace(gordon, Precision::Confusion());
-	export_step_OCC(face, "D:\\work\\data\\gordon\\gordonSurf.step");
-}
-
-
-
-void Action_GORDEN::GeomLib_ChangeUBounds(Handle(Geom_BSplineSurface)& aSurface,
-	const Standard_Real newU1,
-	const Standard_Real newU2)
-{
-	TColStd_Array1OfReal  knots(1, aSurface->NbUKnots());
-	aSurface->UKnots(knots);
-	BSplCLib::Reparametrize(newU1, newU2, knots);
-	aSurface->SetUKnots(knots);
-}
-
-void Action_GORDEN::GeomLib_ChangeVBounds(Handle(Geom_BSplineSurface)& aSurface,
-	const Standard_Real newV1,
-	const Standard_Real newV2)
-{
-	TColStd_Array1OfReal  knots(1, aSurface->NbVKnots());
-	aSurface->VKnots(knots);
-	BSplCLib::Reparametrize(newV1, newV2, knots);
-	aSurface->SetVKnots(knots);
-}
-
-void Action_GORDEN::GeomLib_ChangeCurveBounds(Handle(Geom_BSplineCurve)& aCurve,
-	const Standard_Real newU1,
-	const Standard_Real newU2)
-{
-	TColStd_Array1OfReal  knots(1, aCurve->NbKnots());
-	aCurve->Knots(knots);
-	BSplCLib::Reparametrize(newU1, newU2, knots);
-	aCurve->SetKnots(knots);
-}
-
-Standard_Integer Action_GORDEN::SetSameDistribution(Handle(Geom_BSplineCurve)& C1,
-	Handle(Geom_BSplineCurve)& C2)
-{
-	Standard_Integer nbp1 = C1->NbPoles();
-	Standard_Integer nbk1 = C1->NbKnots();
-	TColgp_Array1OfPnt      P1(1, nbp1);
-	TColStd_Array1OfReal    W1(1, nbp1);
-	W1.Init(1.);
-	TColStd_Array1OfReal    K1(1, nbk1);
-	TColStd_Array1OfInteger M1(1, nbk1);
-
-	C1->Poles(P1);
-	if (C1->IsRational())
-		C1->Weights(W1);
-	C1->Knots(K1);
-	C1->Multiplicities(M1);
-
-	Standard_Integer nbp2 = C2->NbPoles();
-	Standard_Integer nbk2 = C2->NbKnots();
-	TColgp_Array1OfPnt      P2(1, nbp2);
-	TColStd_Array1OfReal    W2(1, nbp2);
-	W2.Init(1.);
-	TColStd_Array1OfReal    K2(1, nbk2);
-	TColStd_Array1OfInteger M2(1, nbk2);
-
-	C2->Poles(P2);
-	if (C2->IsRational())
-		C2->Weights(W2);
-	C2->Knots(K2);
-	C2->Multiplicities(M2);
-
-	Standard_Real K11 = K1(1);
-	Standard_Real K12 = K1(nbk1);
-	Standard_Real K21 = K2(1);
-	Standard_Real K22 = K2(nbk2);
-
-	if ((K12 - K11) > (K22 - K21)) {
-		BSplCLib::Reparametrize(K11, K12, K2);
-		C2->SetKnots(K2);
-	}
-	else if ((K12 - K11) < (K22 - K21)) {
-		BSplCLib::Reparametrize(K21, K22, K1);
-		C1->SetKnots(K1);
-	}
-	else if (Abs(K12 - K11) > 1.e-15) {
-		BSplCLib::Reparametrize(K11, K12, K2);
-		C2->SetKnots(K2);
-	}
-
-	Standard_Integer NP, NK;
-	if (BSplCLib::PrepareInsertKnots(C1->Degree(), Standard_False,
-		K1, M1, K2, &M2, NP, NK, 1.e-15,
-		Standard_False)) {
-		TColgp_Array1OfPnt      NewP(1, NP);
-		TColStd_Array1OfReal    NewW(1, NP);
-		TColStd_Array1OfReal    NewK(1, NK);
-		TColStd_Array1OfInteger NewM(1, NK);
-		BSplCLib::InsertKnots(C1->Degree(), Standard_False,
-			P1, &W1, K1, M1, K2, &M2,
-			NewP, &NewW, NewK, NewM, 1.e-15,
-			Standard_False);
-		if (C1->IsRational()) {
-			C1 = new Geom_BSplineCurve(NewP, NewW, NewK, NewM, C1->Degree());
-		}
-		else {
-			C1 = new Geom_BSplineCurve(NewP, NewK, NewM, C1->Degree());
-		}
-		BSplCLib::InsertKnots(C2->Degree(), Standard_False,
-			P2, &W2, K2, M2, K1, &M1,
-			NewP, &NewW, NewK, NewM, 1.e-15,
-			Standard_False);
-		if (C2->IsRational()) {
-			C2 = new Geom_BSplineCurve(NewP, NewW, NewK, NewM, C2->Degree());
-		}
-		else {
-			C2 = new Geom_BSplineCurve(NewP, NewK, NewM, C2->Degree());
-		}
-	}
-	else {
-		throw Standard_ConstructionError(" ");
-	}
-
-	return C1->NbPoles();
-}
-
-
-// AS
-//! Interpolates surfaces with the given props.
-bool Action_GORDEN::InterpolateSurf(const std::vector< std::vector<t_xyz> >& points,
-	const int                                degU,
-	const int                                degV,
-	const std::vector<double>& uParams,
-	const std::vector<double>& U,
-	const std::vector<double>& vParams,
-	const std::vector<double>& V,
-	t_ptr<t_bsurf>& result)
-{
-	// Heap allocator
-	core_HeapAlloc<double> Alloc;
-
-	double* uParamsRaw = Alloc.Allocate(uParams.size());
-	//
-	for (size_t k = 0; k < uParams.size(); ++k)
-		uParamsRaw[k] = uParams[k];
-
-	double* URaw = Alloc.Allocate(U.size());
-	//
-	for (size_t k = 0; k < U.size(); ++k)
-		URaw[k] = U[k];
-
-	double* vParamsRaw = Alloc.Allocate(vParams.size());
-	//
-	for (size_t k = 0; k < vParams.size(); ++k)
-		vParamsRaw[k] = vParams[k];
-
-	double* VRaw = Alloc.Allocate(V.size());
-	//
-	for (size_t k = 0; k < V.size(); ++k)
-		VRaw[k] = V[k];
-
-	/* ---------------------------------------
-	 *  Choose reper (interpolant) parameters
-	 * --------------------------------------- */
-
-	if (points.size() < 2)
-	{
-		return false;
-	}
-
-	// Check if the passed grid is rectangular
-	size_t record_size = points[0].size();
-	if (record_size < 2)
-	{
-		return false;
-	}
-	for (size_t record_idx = 1; record_idx < points.size(); ++record_idx)
-	{
-		if (points[record_idx].size() != record_size)
-		{
-			return false;
-		}
-	}
-
-	// Dimensions of reper grid
-	const int n = (int)(points.size() - 1);
-	const int m = (int)(points.at(0).size() - 1);
-
-	const int r = bspl::M(n, degU);
-	const int s = bspl::M(m, degV);
-
-	// Check if there are enough reper points
-	if (!bspl::Check(n, degU) || !bspl::Check(m, degV))
-		return false;
-
-	std::vector< t_ptr<t_bcurve> > IsoV_Curves;
-	std::vector< t_ptr<t_bcurve> > ReperU_Curves;
-
-	/* ---------------------------------------------
-	 *  Find R_{i,j} by interpolation of V-isolines
-	 * --------------------------------------------- */
-
-	for (int l = 0; l <= m; ++l)
-	{
-		// Populate reper points for fixed V values
-		std::vector<t_xyz> iso_V_poles;
-		for (int k = 0; k <= n; ++k)
-			iso_V_poles.push_back(points[k][l]);
-
-		t_xyz D1_start;
-		t_xyz D1_end;
-		t_xyz D2_start;
-		t_xyz D2_end;
-
-		// Interpolate over these cross-sections only
-		t_ptr<t_bcurve> iso_V;
-		if (!geom_InterpolateCurve::Interp(iso_V_poles, n, degU, uParamsRaw, URaw, r,
-			false,
-			false,
-			false,
-			false,
-			D1_start,
-			D1_end,
-			D2_start,
-			D2_end,
-			iso_V))
-		{
-			return false;
-		}
-		IsoV_Curves.push_back(iso_V);
-	}
-
-	/* ------------------------------------------
-	 *  Find P_{i,j} by interpolation of R_{i,j}
-	 * ------------------------------------------ */
-
-	 // Poles of interpolant
-	std::vector< std::vector<t_xyz> > final_poles;
-
-	// Interpolate by new repers
-	ReperU_Curves.clear();
-	const int corrected_n = n;
-
-	for (int k = 0; k <= corrected_n; ++k)
-	{
-		// Populate reper points: we use the control points of V-isocurves
-		// as reper points now
-		std::vector<t_xyz> R_poles;
-		for (int l = 0; l <= m; ++l)
-			R_poles.push_back(IsoV_Curves[l]->GetPoles()[k]);
-
-		// Interpolate again
-		t_ptr<t_bcurve> R_interp;
-		if (!geom_InterpolateCurve::Interp(R_poles, m, degV, vParamsRaw, VRaw, s,
-			false, false, false, false,
-			t_xyz(), t_xyz(), t_xyz(), t_xyz(),
-			R_interp))
-		{
-			return false;
-		}
-		ReperU_Curves.push_back(R_interp);
-
-		// Poles in V column of the resulting grid
-		std::vector<t_xyz> V_column_poles;
-		for (int p = 0; p <= m; ++p)
-			V_column_poles.push_back(R_interp->GetPoles()[p]);
-
-		// Save to resulting grid
-		final_poles.push_back(V_column_poles);
-	}
-
-	/* -----------------------
-	 *  Construct interpolant
-	 * ----------------------- */
-
-	result = new t_bsurf(final_poles,
-		URaw, VRaw,
-		r + 1, s + 1,
-		degU, degV);
-
-	return true;
-}
-
-void Action_GORDEN::GetPointGrid(const std::vector<Handle(Geom_BSplineCurve)>& uCurves,
-	const std::vector<Handle(Geom_BSplineCurve)>& /*vCurves*/,
-	const math_Matrix& intersection_params_u,
-	const math_Matrix& intersection_params_v,
-	std::vector< std::vector<t_xyz> >& points)
-{
-	(void)intersection_params_v;
-
-	/* We can evaluate only U */
-
-	for (int c = 0; c < intersection_params_u.ColNumber(); ++c)
-	{
-		std::vector<t_xyz> row;
-
-		for (int r = 0; r < intersection_params_u.RowNumber(); ++r)
-		{
-			const double u = intersection_params_u(r, c);
-			const gp_Pnt P = uCurves[r]->Value(u);
-
-			row.push_back(cascade::GetMobiusPnt(P));
-		}
-		//
-		points.push_back(row);
-	}
+	export_step_OCC(face, "D:\\work\\svn_hxy\\data\\gordon\\gordonSurf.step");
 }
