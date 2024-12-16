@@ -57,8 +57,8 @@ public:
 
 	void BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCurves,
 		std::vector<Handle(Geom_BSplineCurve)> vCurves,
-		std::vector<double>& uIsoparamParams,
-		std::vector<double>& vIsoparamParams,
+		std::vector<Standard_Real>& uIsoparamParams,
+		std::vector<Standard_Real>& vIsoparamParams,
 		TopoDS_Face& face);
 
 	afx_msg void OnBnClickedButtonGorden();

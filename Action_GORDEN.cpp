@@ -177,7 +177,7 @@ TopoDS_Edge createSplineEdge(const std::vector<gp_Pnt>& points) {
 // ACIS 创建样条曲线并返回 EDGE 对象
 EDGE* Action_GORDEN::create_spline_edge(const std::vector<SPAposition>& points) {
 	EDGE* edge = nullptr;
-	int num_points = points.size();
+	Standard_Integer num_points = points.size();
 
 	// 调用 api_curve_spline 创建样条曲线
 	outcome res = api_curve_spline(num_points, points.data(), nullptr, nullptr, edge);
@@ -204,7 +204,7 @@ BODY* Action_GORDEN::create_body_from_edges(EDGE* edges[], int num_edges) {
 }
 
 // ACIS 使用api_net_wires接口生成Gordon曲面
-BODY* Action_GORDEN::create_gordon_surface(BODY* v_wires[], int num_v_wires, BODY* u_wires[], int num_u_wires) {
+BODY* Action_GORDEN::create_gordon_surface(BODY* v_wires[], Standard_Integer num_v_wires, BODY* u_wires[], int num_u_wires) {
 	int n = sizeof(v_wires) / sizeof(v_wires[0]);
 	BODY* sheet_body = nullptr;
 	skin_options* opts = new skin_options(); // 使用默认选项
@@ -217,14 +217,14 @@ BODY* Action_GORDEN::create_gordon_surface(BODY* v_wires[], int num_v_wires, BOD
 }
 
 // ACIS 创建Loft_Connected_Coedge_List
-Loft_Connected_Coedge_List** create_loft_connected_coedge_list(int num_sections, std::vector<std::vector<COEDGE*>> coedges)
+Loft_Connected_Coedge_List** create_loft_connected_coedge_list(Standard_Integer num_sections, std::vector<std::vector<COEDGE*>> coedges)
 {
 	Loft_Connected_Coedge_List** sections = new Loft_Connected_Coedge_List * [num_sections];
-	for (int i = 0; i < num_sections; ++i) {
+	for (Standard_Integer i = 0; i < num_sections; ++i) {
 		sections[i] = new Loft_Connected_Coedge_List();
 		sections[i]->n_list = coedges[i].size();
 		sections[i]->coedge_list = new COEDGE * [sections[i]->n_list];
-		for (int j = 0; j < sections[i]->n_list; ++j) {
+		for (Standard_Integer j = 0; j < sections[i]->n_list; ++j) {
 			sections[i]->coedge_list[j] = coedges[i][j];
 		}
 		sections[i]->coedge_orient = 0; // 假设方向不反转
@@ -238,16 +238,16 @@ Loft_Connected_Coedge_List** create_loft_connected_coedge_list(int num_sections,
 
 void get_edgepoints_from_faceted_edge(EDGE* edge, std::vector<SPAposition>& edgepoints)
 {
-	int numpoints;
+	Standard_Integer numpoints;
 	SPAposition* polyline;
 	api_get_facet_edge_points(edge, polyline, numpoints);
-	for (int i = 0; i < numpoints; i++)
+	for (Standard_Integer i = 0; i < numpoints; i++)
 	{
 		edgepoints.push_back(polyline[i]);
 	}
 }
 
-void get_triangles_from_faceted_face(FACE* face, std::vector<float>& coords, std::vector<int>& triangles, std::vector<float>& normalCoords, std::vector<std::vector<SPAposition>>& edgepoints) {
+void get_triangles_from_faceted_face(FACE* face, std::vector<float>& coords, std::vector<Standard_Integer>& triangles, std::vector<float>& normalCoords, std::vector<std::vector<SPAposition>>& edgepoints) {
 	af_serializable_mesh* sm = GetSerializableMesh(face);
 	if (nullptr == sm) {
 		// Application decision: do we throw for unfaceted faces?
@@ -255,14 +255,14 @@ void get_triangles_from_faceted_face(FACE* face, std::vector<float>& coords, std
 	}
 	SPAtransf tr = get_owner_transf(face);
 
-	const int nv = sm->number_of_vertices();
-	int ntri = sm->number_of_polygons();
+	const Standard_Integer nv = sm->number_of_vertices();
+	Standard_Integer ntri = sm->number_of_polygons();
 
 	coords.resize(3 * nv);
 	sm->serialize_positions(coords.data());  // if std::vector::data is not available, &(coords[0]) will also work.
 	if (!tr.identity()) {
-		for (int ii = 0; ii < nv; ii++) {
-			int jj = 3 * ii;
+		for (Standard_Integer ii = 0; ii < nv; ii++) {
+			Standard_Integer jj = 3 * ii;
 			SPAposition pos(coords[jj], coords[jj + 1], coords[jj + 2]);
 			pos *= tr;
 			coords[jj] = (float)pos.x();
@@ -278,10 +278,10 @@ void get_triangles_from_faceted_face(FACE* face, std::vector<float>& coords, std
 	}
 
 	triangles.resize(3 * ntri);
-	int ntri_actual = sm->serialize_triangles(triangles.data());
+	Standard_Integer ntri_actual = sm->serialize_triangles(triangles.data());
 	while (ntri_actual < ntri) {
 		triangles.pop_back();
-		ntri_actual = static_cast<int>(triangles.size());
+		ntri_actual = static_cast<Standard_Integer>(triangles.size());
 	}
 
 	//
@@ -289,20 +289,20 @@ void get_triangles_from_faceted_face(FACE* face, std::vector<float>& coords, std
 	ENTITY_LIST edgelist;
 	api_get_edges(face, edgelist);
 	edgepoints.resize(edgelist.count());
-	int i = 0;
-	int numpoints;
+	Standard_Integer i = 0;
+	Standard_Integer numpoints;
 	SPAposition* polyline;
 	for (auto edge : edgelist)
 	{
 		api_get_facet_edge_points((EDGE*)edge, polyline, numpoints);
-		for (int j = 0; j < numpoints; j++)
+		for (Standard_Integer j = 0; j < numpoints; j++)
 			edgepoints[i].push_back(polyline[j]);
 		i++;
 	}
 
 }
 
-static void get_triangles_from_faceted_face_occ(TopoDS_Shape shape, std::vector<float>& coords, std::vector<int>& triangles, std::vector<float>& normalCoords, std::vector<std::vector<Point3D>>& edgepoints)
+static void get_triangles_from_faceted_face_occ(TopoDS_Shape shape, std::vector<float>& coords, std::vector<Standard_Integer>& triangles, std::vector<float>& normalCoords, std::vector<std::vector<Point3D>>& edgepoints)
 {
 	TopLoc_Location location;
 	TopoDS_Face face = TopoDS::Face(shape);
@@ -385,7 +385,7 @@ void TriangulateShape(Shape_OCC* pshape)
 			// 获取三角形的数量
 			Standard_Integer numTriangles = triangulation->NbTriangles();
 			Standard_Integer numNodes = triangulation->NbNodes();
-			int nodenum = pshape->coords.size() / 3;
+			Standard_Integer nodenum = pshape->coords.size() / 3;
 
 			for (Standard_Integer i = 1; i <= numNodes; ++i)
 			{
@@ -428,7 +428,7 @@ void TriangulateShape(Shape_OCC* pshape)
 void AddFaceChildren(Shape_OCC* pshape, CSceneGraph3d pSceneGraph)
 {
 	TopExp_Explorer explorer(pshape->shape, TopAbs_FACE);
-	int index = 0;
+	Standard_Integer index = 0;
 	char message[200];
 	for (; explorer.More(); explorer.Next())
 	{
@@ -450,7 +450,7 @@ void AddEdgeChildren(Shape_OCC* pshape, CSceneGraph3d pSceneGraph)
 {
 	char message[200];
 	TopExp_Explorer explorer1(pshape->shape, TopAbs_EDGE);
-	int index = 0;
+	Standard_Integer index = 0;
 	for (; explorer1.More(); explorer1.Next())
 	{
 		TopoDS_Edge edge = TopoDS::Edge(explorer1.Current());
@@ -558,7 +558,7 @@ void face_visualization_OCC(TopoDS_Shape shape)
 	//add face children
 	//AddFaceChildren(pshape, pDoc->m_SceneGraph);
 	TopExp_Explorer explorer(pshape->shape, TopAbs_FACE);
-	int index = 0;
+	Standard_Integer index = 0;
 	char message[200];
 	for (; explorer.More(); explorer.Next())
 	{
@@ -577,7 +577,7 @@ void face_visualization_OCC(TopoDS_Shape shape)
 
 	char message2[200];
 	TopExp_Explorer explorer1(pshape->shape, TopAbs_EDGE);
-	int index2 = 0;
+	Standard_Integer index2 = 0;
 	for (; explorer1.More(); explorer1.Next())
 	{
 		TopoDS_Edge edge = TopoDS::Edge(explorer1.Current());
@@ -1065,8 +1065,6 @@ Standard_Integer Action_GORDEN::SetSameDistribution(Handle(Geom_BSplineCurve)& C
 	return C1->NbPoles();
 }
 
-
-
 void Action_GORDEN::OnBnClickedButtonMygordon()
 {
 	std::vector<Handle(Geom_BSplineCurve)> uCurves;
@@ -1116,8 +1114,8 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	}
 
 	// 计算uv等参线参数，提供后面扩展gordon所需的等参线约束
-	std::vector<double> uIsoparamParams;
-	std::vector<double> vIsoparamParams;
+	std::vector<Standard_Real> uIsoparamParams;
+	std::vector<Standard_Real> vIsoparamParams;
 
 	BuildMyGordonSurf(uCurves, vCurves, uIsoparamParams, vIsoparamParams, face);
 	if (face.IsNull())
@@ -1186,8 +1184,8 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 
 void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCurves,
 	std::vector<Handle(Geom_BSplineCurve)> vCurves,
-	std::vector<double>& uIsoparamParams,
-	std::vector<double>& vIsoparamParams,
+	std::vector<Standard_Real>& uIsoparamParams,
+	std::vector<Standard_Real>& vIsoparamParams,
 	TopoDS_Face& face)
 {
 	//--------------- 检查传入曲线是否空 ---------------
@@ -1204,7 +1202,7 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 
 
 	//--------------- 提升曲线次数至相同 ---------------
-	int uDegree = 3, vDegree = 3;
+	Standard_Integer uDegree = 3, vDegree = 3;
 	for (auto c : uCurves)
 	{
 		uDegree = max(uDegree, c->Degree());
@@ -1225,9 +1223,9 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 
 
 	//--------------- 将曲线方向调整为一致 ---------------
-	int usize = uCurves.size();
-	int vsize = vCurves.size();
-	int i = 0;
+	Standard_Integer usize = uCurves.size();
+	Standard_Integer vsize = vCurves.size();
+	Standard_Integer i = 0;
 
 	while (i < usize - 1)
 	{
@@ -1272,7 +1270,7 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 				 {1u, 0u},
 				 {1u, 1u} };
 
-	bool   syncStop = false;
+	Standard_Boolean syncStop = false;
 	size_t syncAttempt = 0;
 	do
 	{
@@ -1350,7 +1348,7 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	//}
 
 
-	std::vector<double> errors;
+	std::vector<Standard_Real> errors;
 	std::vector<Handle(Geom_BSplineCurve)> uCurvesCom;
 	std::vector<Handle(Geom_BSplineCurve)> vCurvesCom;
 	errors = Compatible::ApproximateCompatible(uCurves, uCurvesCom, 0.1);
@@ -1363,16 +1361,16 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	std::vector<gp_Pnt> Pnts;
 	std::vector<gp_Pnt2d> PntParams;
 
-	for (int i = 0; i < usize; i++)
+	for (Standard_Integer i = 0; i < usize; i++)
 	{
-		for (int j = 0; j < vsize; j++)
+		for (Standard_Integer j = 0; j < vsize; j++)
 		{
 			// u向退化边
 			if (uCurves[i]->StartPoint().IsEqual(uCurves[i]->EndPoint(), 1.e-2))
 			{
 				Pnts.push_back(uCurves[i]->StartPoint());
-				double u = j == 0 ? 0 : (j + 1.0) / vsize; // 参数u暂时平均取
-				double v = i == 0 ? 0 : 1; // 参数v为0或1
+				Standard_Real u = j == 0 ? 0 : (j + 1.0) / vsize; // 参数u暂时平均取
+				Standard_Real v = i == 0 ? 0 : 1; // 参数v为0或1
 				gp_Pnt2d Pnt2d(u, v);
 				PntParams.push_back(Pnt2d);
 				continue;
@@ -1381,8 +1379,8 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 			else if (vCurves[j]->StartPoint().IsEqual(vCurves[j]->EndPoint(), 1.e-2))
 			{
 				Pnts.push_back(vCurves[j]->StartPoint());
-				double u = j == 0 ? 0 : 1; // 参数u为0或1
-				double v = i == 0 ? 0 : (i + 1.0) / usize; // 参数v暂时平均取
+				Standard_Real u = j == 0 ? 0 : 1; // 参数u为0或1
+				Standard_Real v = i == 0 ? 0 : (i + 1.0) / usize; // 参数v暂时平均取
 				gp_Pnt2d Pnt2d(u, v);
 				PntParams.push_back(Pnt2d);
 				continue;
@@ -1393,7 +1391,7 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 			{
 				std::cout << "最近点对不唯一！" << std::endl;
 			}
-			int nbEx = extrema.NbExtrema();
+			Standard_Integer nbEx = extrema.NbExtrema();
 
 			Standard_Real para1, para2;
 			extrema.Parameters(1, para1, para2);
@@ -1413,11 +1411,11 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	}
 
 	// 求均值得到u等参线参数
-	std::vector<double> uIsoparamParams1, vIsoparamParams1;
-	for (int i = 0; i < vsize; i++)
+	std::vector<Standard_Real> uIsoparamParams1, vIsoparamParams1;
+	for (Standard_Integer i = 0; i < vsize; i++)
 	{
-		double sumU = 0;
-		for (int j = i; j < PntParams.size(); j += vsize)
+		Standard_Real sumU = 0;
+		for (Standard_Integer j = i; j < PntParams.size(); j += vsize)
 		{
 			sumU += PntParams[j].X();
 		}
@@ -1425,10 +1423,10 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	}
 
 	// 求均值得到v等参线参数
-	for (int i = 0; i < usize; i++)
+	for (Standard_Integer i = 0; i < usize; i++)
 	{
-		double sumV = 0;
-		for (int j = vsize * i; j < vsize * (i + 1); j++)
+		Standard_Real sumV = 0;
+		for (Standard_Integer j = vsize * i; j < vsize * (i + 1); j++)
 		{
 			sumV += PntParams[j].Y();
 		}
@@ -1436,11 +1434,11 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	}
 
 	// test
-	for (int i = 3; i < 3; i++)
+	for (Standard_Integer i = 3; i < 3; i++)
 	{
 		uIsoparamParams.push_back(uIsoparamParams1[i]);
 	}
-	for (int i = 3; i < 4; i++)
+	for (Standard_Integer i = 3; i < 4; i++)
 	{
 		vIsoparamParams.push_back(vIsoparamParams1[i]);
 	}
@@ -1449,8 +1447,8 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	//--------------- 构造三张曲面 ---------------
 	Handle(Geom_BSplineSurface) L1, L2, T;
 
-	int uDegree1 = usize <= 3 ? 1 : 3;
-	int vDegree1 = vsize <= 3 ? 1 : 3;
+	Standard_Integer uDegree1 = usize <= 3 ? 1 : 3;
+	Standard_Integer vDegree1 = vsize <= 3 ? 1 : 3;
 
 	// chenxin's loft
 	L1 = InterPolateTool::Loft(uCurves, uDegree1);
@@ -1471,23 +1469,23 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	TColStd_Array1OfInteger uMultsTCol = L2->UMultiplicities();
 	TColStd_Array1OfReal vKnotsTCol = L1->VKnots();
 	TColStd_Array1OfInteger vMultsTCol = L1->VMultiplicities();
-	std::vector<double> uKnots;
-	std::vector<double> vKnots;
-	std::vector<int> uMults;
-	std::vector<int> vMults;
-	for (int i = 1; i <= uKnotsTCol.Size(); i++)
+	std::vector<Standard_Real> uKnots;
+	std::vector<Standard_Real> vKnots;
+	std::vector<Standard_Integer> uMults;
+	std::vector<Standard_Integer> vMults;
+	for (Standard_Integer i = 1; i <= uKnotsTCol.Size(); i++)
 	{
 		uKnots.push_back(uKnotsTCol(i));
 	}
-	for (int i = 1; i <= vKnotsTCol.Size(); i++)
+	for (Standard_Integer i = 1; i <= vKnotsTCol.Size(); i++)
 	{
 		vKnots.push_back(vKnotsTCol(i));
 	}
-	for (int i = 1; i <= uMultsTCol.Size(); i++)
+	for (Standard_Integer i = 1; i <= uMultsTCol.Size(); i++)
 	{
 		uMults.push_back(uMultsTCol(i));
 	}
-	for (int i = 1; i <= vMultsTCol.Size(); i++)
+	for (Standard_Integer i = 1; i <= vMultsTCol.Size(); i++)
 	{
 		vMults.push_back(vMultsTCol(i));
 	}
@@ -1502,12 +1500,12 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	T->IncreaseDegree(uCurves[0]->Degree(), vCurves[0]->Degree());
 
 
-	const int nbPolesU1 = L1->NbUPoles();
-	const int nbPolesV1 = L1->NbVPoles();
-	const int nbPolesU21 = L2->NbUPoles();
-	const int nbPolesV21 = L2->NbVPoles();
-	const int nbPolesU121 = T->NbUPoles();
-	const int nbPolesV121 = T->NbVPoles();
+	const Standard_Integer nbPolesU1 = L1->NbUPoles();
+	const Standard_Integer nbPolesV1 = L1->NbVPoles();
+	const Standard_Integer nbPolesU21 = L2->NbUPoles();
+	const Standard_Integer nbPolesV21 = L2->NbVPoles();
+	const Standard_Integer nbPolesU121 = T->NbUPoles();
+	const Standard_Integer nbPolesV121 = T->NbVPoles();
 
 	//--------------- 节点细化 ---------------
 	//将三张曲面的参数域都scale到[0,1]
@@ -1534,8 +1532,8 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	const TColStd_Array1OfInteger multsU3 = T->UMultiplicities();
 	const TColStd_Array1OfInteger multsV3 = T->VMultiplicities();
 
-	const int degreeU = L1->UDegree();
-	const int degreeV = L1->VDegree();
+	const Standard_Integer degreeU = L1->UDegree();
+	const Standard_Integer degreeV = L1->VDegree();
 
 
 	//--------------- 计算控制点 ---------------
@@ -1543,18 +1541,18 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	const TColgp_Array2OfPnt poles2 = L2->Poles();
 	const TColgp_Array2OfPnt poles12 = T->Poles();
 
-	const int nbPolesU = L1->NbUPoles();
-	const int nbPolesV = L1->NbVPoles();
-	const int nbPolesU2 = L2->NbUPoles();
-	const int nbPolesV2 = L2->NbVPoles();
-	const int nbPolesU12 = T->NbUPoles();
-	const int nbPolesV12 = T->NbVPoles();
+	const Standard_Integer nbPolesU = L1->NbUPoles();
+	const Standard_Integer nbPolesV = L1->NbVPoles();
+	const Standard_Integer nbPolesU2 = L2->NbUPoles();
+	const Standard_Integer nbPolesV2 = L2->NbVPoles();
+	const Standard_Integer nbPolesU12 = T->NbUPoles();
+	const Standard_Integer nbPolesV12 = T->NbVPoles();
 
 	TColgp_Array2OfPnt resPole(1, nbPolesU, 1, nbPolesV);
 
-	for (int i = 1; i <= nbPolesU12; i++)
+	for (Standard_Integer i = 1; i <= nbPolesU12; i++)
 	{
-		for (int j = 1; j <= nbPolesV12; j++)
+		for (Standard_Integer j = 1; j <= nbPolesV12; j++)
 		{
 			gp_XYZ coord = poles1(i, j).Coord() + poles2(i, j).Coord() - poles12(i, j).Coord();
 			resPole(i, j).SetCoord(coord.X(), coord.Y(), coord.Z());

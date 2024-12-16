@@ -54,22 +54,22 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
     TColStd_Array1OfInteger multiplicitiesU = originSurf->UMultiplicities();
     TColStd_Array1OfInteger multiplicitiesV = originSurf->VMultiplicities();
 
-    int degreeU = originSurf->UDegree();
-    int degreeV = originSurf->VDegree();
+    Standard_Integer degreeU = originSurf->UDegree();
+    Standard_Integer degreeV = originSurf->VDegree();
 
-    int numU = originSurf->NbUPoles();
-    int numV = originSurf->NbVPoles();
+    Standard_Integer numU = originSurf->NbUPoles();
+    Standard_Integer numV = originSurf->NbVPoles();
 
-    std::vector<double> paramsU;
-    std::vector<double> paramsV;
+    std::vector<Standard_Real> paramsU;
+    std::vector<Standard_Real> paramsV;
 
-    for (int i = 1; i <= numU; ++i)
+    for (Standard_Integer i = 1; i <= numU; ++i)
     {
-        paramsU.push_back(double(i - 1) / (numU - 1));  // U 参数均匀分布
+        paramsU.push_back(Standard_Real(i - 1) / (numU - 1));  // U 参数均匀分布
     }
-    for (int i = 1; i <= numV; ++i)
+    for (Standard_Integer i = 1; i <= numV; ++i)
     {
-        paramsV.push_back(double(i - 1) / (numV - 1));  // V 参数均匀分布
+        paramsV.push_back(Standard_Real(i - 1) / (numV - 1));  // V 参数均匀分布
     }
 
 
@@ -77,12 +77,12 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
     std::vector<gp_Pnt> newOffsets;
     std::vector<gp_Pnt2d> newPntParams;
 
-    for (int i = 0; i < numU; i++)
+    for (Standard_Integer i = 0; i < numU; i++)
     {
-        for (int j = 0; j < numV; j++)
+        for (Standard_Integer j = 0; j < numV; j++)
         {
-            double u = paramsU[i];  // 控制点的 U 参数位置
-            double v = paramsV[j];  // 控制点的 V 参数位置
+            Standard_Real u = paramsU[i];  // 控制点的 U 参数位置
+            Standard_Real v = paramsV[j];  // 控制点的 V 参数位置
 
             // 通过参数坐标计算原曲面上的点
             gp_Pnt originalPoint;
@@ -118,11 +118,11 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
     // 使用原曲面的节点向量、次数、重复度拟合新的 B 样条曲面
     TColgp_Array2OfPnt controlPoints(1, numU, 1, numV);
 
-    for (int i = 1; i <= numU; ++i)
+    for (Standard_Integer i = 1; i <= numU; ++i)
     {
-        for (int j = 1; j <= numV; ++j)
+        for (Standard_Integer j = 1; j <= numV; ++j)
         {
-            int idx = (i - 1) * numV + (j - 1);
+            Standard_Integer idx = (i - 1) * numV + (j - 1);
             controlPoints.SetValue(i, j, newOffsets[idx]);
         }
     }
@@ -137,7 +137,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
 }
 
 // 12.9 按照论文中实现
-void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vector<double> uIsoparamParams, std::vector<double> vIsoparamParams,
+void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vector<Standard_Real> uIsoparamParams, std::vector<Standard_Real> vIsoparamParams,
     std::vector<Handle(Geom_BSplineCurve)> guideCurves, Handle(Geom_BSplineSurface)& guidedGordon)
 {
     Handle(Geom_BSplineSurface) originSurf = Handle(Geom_BSplineSurface)::DownCast(originalGordon);
@@ -178,21 +178,21 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     }
 
 
-    int numU = 11;
-    int numV = 11;
+    Standard_Integer numU = 11;
+    Standard_Integer numV = 11;
 
-    double minU = 0.0, maxU = 1.0, minV = 0.0, maxV = 1.0;
+    Standard_Real minU = 0.0, maxU = 1.0, minV = 0.0, maxV = 1.0;
 
     // 设置节点向量
     TColStd_Array1OfReal knotsU(1, numU);
     TColStd_Array1OfReal knotsV(1, numV);
 
-    for (int i = 1; i <= numU; ++i)
+    for (Standard_Integer i = 1; i <= numU; ++i)
     {
         knotsU.SetValue(i, 0.1 * (i - 1));
     }
 
-    for (int i = 1; i <= numV; ++i)
+    for (Standard_Integer i = 1; i <= numV; ++i)
     {
         knotsV.SetValue(i, 0.1 * (i - 1));
     }
@@ -200,11 +200,11 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     TColStd_Array1OfInteger multiplicitiesU(1, numU);
     TColStd_Array1OfInteger multiplicitiesV(1, numV);
 
-    for (int i = 1; i <= numU; ++i)
+    for (Standard_Integer i = 1; i <= numU; ++i)
     {
         multiplicitiesU.SetValue(i, (i == 1 || i == numU) ? 4 : 1);
     }
-    for (int i = 1; i <= numV; ++i)
+    for (Standard_Integer i = 1; i <= numV; ++i)
     {
         multiplicitiesV.SetValue(i, (i == 1 || i == numV) ? 4 : 1);
     }
@@ -220,25 +220,25 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     {
         for (int j = 1; j <= knotsV.Size() - 1; ++j)
         {
-            double umin = knotsU.Value(i);
-            double umax = knotsU.Value(i + 1);
-            double vmin = knotsV.Value(j);
-            double vmax = knotsV.Value(j + 1);
+            Standard_Real umin = knotsU.Value(i);
+            Standard_Real umax = knotsU.Value(i + 1);
+            Standard_Real vmin = knotsV.Value(j);
+            Standard_Real vmax = knotsV.Value(j + 1);
 
-            double u = (umin + umax) / 2.0;
-            double v = (vmin + vmax) / 2.0;
+            Standard_Real u = (umin + umax) / 2.0;
+            Standard_Real v = (vmin + vmax) / 2.0;
 
             bool isInDataRegion = false;
 
             gp_Pnt2d targetParam(0.0, 0.0);  // 默认参数值
             gp_Pnt targetOffset(0.0, 0.0, 0.0);  // 默认偏移量
-            double weightSum = 0.0;  // 用于加权平均的权重总和
+            Standard_Real weightSum = 0.0;  // 用于加权平均的权重总和
 
             // 遍历已有数据点，计算权重
             for (size_t k = 0; k < pntParams.size(); ++k)
             {
-                double curU = pntParams[k].X();
-                double curV = pntParams[k].Y();
+                Standard_Real curU = pntParams[k].X();
+                Standard_Real curV = pntParams[k].Y();
 
                 // 如果点在区域内，直接添加
                 if (InterPolateTool::isLessThan(curU, umax, 0.001) &&
@@ -253,8 +253,8 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
                 }
 
                 // 如果点不在区域内，计算距离和权重
-                double distance = std::sqrt((u - curU) * (u - curU) + (v - curV) * (v - curV));
-                double weight = std::exp(1.0 / (distance + 0.001));
+                Standard_Real distance = std::sqrt((u - curU) * (u - curU) + (v - curV) * (v - curV));
+                Standard_Real weight = std::exp(1.0 / (distance + 0.001));
                 //if (distance >= 0.3) weight = 0.0;
                 weightSum += weight;
 
@@ -283,7 +283,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
 
     // 将gp_Pnt和gp_Pnt2d类型转换为Eigen类型
     std::vector<Eigen::Vector3d> offsetsEigen;
-    std::vector<double> pntParamsU, pntParamsV;
+    std::vector<Standard_Real> pntParamsU, pntParamsV;
     for (const gp_Pnt& offset : offsets)
     {
         offsetsEigen.push_back(Eigen::Vector3d(offset.X(), offset.Y(), offset.Z()));
@@ -301,28 +301,28 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     TColStd_Array1OfReal vKnots = knotsV;
     TColStd_Array1OfInteger uMults = multiplicitiesU;
     TColStd_Array1OfInteger vMults = multiplicitiesV;
-    int uDegree = originSurf->UDegree();
-    int vDegree = originSurf->VDegree();
+    Standard_Integer uDegree = originSurf->UDegree();
+    Standard_Integer vDegree = originSurf->VDegree();
 
-    // 转换节点矢量为 std::vector<double>
-    std::vector<double> stdUKnots, stdVKnots;
-    for (int i = 1; i <= uKnots.Length(); ++i)
+    // 转换节点矢量为 std::vector<Standard_Real>
+    std::vector<Standard_Real> stdUKnots, stdVKnots;
+    for (Standard_Integer i = 1; i <= uKnots.Length(); ++i)
     {
-        for (int j = 1; j <= uMults[i]; ++j)
+        for (Standard_Integer j = 1; j <= uMults[i]; ++j)
         {
             stdUKnots.push_back(uKnots[i]);
         }
     }
-    for (int i = 1; i <= vKnots.Length(); ++i)
+    for (Standard_Integer i = 1; i <= vKnots.Length(); ++i)
     {
-        for (int j = 1; j <= vMults[i]; ++j)
+        for (Standard_Integer j = 1; j <= vMults[i]; ++j)
         {
             stdVKnots.push_back(vKnots[i]);
         }
     }
 
-    int numCtrlPtsU = stdUKnots.size() - uDegree - 1;
-    int numCtrlPtsV = stdVKnots.size() - vDegree - 1;
+    Standard_Integer numCtrlPtsU = stdUKnots.size() - uDegree - 1;
+    Standard_Integer numCtrlPtsV = stdVKnots.size() - vDegree - 1;
     std::vector<Eigen::Vector3d> controlPoints(numCtrlPtsU * numCtrlPtsV);
 
     FitConstrainedBSplineSurf::FitOffsetSurface(offsetsEigen, pntParamsU, pntParamsV, stdUKnots, stdVKnots, uIsoparamParams, vIsoparamParams, uDegree, vDegree, numCtrlPtsU, numCtrlPtsV, controlPoints);
@@ -372,23 +372,23 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     const TColStd_Array1OfInteger multsU2 = offsetSurf->UMultiplicities();
     const TColStd_Array1OfInteger multsV2 = offsetSurf->VMultiplicities();
 
-    const int degreeU = originSurf->UDegree();
-    const int degreeV = offsetSurf->VDegree();
+    const Standard_Integer degreeU = originSurf->UDegree();
+    const Standard_Integer degreeV = offsetSurf->VDegree();
 
     // 计算控制点 
     const TColgp_Array2OfPnt poles1 = originSurf->Poles();
     const TColgp_Array2OfPnt poles2 = offsetSurf->Poles();
 
-    const int nbPolesU = originSurf->NbUPoles();
-    const int nbPolesV = originSurf->NbVPoles();
-    const int nbPolesU2 = offsetSurf->NbUPoles();
-    const int nbPolesV2 = offsetSurf->NbVPoles();
+    const Standard_Integer nbPolesU = originSurf->NbUPoles();
+    const Standard_Integer nbPolesV = originSurf->NbVPoles();
+    const Standard_Integer nbPolesU2 = offsetSurf->NbUPoles();
+    const Standard_Integer nbPolesV2 = offsetSurf->NbVPoles();
 
     TColgp_Array2OfPnt resPole(1, nbPolesU, 1, nbPolesV);
 
-    for (int i = 1; i <= nbPolesU; i++)
+    for (Standard_Integer i = 1; i <= nbPolesU; i++)
     {
-        for (int j = 1; j <= nbPolesV; j++)
+        for (Standard_Integer j = 1; j <= nbPolesV; j++)
         {
             gp_XYZ coord = poles1(i, j).Coord() + poles2(i, j).Coord();
             //std::cout << "x=" << poles2(i, j).Coord().X() << " y=" << poles2(i, j).Coord().Y() << " z=" << poles2(i, j).Coord().Z() << std::endl;
@@ -402,10 +402,10 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
 
 
 // 对引导线采样
-std::vector<gp_Pnt> GuideGordon::SampleGuideCurve(const Handle(Geom_BSplineCurve)& curve, int numSamples) {
+std::vector<gp_Pnt> GuideGordon::SampleGuideCurve(const Handle(Geom_BSplineCurve)& curve, Standard_Integer numSamples) {
     std::vector<gp_Pnt> samples;
-    for (int i = 0; i <= numSamples; ++i) {
-        double t = curve->FirstParameter() + i * (curve->LastParameter() - curve->FirstParameter()) / numSamples;
+    for (Standard_Integer i = 0; i <= numSamples; ++i) {
+        Standard_Real t = curve->FirstParameter() + i * (curve->LastParameter() - curve->FirstParameter()) / numSamples;
         gp_Pnt sample = curve->Value(t);
         samples.push_back(sample);
     }
