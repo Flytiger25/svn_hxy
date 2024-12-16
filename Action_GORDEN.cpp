@@ -1065,6 +1065,8 @@ Standard_Integer Action_GORDEN::SetSameDistribution(Handle(Geom_BSplineCurve)& C
 	return C1->NbPoles();
 }
 
+
+
 void Action_GORDEN::OnBnClickedButtonMygordon()
 {
 	std::vector<Handle(Geom_BSplineCurve)> uCurves;
@@ -1516,75 +1518,7 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	GeomLib_ChangeUBounds(T, 0, 1);
 	GeomLib_ChangeVBounds(T, 0, 1);
 
-	// Get the u knot vector
-	Standard_Integer NbUKnot1 = L1->NbUKnots();
-	TColStd_Array1OfReal    UKnots1(1, NbUKnot1);
-	TColStd_Array1OfInteger UMults1(1, NbUKnot1);
-	L1->UKnots(UKnots1);
-	L1->UMultiplicities(UMults1);
-	// Get the v knot vector
-	Standard_Integer NbVKnot1 = L1->NbVKnots();
-	TColStd_Array1OfReal    VKnots1(1, NbVKnot1);
-	TColStd_Array1OfInteger VMults1(1, NbVKnot1);
-	L1->VKnots(VKnots1);
-	L1->VMultiplicities(VMults1);
-
-	for (int i = 1; i <= NbUKnot1; i++)
-	{
-		L2->InsertUKnot(UKnots1(i), UMults1(i), 1.e-15, false);
-	}
-	for (int i = 1; i <= NbVKnot1; i++)
-	{
-		L2->InsertVKnot(VKnots1(i), VMults1(i), 1.e-15, false);
-	}
-
-	// Get the u knot vector
-	Standard_Integer NbUKnot2 = L2->NbUKnots();
-	TColStd_Array1OfReal    UKnots2(1, NbUKnot2);
-	TColStd_Array1OfInteger UMults2(1, NbUKnot2);
-	L2->UKnots(UKnots2);
-	L2->UMultiplicities(UMults2);
-	// Get the v knot vector
-	Standard_Integer NbVKnot2 = L2->NbVKnots();
-	TColStd_Array1OfReal    VKnots2(1, NbVKnot2);
-	TColStd_Array1OfInteger VMults2(1, NbVKnot2);
-	L2->VKnots(VKnots2);
-	L2->VMultiplicities(VMults2);
-
-	for (int i = 1; i <= NbUKnot2; i++)
-	{
-		T->InsertUKnot(UKnots2(i), UMults2(i), 1.e-15, false);
-	}
-	for (int i = 1; i <= NbVKnot2; i++)
-	{
-		T->InsertVKnot(VKnots2(i), VMults2(i), 1.e-15, false);
-	}
-
-	// Get the u knot vector
-	Standard_Integer NbUKnot3 = T->NbUKnots();
-	TColStd_Array1OfReal    UKnots3(1, NbUKnot3);
-	TColStd_Array1OfInteger UMults3(1, NbUKnot3);
-	T->UKnots(UKnots3);
-	T->UMultiplicities(UMults3);
-	// Get the v knot vector
-	Standard_Integer NbVKnot3 = T->NbVKnots();
-	TColStd_Array1OfReal    VKnots3(1, NbVKnot3);
-	TColStd_Array1OfInteger VMults3(1, NbVKnot3);
-	T->VKnots(VKnots3);
-	T->VMultiplicities(VMults3);
-
-	for (int i = 1; i <= NbUKnot3; i++)
-	{
-		L1->InsertUKnot(UKnots3(i), UMults3(i), 1.e-15, false);
-		L2->InsertUKnot(UKnots3(i), UMults3(i), 1.e-15, false);
-	}
-	for (int i = 1; i <= NbVKnot3; i++)
-	{
-		L1->InsertVKnot(VKnots3(i), VMults3(i), 1.e-15, false);
-		L2->InsertVKnot(VKnots3(i), VMults3(i), 1.e-15, false);
-	}
-	//至此，三张曲面的节点向量完全相同
-
+	Compatible::SetSurfaceCompatible(L1, L2, T);
 
 	//--------------- 得到共同节点向量和次数 ---------------
 	const TColStd_Array1OfReal knotsU = L1->UKnots();
@@ -1599,30 +1533,6 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	const TColStd_Array1OfInteger multsV2 = L2->VMultiplicities();
 	const TColStd_Array1OfInteger multsU3 = T->UMultiplicities();
 	const TColStd_Array1OfInteger multsV3 = T->VMultiplicities();
-
-	/*
-	// test
-	std::vector<double> uKnots3;
-	std::vector<double> vKnots3;
-	std::vector<int> uMults3;
-	std::vector<int> vMults3;
-	for (int i = 1; i <= knotsU.Size(); i++)
-	{
-		uKnots3.push_back(knotsU(i));
-	}
-	for (int i = 1; i <= knotsV.Size(); i++)
-	{
-		vKnots3.push_back(knotsV(i));
-	}
-	for (int i = 1; i <= multsU.Size(); i++)
-	{
-		uMults3.push_back(multsU(i));
-	}
-	for (int i = 1; i <= multsV.Size(); i++)
-	{
-		vMults3.push_back(multsV(i));
-	}
-	*/
 
 	const int degreeU = L1->UDegree();
 	const int degreeV = L1->VDegree();

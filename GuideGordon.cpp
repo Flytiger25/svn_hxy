@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "GuideGordon.h"
 #include "Interpolate.h"
-#include <Eigen/Dense>
+#include "Compatible.h"
+#include "FitConstrainedBSplineSurf.h"
 
+#include <Eigen/Dense>
 #include <GeomAPI_ProjectPointOnSurf.hxx>
-#include <Action_GORDEN.h>
-#include <FitConstrainedBSplineSurf.h>
+
 
 // 不拟合偏移曲面，在数据点处加上偏移量
 void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
@@ -114,30 +115,6 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
         }
     }
 
-    /*
-    std::vector<double> uKnots;
-    std::vector<double> vKnots;
-    std::vector<int> uMults;
-    std::vector<int> vMults;
-    for (int i = 1; i <= knotsU.Size(); i++)
-    {
-        uKnots.push_back(knotsU(i));
-    }
-    for (int i = 1; i <= knotsV.Size(); i++)
-    {
-        vKnots.push_back(knotsV(i));
-    }
-    for (int i = 1; i <= multiplicitiesU.Size(); i++)
-    {
-        uMults.push_back(multiplicitiesU(i));
-    }
-    for (int i = 1; i <= multiplicitiesV.Size(); i++)
-    {
-        vMults.push_back(multiplicitiesV(i));
-    }
-    guidedGordon = InterPolateTool::Interpolate(newOffsets, newPntParams, uKnots, vKnots, uMults, vMults, 3, 3);
-    */
-
     // 使用原曲面的节点向量、次数、重复度拟合新的 B 样条曲面
     TColgp_Array2OfPnt controlPoints(1, numU, 1, numV);
 
@@ -149,8 +126,6 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
             controlPoints.SetValue(i, j, newOffsets[idx]);
         }
     }
-
-
 
     // 使用 OpenCascade 创建 B 样条曲面
     guidedGordon = new Geom_BSplineSurface(
@@ -384,72 +359,8 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         IFSelect_ReturnStatus status = stepWriter.Write(filePath.c_str());
     }
 
-
-    // 节点细化
-    // u direct uniform
-    TColStd_Array1OfReal knots(1, originSurf->NbUKnots());
-    originSurf->UKnots(knots);
-    BSplCLib::Reparametrize(0, 1, knots);
-    originSurf->SetUKnots(knots);
-
-    TColStd_Array1OfReal knotsv(1, originSurf->NbVKnots());
-    originSurf->VKnots(knotsv);
-    BSplCLib::Reparametrize(0, 1, knotsv);
-    originSurf->SetVKnots(knotsv);
-
-    TColStd_Array1OfReal knots2(1, offsetSurf->NbUKnots());
-    offsetSurf->UKnots(knots2);
-    BSplCLib::Reparametrize(0, 1, knots2);
-    offsetSurf->SetUKnots(knots2);
-
-    TColStd_Array1OfReal knotsv2(1, offsetSurf->NbVKnots());
-    offsetSurf->VKnots(knotsv2);
-    BSplCLib::Reparametrize(0, 1, knotsv2);
-    offsetSurf->SetVKnots(knotsv2);
-
-    // Get the u knot vector
-    Standard_Integer NbUKnot1 = originSurf->NbUKnots();
-    TColStd_Array1OfReal    UKnots1(1, NbUKnot1);
-    TColStd_Array1OfInteger UMults1(1, NbUKnot1);
-    originSurf->UKnots(UKnots1);
-    originSurf->UMultiplicities(UMults1);
-    // Get the v knot vector
-    Standard_Integer NbVKnot1 = originSurf->NbVKnots();
-    TColStd_Array1OfReal    VKnots1(1, NbVKnot1);
-    TColStd_Array1OfInteger VMults1(1, NbVKnot1);
-    originSurf->VKnots(VKnots1);
-    originSurf->VMultiplicities(VMults1);
-
-    for (int i = 1; i <= NbUKnot1; i++)
-    {
-        offsetSurf->InsertUKnot(UKnots1(i), UMults1(i), 1.e-15, false);
-    }
-    for (int i = 1; i <= NbVKnot1; i++)
-    {
-        offsetSurf->InsertVKnot(VKnots1(i), VMults1(i), 1.e-15, false);
-    }
-
-    // Get the u knot vector
-    Standard_Integer NbUKnot2 = offsetSurf->NbUKnots();
-    TColStd_Array1OfReal    UKnots2(1, NbUKnot2);
-    TColStd_Array1OfInteger UMults2(1, NbUKnot2);
-    offsetSurf->UKnots(UKnots2);
-    offsetSurf->UMultiplicities(UMults2);
-    // Get the v knot vector
-    Standard_Integer NbVKnot2 = offsetSurf->NbVKnots();
-    TColStd_Array1OfReal    VKnots2(1, NbVKnot2);
-    TColStd_Array1OfInteger VMults2(1, NbVKnot2);
-    offsetSurf->VKnots(VKnots2);
-    offsetSurf->VMultiplicities(VMults2);
-
-    for (int i = 1; i <= NbUKnot2; i++)
-    {
-        originSurf->InsertUKnot(UKnots2(i), UMults2(i), 1.e-15, false);
-    }
-    for (int i = 1; i <= NbVKnot2; i++)
-    {
-        originSurf->InsertVKnot(VKnots2(i), VMults2(i), 1.e-15, false);
-    }
+    // 对原始gordon曲面和偏移曲面compatible
+    Compatible::SetSurfaceCompatible(originSurf, offsetSurf);
 
     // 得到共同节点
     const TColStd_Array1OfReal knotsU1 = originSurf->UKnots();

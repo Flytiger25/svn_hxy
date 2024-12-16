@@ -508,3 +508,145 @@ std::vector<double> Compatible::ApproximateCompatible(std::vector<Handle(Geom_BS
 
 	return errors;
 }
+
+// 两张曲面compatible
+void Compatible::SetSurfaceCompatible(Handle(Geom_BSplineSurface)& L1, Handle(Geom_BSplineSurface)& L2)
+{
+    // uniform
+	TColStd_Array1OfReal knotsu(1, L1->NbUKnots());
+	L1->UKnots(knotsu);
+	BSplCLib::Reparametrize(0, 1, knotsu);
+	L1->SetUKnots(knotsu);
+
+	TColStd_Array1OfReal knotsv(1, L1->NbVKnots());
+	L1->VKnots(knotsv);
+	BSplCLib::Reparametrize(0, 1, knotsv);
+	L1->SetVKnots(knotsv);
+
+	TColStd_Array1OfReal knotsu2(1, L2->NbUKnots());
+	L2->UKnots(knotsu2);
+	BSplCLib::Reparametrize(0, 1, knotsu2);
+	L2->SetUKnots(knotsu2);
+
+	TColStd_Array1OfReal knotsv2(1, L2->NbVKnots());
+	L2->VKnots(knotsv2);
+	BSplCLib::Reparametrize(0, 1, knotsv2);
+	L2->SetVKnots(knotsv2);
+
+	// Get the u knot vector
+	Standard_Integer NbUKnot1 = L1->NbUKnots();
+	TColStd_Array1OfReal    UKnots1(1, NbUKnot1);
+	TColStd_Array1OfInteger UMults1(1, NbUKnot1);
+	L1->UKnots(UKnots1);
+	L1->UMultiplicities(UMults1);
+	// Get the v knot vector
+	Standard_Integer NbVKnot1 = L1->NbVKnots();
+	TColStd_Array1OfReal    VKnots1(1, NbVKnot1);
+	TColStd_Array1OfInteger VMults1(1, NbVKnot1);
+	L1->VKnots(VKnots1);
+	L1->VMultiplicities(VMults1);
+
+	for (int i = 1; i <= NbUKnot1; i++)
+	{
+		L2->InsertUKnot(UKnots1(i), UMults1(i), 1.e-15, false);
+	}
+	for (int i = 1; i <= NbVKnot1; i++)
+	{
+		L2->InsertVKnot(VKnots1(i), VMults1(i), 1.e-15, false);
+	}
+
+	// Get the u knot vector
+	Standard_Integer NbUKnot2 = L2->NbUKnots();
+	TColStd_Array1OfReal    UKnots2(1, NbUKnot2);
+	TColStd_Array1OfInteger UMults2(1, NbUKnot2);
+	L2->UKnots(UKnots2);
+	L2->UMultiplicities(UMults2);
+	// Get the v knot vector
+	Standard_Integer NbVKnot2 = L2->NbVKnots();
+	TColStd_Array1OfReal    VKnots2(1, NbVKnot2);
+	TColStd_Array1OfInteger VMults2(1, NbVKnot2);
+	L2->VKnots(VKnots2);
+	L2->VMultiplicities(VMults2);
+
+	for (int i = 1; i <= NbUKnot2; i++)
+	{
+		L1->InsertUKnot(UKnots2(i), UMults2(i), 1.e-15, false);
+	}
+	for (int i = 1; i <= NbVKnot2; i++)
+	{
+		L1->InsertVKnot(VKnots2(i), VMults2(i), 1.e-15, false);
+	}
+}
+
+// 三张曲面compatible
+void Compatible::SetSurfaceCompatible(Handle(Geom_BSplineSurface)& L1, Handle(Geom_BSplineSurface)& L2, Handle(Geom_BSplineSurface)& L3)
+{
+	// Get the u knot vector
+	Standard_Integer NbUKnot1 = L1->NbUKnots();
+	TColStd_Array1OfReal    UKnots1(1, NbUKnot1);
+	TColStd_Array1OfInteger UMults1(1, NbUKnot1);
+	L1->UKnots(UKnots1);
+	L1->UMultiplicities(UMults1);
+	// Get the v knot vector
+	Standard_Integer NbVKnot1 = L1->NbVKnots();
+	TColStd_Array1OfReal    VKnots1(1, NbVKnot1);
+	TColStd_Array1OfInteger VMults1(1, NbVKnot1);
+	L1->VKnots(VKnots1);
+	L1->VMultiplicities(VMults1);
+
+	for (int i = 1; i <= NbUKnot1; i++)
+	{
+		L2->InsertUKnot(UKnots1(i), UMults1(i), 1.e-15, false);
+	}
+	for (int i = 1; i <= NbVKnot1; i++)
+	{
+		L2->InsertVKnot(VKnots1(i), VMults1(i), 1.e-15, false);
+	}
+
+	// Get the u knot vector
+	Standard_Integer NbUKnot2 = L2->NbUKnots();
+	TColStd_Array1OfReal    UKnots2(1, NbUKnot2);
+	TColStd_Array1OfInteger UMults2(1, NbUKnot2);
+	L2->UKnots(UKnots2);
+	L2->UMultiplicities(UMults2);
+	// Get the v knot vector
+	Standard_Integer NbVKnot2 = L2->NbVKnots();
+	TColStd_Array1OfReal    VKnots2(1, NbVKnot2);
+	TColStd_Array1OfInteger VMults2(1, NbVKnot2);
+	L2->VKnots(VKnots2);
+	L2->VMultiplicities(VMults2);
+
+	for (int i = 1; i <= NbUKnot2; i++)
+	{
+		L3->InsertUKnot(UKnots2(i), UMults2(i), 1.e-15, false);
+	}
+	for (int i = 1; i <= NbVKnot2; i++)
+	{
+		L3->InsertVKnot(VKnots2(i), VMults2(i), 1.e-15, false);
+	}
+
+	// Get the u knot vector
+	Standard_Integer NbUKnot3 = L3->NbUKnots();
+	TColStd_Array1OfReal    UKnots3(1, NbUKnot3);
+	TColStd_Array1OfInteger UMults3(1, NbUKnot3);
+	L3->UKnots(UKnots3);
+	L3->UMultiplicities(UMults3);
+	// Get the v knot vector
+	Standard_Integer NbVKnot3 = L3->NbVKnots();
+	TColStd_Array1OfReal    VKnots3(1, NbVKnot3);
+	TColStd_Array1OfInteger VMults3(1, NbVKnot3);
+	L3->VKnots(VKnots3);
+	L3->VMultiplicities(VMults3);
+
+	for (int i = 1; i <= NbUKnot3; i++)
+	{
+		L1->InsertUKnot(UKnots3(i), UMults3(i), 1.e-15, false);
+		L2->InsertUKnot(UKnots3(i), UMults3(i), 1.e-15, false);
+	}
+	for (int i = 1; i <= NbVKnot3; i++)
+	{
+		L1->InsertVKnot(VKnots3(i), VMults3(i), 1.e-15, false);
+		L2->InsertVKnot(VKnots3(i), VMults3(i), 1.e-15, false);
+	}
+	//至此，三张曲面的节点向量完全相同
+}
