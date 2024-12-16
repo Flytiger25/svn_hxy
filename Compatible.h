@@ -120,6 +120,7 @@ namespace Compatible{
 	bool isDegenerate(const Handle(Geom_BSplineCurve)& curve);
 	std::vector<double> ApproximateCompatible(std::vector<Handle(Geom_BSplineCurve)>& Curves, std::vector<Handle(Geom_BSplineCurve)>& compatibleCurves, double toler);
 
-
+	void SetSurfaceCompatible(Handle(Geom_BSplineSurface)& L1, Handle(Geom_BSplineSurface)& L2);
+	void SetSurfaceCompatible(Handle(Geom_BSplineSurface)& L1, Handle(Geom_BSplineSurface)& L2, Handle(Geom_BSplineSurface)& L3);
 };
 

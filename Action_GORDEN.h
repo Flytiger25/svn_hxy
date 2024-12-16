@@ -57,32 +57,15 @@ public:
 
 	void BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCurves,
 		std::vector<Handle(Geom_BSplineCurve)> vCurves,
-		std::vector<double>& uIsoparamParams,
-		std::vector<double>& vIsoparamParams,
+		std::vector<Standard_Real>& uIsoparamParams,
+		std::vector<Standard_Real>& vIsoparamParams,
 		TopoDS_Face& face);
-
-	bool InterpolateSurf(const std::vector< std::vector<t_xyz> >& points,
-		const int                                degU,
-		const int                                degV,
-		const std::vector<double>& uParams,
-		const std::vector<double>& U,
-		const std::vector<double>& vParams,
-		const std::vector<double>& V,
-		t_ptr<t_bsurf>& result);
-
-	void GetPointGrid(const std::vector<Handle(Geom_BSplineCurve)>& uCurves,
-		const std::vector<Handle(Geom_BSplineCurve)>& /*vCurves*/,
-		const math_Matrix& intersection_params_u,
-		const math_Matrix& intersection_params_v,
-		std::vector< std::vector<t_xyz> >& points);
 
 	afx_msg void OnBnClickedButtonGorden();
 	afx_msg void OnBnClickedButtonCreategordon();
-	afx_msg void OnBnClickedButtonCreategordon2();
 	void export_step_OCC(TopoDS_Shape shape, std::string filePath);
 	void export_brep_OCC(TopoDS_Shape shape, std::string filePath);
 	void export_step_ACIS(ENTITY* ent, std::string filePath);
-	afx_msg void OnBnClickedButtonGordensample2();
 	afx_msg void OnBnClickedButtonMygordon();
 	afx_msg void OnBnClickedButtonAnalysis();
 };
