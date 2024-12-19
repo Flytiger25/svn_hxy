@@ -1075,7 +1075,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	TopoDS_Shape shape;
 	BRep_Builder b;
 	std::ifstream is;
-	is.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\11_UResult.brep");
+	is.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\2_UResult.brep");
 	//is.open("D:\\work\\data\\input\\badCases\\uCreateGordenCurves.brep");
 	BRepTools::Read(shape, is, b);
 	is.close();
@@ -1096,7 +1096,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	TopoDS_Shape shape2;
 	BRep_Builder b2;
 	std::ifstream is2;
-	is2.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\11_VResult.brep");
+	is2.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\2_VResult.brep");
 	//is2.open("D:\\work\\data\\input\\badCases\\vCreateGordenCurves.brep");
 	BRepTools::Read(shape2, is2, b2);
 	is2.close();
@@ -1154,7 +1154,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	BRep_Builder b3;
 	std::ifstream is3;
 	//is3.open("D:\\work\\data\\input\\newCases\\test1\\internal.brep");
-	is3.open("D:\\work\\svn_hxy\\data\\input\\internal\\11_internal.brep");
+	is3.open("D:\\work\\svn_hxy\\data\\input\\internal\\11_internal_2.brep");
 	BRepTools::Read(shape3, is3, b3);
 	is3.close();
 
@@ -1434,14 +1434,14 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	}
 
 	// test
-	for (Standard_Integer i = 3; i < 3; i++)
-	{
-		uIsoparamParams.push_back(uIsoparamParams1[i]);
-	}
-	for (Standard_Integer i = 3; i < 4; i++)
-	{
-		vIsoparamParams.push_back(vIsoparamParams1[i]);
-	}
+	//for (Standard_Integer i = 1; i < uIsoparamParams1.size() - 1; i++)
+	//{
+	//	uIsoparamParams.push_back(uIsoparamParams1[i]);
+	//}
+	//for (Standard_Integer i = 1; i < vIsoparamParams1.size() - 1; i++)
+	//{
+	//	vIsoparamParams.push_back(vIsoparamParams1[i]);
+	//}
 
 
 	//--------------- 构造三张曲面 ---------------

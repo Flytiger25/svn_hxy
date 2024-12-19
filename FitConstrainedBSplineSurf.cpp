@@ -227,8 +227,14 @@ void FitConstrainedBSplineSurf::BuildMatrixN(const std::vector<double>& uParams,
     }
     N_hat = InterPolateTool::composeTensowMat(Ni, Nj);
 
-    // 定义单位矩阵 I
-    Eigen::MatrixXd I = Eigen::MatrixXd::Identity(N_hat.cols(), N_hat.cols());
+    // 定义单位矩阵 I 
+    // 12.19 alpha改为0.01，单位矩阵里的1改为0.1
+    //Eigen::MatrixXd I = Eigen::MatrixXd::Identity(N_hat.cols(), N_hat.cols());
+    Eigen::MatrixXd I = Eigen::MatrixXd::Zero(N_hat.cols(), N_hat.cols());
+    for (int i = 0; i < N_hat.cols(); i++)
+    {
+        I(i, i) = 0.1;
+    }
 
     // 构造矩阵 N
     Eigen::MatrixXd res = Eigen::MatrixXd::Zero(I.rows() + N_hat.rows(), I.cols());

@@ -149,8 +149,11 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         return;
     }
 
+    // 定义采样点个数
+    Standard_Real num = 10;
+
     //std::vector<Handle(Geom_BSplineCurve)> guideCurves1;
-    //guideCurves1.push_back(guideCurves[8]);
+    //guideCurves1.push_back(guideCurves[3]);
 
     std::vector<gp_Pnt2d> pntParams;
     std::vector<gp_Pnt> offsets;
@@ -158,7 +161,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     {
         // 得到采样点
         std::vector<gp_Pnt> samples, projectPnts;
-        samples = SampleGuideCurve(guideCurve, 10);
+        samples = SampleGuideCurve(guideCurve, num);
 
         // 得到投影点和参数
         std::vector<gp_Pnt2d> aPntParams;
@@ -177,6 +180,18 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         }
     }
 
+    // 输出偏移量距离
+    Standard_Real sum = 0;
+    for (gp_Pnt aPnt : offsets)
+    {
+        Standard_Real x = aPnt.X();
+        Standard_Real y = aPnt.Y();
+        Standard_Real z = aPnt.Z();
+        Standard_Real dis = std::sqrt(x * x + y * y + z * z);
+        sum += dis;
+        std::cout << "distance: " << dis << std::endl;
+    }
+    std::cout << " average distance: " << sum / offsets.size() << std::endl;
 
     Standard_Integer numU = 11;
     Standard_Integer numV = 11;
@@ -296,11 +311,15 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
 
 
     // 调用偏移曲面拟合函数
-
-    TColStd_Array1OfReal uKnots = knotsU;
-    TColStd_Array1OfReal vKnots = knotsV;
-    TColStd_Array1OfInteger uMults = multiplicitiesU;
-    TColStd_Array1OfInteger vMults = multiplicitiesV;
+    // 12.16 用初始gordon的节点向量，后面无需compatible
+    //TColStd_Array1OfReal uKnots = knotsU;
+    //TColStd_Array1OfReal vKnots = knotsV;
+    //TColStd_Array1OfInteger uMults = multiplicitiesU;
+    //TColStd_Array1OfInteger vMults = multiplicitiesV;
+    TColStd_Array1OfReal uKnots = originSurf->UKnots();
+    TColStd_Array1OfReal vKnots = originSurf->VKnots();
+    TColStd_Array1OfInteger uMults = originSurf->UMultiplicities();
+    TColStd_Array1OfInteger vMults = originSurf->VMultiplicities();
     Standard_Integer uDegree = originSurf->UDegree();
     Standard_Integer vDegree = originSurf->VDegree();
 
@@ -398,6 +417,44 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
 
     guidedGordon = new Geom_BSplineSurface(resPole, knotsU1,
         knotsV1, multsU1, multsV1, degreeU, degreeV);
+
+    std::vector<gp_Pnt2d> pntParams1;
+    std::vector<gp_Pnt> offsets1;
+    for (Handle(Geom_BSplineCurve) guideCurve : guideCurves)
+    {
+        // 得到采样点
+        std::vector<gp_Pnt> samples, projectPnts;
+        samples = SampleGuideCurve(guideCurve, num);
+
+        // 得到投影点和参数
+        std::vector<gp_Pnt2d> aPntParams;
+        projectPnts = ProjectPointsToSurface(samples, guidedGordon, aPntParams);
+        for (gp_Pnt2d aParam : aPntParams)
+        {
+            pntParams.push_back(aParam);
+        }
+
+        // 计算偏移量
+        std::vector<gp_Pnt> anOffsets;
+        anOffsets = CalculateOffsets(samples, projectPnts);
+        for (gp_Pnt aPnt : anOffsets)
+        {
+            offsets1.push_back(aPnt);
+        }
+    }
+
+    // 输出偏移量距离
+    Standard_Real sum1 = 0;
+    for (gp_Pnt aPnt : offsets1)
+    {
+        Standard_Real x = aPnt.X();
+        Standard_Real y = aPnt.Y();
+        Standard_Real z = aPnt.Z();
+        Standard_Real dis = std::sqrt(x * x + y * y + z * z);
+        sum1 += dis;
+        std::cout << "distance: " << dis << std::endl;
+    }
+    std::cout << " average distance: " << sum1 / offsets1.size() << std::endl;
 }
 
 
