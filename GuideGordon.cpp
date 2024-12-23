@@ -193,6 +193,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     }
     std::cout << " average distance: " << sum / offsets.size() << std::endl;
 
+    /*
     Standard_Integer numU = 11;
     Standard_Integer numV = 11;
 
@@ -223,6 +224,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     {
         multiplicitiesV.SetValue(i, (i == 1 || i == numV) ? 4 : 1);
     }
+    */
 
     /* 暂时不添加额外数据点
     // 在没有数据点支持的参数区域添加额外的零数据点
@@ -379,7 +381,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
     }
 
     // 对原始gordon曲面和偏移曲面compatible
-    Compatible::SetSurfaceCompatible(originSurf, offsetSurf);
+    //Compatible::SetSurfaceCompatible(originSurf, offsetSurf);
 
     // 得到共同节点
     const TColStd_Array1OfReal knotsU1 = originSurf->UKnots();

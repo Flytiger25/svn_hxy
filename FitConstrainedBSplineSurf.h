@@ -23,5 +23,9 @@ namespace FitConstrainedBSplineSurf
 
     void BuildMatrixW(const std::vector<double>& pntParamsU, const std::vector<double>& pntParamsV, const std::vector<double>& stdUKnots, const std::vector<double>& stdVKnots,
         int uDegree, int vDegree, int numCtrlPtsU, int numCtrlPtsV, Eigen::MatrixXd& W);
+    
+    void removeRow(Eigen::MatrixXd& matrix, int rowToRemove);
+
+    Eigen::MatrixXd BuildFullRankMatrix(Eigen::MatrixXd& matrix);
 };
 
