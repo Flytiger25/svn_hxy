@@ -1075,8 +1075,8 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	TopoDS_Shape shape;
 	BRep_Builder b;
 	std::ifstream is;
-	is.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\2_UResult.brep");
-	//is.open("D:\\work\\svn_hxy\\data\\input\\badCases\\gordonu.brep");
+	is.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\14_uIsoCurves.brep");
+	//is.open("D:\\work\\svn_hxy\\data\\input\\coonsCases\\coons_10_uIsoCurves.brep");
 	BRepTools::Read(shape, is, b);
 	is.close();
 
@@ -1096,8 +1096,8 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	TopoDS_Shape shape2;
 	BRep_Builder b2;
 	std::ifstream is2;
-	is2.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\2_VResult.brep");
-	//is2.open("D:\\work\\svn_hxy\\data\\input\\badCases\\gordonv.brep");
+	is2.open("D:\\work\\svn_hxy\\data\\input\\djwCases\\14_vIsoCurves.brep");
+	//is2.open("D:\\work\\svn_hxy\\data\\input\\coonsCases\\coons_10_vIsoCurves.brep");
 	BRepTools::Read(shape2, is2, b2);
 	is2.close();
 
@@ -1124,7 +1124,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 		return;
 	}
 
-	
+	/*
 	// 直接输入一个面
 	STEPControl_Reader reader;
 	char* filename = "D:\\work\\svn_hxy\\data\\input\\11coons.step";
@@ -1146,7 +1146,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 		face4 = TopoDS::Face(explorer.Current());
 		break;
 	}
-	
+	*/
 	
 	// try guide
 	std::vector<Handle(Geom_BSplineCurve)> guideCurves;
@@ -1154,7 +1154,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 	BRep_Builder b3;
 	std::ifstream is3;
 	//is3.open("D:\\work\\data\\input\\newCases\\test1\\internal.brep");
-	is3.open("D:\\work\\svn_hxy\\data\\input\\internal\\11_internal_2.brep");
+	is3.open("D:\\work\\svn_hxy\\data\\input\\internal\\14_internal.brep");
 	BRepTools::Read(shape3, is3, b3);
 	is3.close();
 
@@ -1170,7 +1170,7 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 		}
 	}
 	Handle(Geom_BSplineSurface) guidedGordonSurf;
-	GuideGordon::GuideGordonSurf(BRep_Tool::Surface(face4), uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
+	GuideGordon::GuideGordonSurf(BRep_Tool::Surface(face), uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
 	TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedGordonSurf, Precision::Confusion());
 	export_step_OCC(guidedFace, "D:\\work\\svn_hxy\\data\\guidedGordon\\guidedGordonSurf.step");
 	
@@ -1434,11 +1434,11 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	}
 
 	// test
-	for (Standard_Integer i = 1; i < 2; i++)
+	for (Standard_Integer i = 1; i < uIsoparamParams1.size() - 1; i++)
 	{
 		uIsoparamParams.push_back(uIsoparamParams1[i]);
 	}
-	for (Standard_Integer i = 1; i < 2; i++)
+	for (Standard_Integer i = 1; i < vIsoparamParams1.size() - 1; i++)
 	{
 		vIsoparamParams.push_back(vIsoparamParams1[i]);
 	}

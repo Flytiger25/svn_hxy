@@ -36,13 +36,18 @@ void FitConstrainedBSplineSurf::FitOffsetSurface(const std::vector<Eigen::Vector
 
     //M可能不满秩，需要删除某行
     Eigen::JacobiSVD<Eigen::MatrixXd> svd(M);
-    if (M.rows() != svd.rank())
+    int MRank = svd.rank();
+    if (M.rows() != MRank)
     {
-        std::cout << "M rank: " << svd.rank() << std::endl;
-        std::cout << "M rows: " << M.rows() << std::endl;
-        std::cout << "M cols: " << M.cols() << std::endl;
         std::cout << "M不满秩" << std::endl;
-        Eigen::MatrixXd fullM = BuildFullRankMatrix(M);
+        std::cout << "M rank: " << MRank << std::endl;
+        std::cout << "M rows: " << M.rows() << " M cols: " << M.cols() << std::endl;
+        Eigen::MatrixXd fullM;
+        fullM = M;
+        while (fullM.rows() > MRank)
+        {
+            fullM = BuildFullRankMatrix(fullM);
+        }
         M = fullM;
     }
 
@@ -253,7 +258,7 @@ void FitConstrainedBSplineSurf::BuildMatrixN(const std::vector<double>& uParams,
     Eigen::MatrixXd I = Eigen::MatrixXd::Zero(N_hat.cols(), N_hat.cols());
     for (int i = 0; i < N_hat.cols(); i++)
     {
-        I(i, i) = 0.1;
+        I(i, i) = 0.01;
     }
 
     // 构造矩阵 N
@@ -316,7 +321,8 @@ void FitConstrainedBSplineSurf::removeRow(Eigen::MatrixXd& matrix, int rowToRemo
 // 将行不满秩的矩阵改为行满秩
 Eigen::MatrixXd FitConstrainedBSplineSurf::BuildFullRankMatrix(Eigen::MatrixXd& matrix)
 {
-    double threshold = 1e-6;
+    double threshold = 1e-2;
+
     Eigen::JacobiSVD<Eigen::MatrixXd> svd(matrix, Eigen::ComputeFullU | Eigen::ComputeFullV);
     const Eigen::MatrixXd& U = svd.matrixU();
     const Eigen::MatrixXd& singularValues = svd.singularValues();
@@ -343,12 +349,17 @@ Eigen::MatrixXd FitConstrainedBSplineSurf::BuildFullRankMatrix(Eigen::MatrixXd& 
         }
     }
 
+    // 去掉重复的
+    std::sort(redundantRows.begin(), redundantRows.end());
+    redundantRows.erase(std::unique(redundantRows.begin(), redundantRows.end()), redundantRows.end());
+
     int numCols = matrix.cols();
     int newNumRows = numRows - redundantRows.size();
     Eigen::MatrixXd newMatrix(newNumRows, numCols);
     int newRow = 0;
     // 遍历原矩阵的行，跳过冗余行
     for (int i = 0; i < numRows; ++i) {
+
         bool isRedundant = false;
         for (int index : redundantRows) {
             if (i == index) {
