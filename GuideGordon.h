@@ -22,5 +22,6 @@ namespace GuideGordon {
 
 	void UniformSurface(Handle(Geom_BSplineSurface)& surface);
 
+	void ExpandKnots(Handle(Geom_BSplineSurface)& surface);
 };
 

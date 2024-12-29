@@ -149,6 +149,8 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         return;
     }
 
+    ExpandKnots(originSurf);
+
     // 定义采样点个数
     Standard_Real num = 10;
 
@@ -433,7 +435,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         projectPnts = ProjectPointsToSurface(samples, guidedGordon, aPntParams);
         for (gp_Pnt2d aParam : aPntParams)
         {
-            pntParams.push_back(aParam);
+            pntParams1.push_back(aParam);
         }
 
         // 计算偏移量
@@ -447,6 +449,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
 
     // 输出偏移量距离
     Standard_Real sum1 = 0;
+    Standard_Integer pos = 0;
     for (gp_Pnt aPnt : offsets1)
     {
         Standard_Real x = aPnt.X();
@@ -455,6 +458,8 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         Standard_Real dis = std::sqrt(x * x + y * y + z * z);
         sum1 += dis;
         std::cout << "distance: " << dis << std::endl;
+        if (dis > 2.0) std::cout << "误差过大: " << "u: " << pntParams1[pos].X() << " v: " << pntParams1[pos].Y() << std::endl;
+        pos++;
     }
     std::cout << " average distance: " << sum1 / offsets1.size() << std::endl;
 }
@@ -515,5 +520,35 @@ void GuideGordon::UniformSurface(Handle(Geom_BSplineSurface)& surface)
     {
         BSplCLib::Reparametrize(0, 1, surfaceVKnots);
         surface->SetVKnots(surfaceVKnots);
+    }
+}
+
+void GuideGordon::ExpandKnots(Handle(Geom_BSplineSurface)& surface)
+{
+    int usize = surface->UKnots().Size() - 1;
+    int vsize = surface->VKnots().Size() - 1;
+
+    TColStd_Array1OfReal UKnots(1, usize);
+    TColStd_Array1OfInteger UMults(1, usize);
+    for (int i = 1; i <= usize; i++)
+    {
+        UKnots(i) = (surface->UKnot(i) + surface->UKnot(i + 1)) / 2.0;
+        UMults(i) = 1;
+    }
+    for (int i = 1; i <= usize; i++)
+    {
+        surface->InsertUKnot(UKnots(i), UMults(i), 1.e-15, false);
+    }
+
+    TColStd_Array1OfReal VKnots(1, vsize);
+    TColStd_Array1OfInteger VMults(1, vsize);
+    for (int i = 1; i <= vsize; i++)
+    {
+        VKnots(i) = (surface->VKnot(i) + surface->VKnot(i + 1)) / 2.0;
+        VMults(i) = 1;
+    }
+    for (int i = 1; i <= vsize; i++)
+    {
+        surface->InsertVKnot(VKnots(i), VMults(i), 1.e-15, false);
     }
 }
