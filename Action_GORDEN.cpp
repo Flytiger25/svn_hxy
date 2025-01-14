@@ -82,6 +82,7 @@
 #include <Geom_TrimmedCurve.hxx>
 #include <STEPControl_Reader.hxx>
 
+/*
 // Analysis Situs
 #include <asiAlgo_BuildGordonSurf.h>
 
@@ -95,6 +96,7 @@
 #include <mobius/core_Ptr.h>
 
 using namespace mobius;
+*/
 
 IMPLEMENT_DYNAMIC(Action_GORDEN, CPropertyPage)
 Action_GORDEN::Action_GORDEN()
@@ -908,6 +910,8 @@ void Action_GORDEN::OnBnClickedButtonAnalysis()
 		}
 	}
 
+	// 1.14 暂时不用analysissitus
+	/*
 	// Build Gordon surface.
 	asiAlgo_BuildGordonSurf buildGordon(nullptr, nullptr);
 
@@ -923,7 +927,7 @@ void Action_GORDEN::OnBnClickedButtonAnalysis()
 		pDoc->UpdateTreeControl();
 		AfxMessageBox("Gordon surface sample is created successfully");
 	}
-
+	*/
 }
 
 void Action_GORDEN::export_step_OCC(TopoDS_Shape shape, std::string filePath)
@@ -1197,7 +1201,7 @@ void Action_GORDEN::OnBnClickedButtonGuidecoons()
 	TopoDS_Shape shape;
 	BRep_Builder b;
 	std::ifstream is;
-	is.open("D:\\work\\svn_hxy\\data\\input\\internal\\20_boundary.brep");
+	is.open("D:\\work\\svn_hxy\\data\\input\\internal\\13_boundary.brep");
 	BRepTools::Read(shape, is, b);
 	is.close();
 
@@ -1226,7 +1230,7 @@ void Action_GORDEN::OnBnClickedButtonGuidecoons()
 	BRep_Builder b3;
 	std::ifstream is3;
 	//is3.open("D:\\work\\data\\input\\newCases\\test1\\internal.brep");
-	is3.open("D:\\work\\svn_hxy\\data\\input\\internal\\20_internal.brep");
+	is3.open("D:\\work\\svn_hxy\\data\\input\\internal\\13_internal.brep");
 	BRepTools::Read(shape3, is3, b3);
 	is3.close();
 
