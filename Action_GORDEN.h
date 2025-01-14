@@ -8,7 +8,7 @@
 #include <Geom_BSplineCurve.hxx>
 #include <Geom_BSplineSurface.hxx>
 #include <Math_matrix.hxx>
-
+/*
 #include <mobius/bspl_UnifyKnots.h>
 #include <mobius/cascade.h>
 #include <mobius/geom_InterpolateCurve.h>
@@ -20,7 +20,7 @@
 #include <mobius/geom_BSplineSurface.h>
 
 using namespace mobius;
-
+*/
 class Action_GORDEN :
 	public CPropertyPage
 {
