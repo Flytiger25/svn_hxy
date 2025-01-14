@@ -149,7 +149,7 @@ std::vector<std::vector<T>> Compatible::transpose(const std::vector<std::vector<
 Handle(Geom_BSplineCurve) Compatible::ApproximateC(const std::vector<gp_Pnt>& Pnts, std::vector<double>& params, std::vector<double>& FKnots, int degree) {
 	std::vector<double> Knots;
 	std::vector<int> Mutis;
-	InterPolateTool::sequenceToKnots(FKnots, Knots, Mutis);
+	InterPolateTool_1::sequenceToKnots(FKnots, Knots, Mutis);
 	TColStd_Array1OfReal Knots_OCC(1, Knots.size());
 	TColStd_Array1OfInteger Mutis_OCC(1, Mutis.size());
 	for (size_t i = 0; i < Knots.size(); i++) {
@@ -161,8 +161,8 @@ Handle(Geom_BSplineCurve) Compatible::ApproximateC(const std::vector<gp_Pnt>& Pn
 
 gp_Vec Compatible::CalResPnt(int k, const std::vector<gp_Pnt>& dataPoints, const std::vector<double>& parameters, Standard_Integer p,
 	std::vector<double>& Knots, int CtrlPntNum) {
-	Standard_Real aCoeff1 = InterPolateTool::OneBasicFun(parameters[k], 0, p, Knots);
-	Standard_Real aCoeff2 = InterPolateTool::OneBasicFun(parameters[k], CtrlPntNum, p, Knots);
+	Standard_Real aCoeff1 = InterPolateTool_1::OneBasicFun(parameters[k], 0, p, Knots);
+	Standard_Real aCoeff2 = InterPolateTool_1::OneBasicFun(parameters[k], CtrlPntNum, p, Knots);
 	gp_Vec vecTemp0(dataPoints[0].Coord());
 	gp_Vec vecTempm(dataPoints[dataPoints.size() - 1].Coord());
 	gp_Vec vecTempk(dataPoints[k].Coord());
@@ -179,7 +179,7 @@ Handle(Geom_BSplineCurve) Compatible::ApproximateC(const std::vector<gp_Pnt>& Pn
 	Eigen::MatrixXd matN(m - 1, n - 1);
 	for (size_t i = 0; i < m - 1; i++) {
 		for (size_t j = 0; j < n - 1; j++) {
-			double value = InterPolateTool::OneBasicFun(PntParams[i + 1], j + 1, degree, FKnots);
+			double value = InterPolateTool_1::OneBasicFun(PntParams[i + 1], j + 1, degree, FKnots);
 			matN(i, j) = value;
 		}
 	}

@@ -1533,8 +1533,8 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 	Standard_Integer vDegree1 = vsize <= 3 ? 1 : 3;
 
 	// chenxin's loft
-	L1 = InterPolateTool::Loft(uCurves, uDegree1);
-	L2 = InterPolateTool::LoftV(vCurves, vDegree1);
+	L1 = InterPolateTool_1::Loft(uCurves, uDegree1);
+	L2 = InterPolateTool_1::LoftV(vCurves, vDegree1);
 
 	if (L1.IsNull() || L2.IsNull())
 	{
@@ -1572,7 +1572,7 @@ void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCu
 		vMults.push_back(vMultsTCol(i));
 	}
 
-	T = InterPolateTool::Interpolate(Pnts, PntParams, uKnots, vKnots, uMults, vMults, vDegree1, uDegree1);
+	T = InterPolateTool_1::Interpolate(Pnts, PntParams, uKnots, vKnots, uMults, vMults, vDegree1, uDegree1);
 	TopoDS_Face face0 = BRepBuilderAPI_MakeFace(T, Precision::Confusion());
 	export_step_OCC(face0, "D:\\work\\svn_hxy\\data\\interpolate\\cxInterpolate.step");
 

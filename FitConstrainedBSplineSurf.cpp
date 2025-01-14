@@ -125,7 +125,7 @@ void FitConstrainedBSplineSurf::BuildMatrixU(const std::vector<double>& uKnots, 
         // 遍历 u 方向上的每个控制点索引
         for (int i = 0; i < numCtrlPtsU; ++i) {
             // 计算 B 样条基函数值
-            double Ni = InterPolateTool::OneBasicFun(param, i, uDegree, uKnots);
+            double Ni = InterPolateTool_1::OneBasicFun(param, i, uDegree, uKnots);
 
             // 设置矩阵 U 中对应的块值
             Eigen::MatrixXd B = Eigen::MatrixXd::Zero(numCtrlPtsV - 2, numCtrlPtsV);
@@ -169,7 +169,7 @@ void FitConstrainedBSplineSurf::BuildMatrixV(const std::vector<double>& vKnots, 
         // 遍历 v 方向上的每个控制点索引
         for (int i = 0; i < numCtrlPtsV; ++i) {
             // 计算 B 样条基函数值
-            double Ni = InterPolateTool::OneBasicFun(param, i, vDegree, vKnots);
+            double Ni = InterPolateTool_1::OneBasicFun(param, i, vDegree, vKnots);
             N(paramIdx, i) = Ni;
         }
     }
@@ -242,15 +242,15 @@ void FitConstrainedBSplineSurf::BuildMatrixN(const std::vector<double>& uParams,
     double valueTemp = 0.0;
     for (size_t i = 0; i < uParams.size(); i++) {
         for (size_t j = 0; j < numCtrlPtsU; j++) {
-            valueTemp = InterPolateTool::OneBasicFun(uParams[i], j, uDegree, stdUKnots);
+            valueTemp = InterPolateTool_1::OneBasicFun(uParams[i], j, uDegree, stdUKnots);
             Ni(i, j) = valueTemp;
         }
         for (size_t j = 0; j < numCtrlPtsV; j++) {
-            valueTemp = InterPolateTool::OneBasicFun(vParams[i], j, vDegree, stdVKnots);
+            valueTemp = InterPolateTool_1::OneBasicFun(vParams[i], j, vDegree, stdVKnots);
             Nj(i, j) = valueTemp;
         }
     }
-    N_hat = InterPolateTool::composeTensowMat(Ni, Nj);
+    N_hat = InterPolateTool_1::composeTensowMat(Ni, Nj);
 
     // 定义单位矩阵 I 
     // 12.19 alpha改为0.01，单位矩阵里的1改为0.1

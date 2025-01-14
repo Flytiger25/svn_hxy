@@ -31,7 +31,7 @@
 #include <Geom_TrimmedCurve.hxx>
 #include <Eigen/Dense>
 
-namespace InterPolateTool {
+namespace InterPolateTool_1 {
 	/// <summary>
 	/// ²åÖµÇúÏß
 	/// </summary>

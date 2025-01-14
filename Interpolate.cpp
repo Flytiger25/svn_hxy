@@ -34,7 +34,7 @@
 #include <Eigen/Dense>
 
 
-Handle(Geom_BSplineCurve) InterPolateTool::Interpolate(const std::vector<gp_Pnt>& DataPnts, const std::vector<double>& PntParams,
+Handle(Geom_BSplineCurve) InterPolateTool_1::Interpolate(const std::vector<gp_Pnt>& DataPnts, const std::vector<double>& PntParams,
 	const std::vector<double>& knotSeqs, int degree) {
 	int ctrl_point_num = knotSeqs.size() - degree - 1;
 	if (ctrl_point_num != DataPnts.size()) {
@@ -78,7 +78,7 @@ Handle(Geom_BSplineCurve) InterPolateTool::Interpolate(const std::vector<gp_Pnt>
 	return bspline;
 }
 
-Handle(Geom_BSplineSurface) InterPolateTool::Interpolate(const std::vector<gp_Pnt>& Pnts, const std::vector<gp_Pnt2d>& PntParams,
+Handle(Geom_BSplineSurface) InterPolateTool_1::Interpolate(const std::vector<gp_Pnt>& Pnts, const std::vector<gp_Pnt2d>& PntParams,
 	std::vector<double>& UKnots, std::vector<double>& VKnots, std::vector<int>& UMuti, std::vector<int>& VMuti, int Udegree, int Vdegree) {
 	std::vector<double> USeq = knotsToSequence(UKnots, UMuti);
 	std::vector<double> VSeq = knotsToSequence(VKnots, VMuti);
@@ -153,7 +153,7 @@ Handle(Geom_BSplineSurface) InterPolateTool::Interpolate(const std::vector<gp_Pn
 	return bspline;
 }
 
-Handle(Geom_BSplineSurface) InterPolateTool::Loft(const std::vector<Handle(Geom_BSplineCurve)>& isoCurves, int perpendDegree) {
+Handle(Geom_BSplineSurface) InterPolateTool_1::Loft(const std::vector<Handle(Geom_BSplineCurve)>& isoCurves, int perpendDegree) {
 	auto ctrl_point_matrix = ExtractControlPoints(isoCurves);
 	auto point_params = ChordLenParam(ctrl_point_matrix);
 	auto perpend_knot_sequence = CalKnots(point_params, perpendDegree);
@@ -178,7 +178,7 @@ Handle(Geom_BSplineSurface) InterPolateTool::Loft(const std::vector<Handle(Geom_
 
 }
 
-Handle(Geom_BSplineSurface) InterPolateTool::LoftV(const std::vector<Handle(Geom_BSplineCurve)>& isoCurves, int perpendDegree) {
+Handle(Geom_BSplineSurface) InterPolateTool_1::LoftV(const std::vector<Handle(Geom_BSplineCurve)>& isoCurves, int perpendDegree) {
 	auto ctrl_point_matrix = ExtractControlPoints(isoCurves);
 	auto point_params = ChordLenParam(ctrl_point_matrix);
 	auto perpend_knot_sequence = CalKnots(point_params, perpendDegree);
@@ -203,7 +203,7 @@ Handle(Geom_BSplineSurface) InterPolateTool::LoftV(const std::vector<Handle(Geom
 	return bspline;
 }
 
-std::vector<double> InterPolateTool::CalKnots(const std::vector<double>& params, int degree) {
+std::vector<double> InterPolateTool_1::CalKnots(const std::vector<double>& params, int degree) {
 	std::vector<double> knots(params.size() + degree + 1);
 	for (int i = 0; i <= degree; i++) {
 		knots[i] = 0.;
@@ -221,7 +221,7 @@ std::vector<double> InterPolateTool::CalKnots(const std::vector<double>& params,
 	return knots;
 }
 
-std::vector<double> InterPolateTool::ChordLenParam(const std::vector<std::vector<gp_Pnt>>& PointMatrix) {
+std::vector<double> InterPolateTool_1::ChordLenParam(const std::vector<std::vector<gp_Pnt>>& PointMatrix) {
 	int iso_curve_ctrl_point_num = PointMatrix.size();
 	int iso_curve_num = PointMatrix[0].size();
 	std::vector<double> params(iso_curve_num);
@@ -240,7 +240,7 @@ std::vector<double> InterPolateTool::ChordLenParam(const std::vector<std::vector
 	return params;
 }
 
-std::vector<std::vector<gp_Pnt>> InterPolateTool::ExtractControlPoints(const std::vector<Handle(Geom_BSplineCurve)>& bsplineCurves) {
+std::vector<std::vector<gp_Pnt>> InterPolateTool_1::ExtractControlPoints(const std::vector<Handle(Geom_BSplineCurve)>& bsplineCurves) {
 	if (bsplineCurves.empty()) {
 		throw std::invalid_argument("输入的 B 样条曲线向量为空。");
 	}
@@ -268,7 +268,7 @@ std::vector<std::vector<gp_Pnt>> InterPolateTool::ExtractControlPoints(const std
 	return controlPointMatrix;
 }
 
-double InterPolateTool::OneBasicFun(double u, int i, int p, const std::vector<double>& Knots)
+double InterPolateTool_1::OneBasicFun(double u, int i, int p, const std::vector<double>& Knots)
 {
 	double Nip, uleft, uright, saved, temp;
 	int m = Knots.size() - 1;
@@ -324,7 +324,7 @@ double InterPolateTool::OneBasicFun(double u, int i, int p, const std::vector<do
 	return Nip;
 }
 
-void InterPolateTool::sequenceToKnots(const std::vector<double>& sequence, std::vector<double>& knots, std::vector<int>& multiplicities) {
+void InterPolateTool_1::sequenceToKnots(const std::vector<double>& sequence, std::vector<double>& knots, std::vector<int>& multiplicities) {
 	if (sequence.empty()) return;
 
 	std::map<double, int> knotMap;
@@ -351,7 +351,7 @@ void InterPolateTool::sequenceToKnots(const std::vector<double>& sequence, std::
 	}
 }
 
-std::vector<double> InterPolateTool::knotsToSequence(const std::vector<double>& knots, const std::vector<int>& multiplicities) {
+std::vector<double> InterPolateTool_1::knotsToSequence(const std::vector<double>& knots, const std::vector<int>& multiplicities) {
 	std::vector<double> sequence;
 	for (size_t i = 0; i < knots.size(); i++) {
 		for (int j = 0; j < multiplicities[i]; j++) {
@@ -361,7 +361,7 @@ std::vector<double> InterPolateTool::knotsToSequence(const std::vector<double>& 
 	return sequence;
 }
 
-Eigen::MatrixXd InterPolateTool::composeTensowMat(const Eigen::MatrixXd& matA, const Eigen::MatrixXd& matB) {
+Eigen::MatrixXd InterPolateTool_1::composeTensowMat(const Eigen::MatrixXd& matA, const Eigen::MatrixXd& matB) {
 	int col_num1, col_num2, row_num1, row_num2;
 	col_num1 = matA.cols();
 	row_num1 = matA.rows();
@@ -382,7 +382,7 @@ Eigen::MatrixXd InterPolateTool::composeTensowMat(const Eigen::MatrixXd& matA, c
 	return desMat;
 }
 
-TColgp_Array2OfPnt InterPolateTool::vectorToOCCMatrix(const std::vector<gp_Pnt>& pnts, int m) {
+TColgp_Array2OfPnt InterPolateTool_1::vectorToOCCMatrix(const std::vector<gp_Pnt>& pnts, int m) {
 	int nRows = (pnts.size() + m - 1) / m;  // 计算需要的行数
 	TColgp_Array2OfPnt array2D(1, nRows, 1, m);  // 创建二维数组
 
@@ -400,26 +400,26 @@ TColgp_Array2OfPnt InterPolateTool::vectorToOCCMatrix(const std::vector<gp_Pnt>&
 }
 
 // 比较两个浮点数是否相等
-bool InterPolateTool::isEqual(double x, double y, double epsilon) {
+bool InterPolateTool_1::isEqual(double x, double y, double epsilon) {
 	return std::fabs(x - y) < epsilon;
 }
 
 // 比较 x 是否大于 y
-bool InterPolateTool::isGreaterThan(double x, double y, double epsilon) {
+bool InterPolateTool_1::isGreaterThan(double x, double y, double epsilon) {
 	return (x - y) > epsilon;
 }
 
 // 比较 x 是否小于 y
-bool InterPolateTool::isLessThan(double x, double y, double epsilon) {
+bool InterPolateTool_1::isLessThan(double x, double y, double epsilon) {
 	return (y - x) > epsilon;
 }
 
 // 比较 x 是否大于等于 y
-bool InterPolateTool::isGreaterThanOrEqual(double x, double y, double epsilon) {
+bool InterPolateTool_1::isGreaterThanOrEqual(double x, double y, double epsilon) {
 	return (x - y) > -epsilon;
 }
 
 // 比较 x 是否小于等于 y
-bool InterPolateTool::isLessThanOrEqual(double x, double y, double epsilon) {
+bool InterPolateTool_1::isLessThanOrEqual(double x, double y, double epsilon) {
 	return (y - x) > -epsilon;
 }
