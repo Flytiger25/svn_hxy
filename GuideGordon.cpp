@@ -378,7 +378,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         STEPControl_Writer stepWriter;
         TopoDS_Face face1 = BRepBuilderAPI_MakeFace(offsetSurf, Precision::Confusion());
         stepWriter.Transfer(face1, STEPControl_AsIs);
-        std::string filePath = "D:\\work\\svn_hxy\\data\\offsetSurf\\offsetSurf.step";
+        std::string filePath = "data\\offsetSurf\\offsetSurf.step";
         IFSelect_ReturnStatus status = stepWriter.Write(filePath.c_str());
     }
 
