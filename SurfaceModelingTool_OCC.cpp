@@ -4,6 +4,8 @@
 #include "BSplCLib.hxx"
 #include "Geom_BSplineCurve.hxx"
 #include "Geom_BSplineSurface.hxx"
+#include "KnotGeneration.h"
+#include "Approximate.h"
 //=======================================================================
 //function : SetSameDistribution
 //purpose  : Internal Use Only
@@ -449,6 +451,7 @@ void SurfaceModelingTool_OCC::Coons_G1(Handle(Geom_BSplineCurve)& curve1, Handle
 		UMults, VMults,
 		curve1->Degree(), curve2->Degree());
 }
+
 int SurfaceModelingTool_OCC::Arrange_Coons_G0(std::vector<Handle(Geom_BSplineCurve)>& curveArray, Handle(Geom_BSplineCurve)& bslpineCurve1, Handle(Geom_BSplineCurve)& bslpineCurve2, Handle(Geom_BSplineCurve)& bslpineCurve3, Handle(Geom_BSplineCurve)& bslpineCurve4, double Tol, int IsModify)
 {
 	//Standard_Real Tol = 2;
@@ -612,4 +615,39 @@ int SurfaceModelingTool_OCC::Arrange_Coons_G0(std::vector<Handle(Geom_BSplineCur
 		else
 			return 0;
 	return 1;
+}
+
+void SurfaceModelingTool_OCC::ApproximateBoundaryCurves(std::vector<Handle(Geom_BSplineCurve)>& curves, Standard_Integer samplingNum)
+{
+	for (auto& curve : curves)
+	{
+		TColStd_Array1OfReal curveKnots(1, curve->NbKnots());
+		curve->Knots(curveKnots);
+
+		// 重新参数化曲线的节点
+		if (!(curveKnots(curveKnots.Lower()) == 0 && curveKnots(curveKnots.Upper()) == 1))
+		{
+			BSplCLib::Reparametrize(0, 1, curveKnots);
+			curve->SetKnots(curveKnots);
+		}
+
+		// 采样点与参数生成
+		std::vector<gp_Pnt> samplingPnts;
+		std::vector<Standard_Real> samplingParams;
+		Standard_Real vMin = curve->FirstParameter();
+		Standard_Real vMax = curve->LastParameter();
+
+		for (Standard_Integer j = 1; j <= samplingNum; j++)
+		{
+			Standard_Real param = vMin + (vMax - vMin) * (j - 1) / (samplingNum - 1);
+			gp_Pnt pnt = curve->Value(param);
+			samplingParams.push_back(param);
+			samplingPnts.push_back(pnt);
+		}
+
+		// 初始化节点并进行拟合
+		std::vector<Standard_Real> init_knots = cxBasicFunc::KnotGernerationByParams(samplingParams, 6, 3);
+		std::vector<Standard_Real> insertKnots;
+		curve = cxBasicFunc::IterateApproximate(insertKnots, samplingPnts, samplingParams, init_knots, 3, 10, 1);
+	}
 }

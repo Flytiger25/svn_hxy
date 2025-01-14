@@ -1200,7 +1200,7 @@ void Action_GORDEN::OnBnClickedButtonGuidecoons()
 	TopoDS_Shape shape;
 	BRep_Builder b;
 	std::ifstream is;
-	is.open("data\\input\\internal\\13_boundary.brep");
+	is.open("data\\input\\internal\\11_boundary.brep");
 	BRepTools::Read(shape, is, b);
 	is.close();
 
@@ -1217,6 +1217,7 @@ void Action_GORDEN::OnBnClickedButtonGuidecoons()
 	}
 
 	Handle(Geom_BSplineCurve) bslpineCurve1, bslpineCurve2, bslpineCurve3, bslpineCurve4;
+	SurfaceModelingTool_OCC::ApproximateBoundaryCurves(boundary);
 	SurfaceModelingTool_OCC::Arrange_Coons_G0(boundary, bslpineCurve1, bslpineCurve2, bslpineCurve3, bslpineCurve4, 10, true);
 	SurfaceModelingTool_OCC::Coons_G0(bslpineCurve1, bslpineCurve2, bslpineCurve3, bslpineCurve4, coons);
 
@@ -1228,7 +1229,7 @@ void Action_GORDEN::OnBnClickedButtonGuidecoons()
 	TopoDS_Shape shape3;
 	BRep_Builder b3;
 	std::ifstream is3;
-	is3.open("data\\input\\internal\\13_internal.brep");
+	is3.open("data\\input\\internal\\11_internal.brep");
 	BRepTools::Read(shape3, is3, b3);
 	is3.close();
 
@@ -1248,10 +1249,6 @@ void Action_GORDEN::OnBnClickedButtonGuidecoons()
 	std::vector<Standard_Real> vIsoparamParams;
 	Handle(Geom_BSplineSurface) guidedGordonSurf;
 	GuideGordon::GuideGordonSurf(coons, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
-	GuideGordon::GuideGordonSurf(guidedGordonSurf, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
-	GuideGordon::GuideGordonSurf(guidedGordonSurf, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
-	GuideGordon::GuideGordonSurf(guidedGordonSurf, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
-	GuideGordon::GuideGordonSurf(guidedGordonSurf, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
 	TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedGordonSurf, Precision::Confusion());
 	export_step_OCC(guidedFace, "data\\guidedGordon\\guidedGordonSurf.step");
 
