@@ -51,9 +51,9 @@ void FitConstrainedBSplineSurf::FitOffsetSurface(const std::vector<Eigen::Vector
         M = fullM;
     }
 
-    // 构建W矩阵（暂时不用）
-    //Eigen::MatrixXd W;
-    //BuildMatrixW(pntParamsU, pntParamsV, stdUKnots, stdVKnots, uDegree, vDegree, numCtrlPtsU, numCtrlPtsV, W);
+    // 构建W矩阵
+    Eigen::MatrixXd W;
+    BuildMatrixW(pntParamsU, pntParamsV, stdUKnots, stdVKnots, uDegree, vDegree, numCtrlPtsU, numCtrlPtsV, W);
     //std::cout << W << std::endl;
 
     // 计算N矩阵
@@ -74,9 +74,9 @@ void FitConstrainedBSplineSurf::FitOffsetSurface(const std::vector<Eigen::Vector
     //std::cout << NT << std::endl;
 
     // 计算N^T * W * N
-    Eigen::MatrixXd NTN = N.transpose() * N;
-    Eigen::MatrixXd I = Eigen::MatrixXd::Identity(NTN.rows(), NTN.cols());
-    Eigen::MatrixXd NTNI = NTN.llt().solve(I);
+    Eigen::MatrixXd NTWN = N.transpose() * W * N;
+    Eigen::MatrixXd I = Eigen::MatrixXd::Identity(NTWN.rows(), NTWN.cols());
+    Eigen::MatrixXd NTNI = NTWN.llt().solve(I);
 
     //Eigen::MatrixXd NTWN = N.transpose() * N;
     //std::cout << NTN << std::endl;
@@ -92,11 +92,11 @@ void FitConstrainedBSplineSurf::FitOffsetSurface(const std::vector<Eigen::Vector
     }
 
     // 计算拉格朗日乘子矩阵Lambda
-    Eigen::MatrixXd Lambda = MInvNN.inverse() * M * NTNI * N.transpose() * O;
+    Eigen::MatrixXd Lambda = MInvNN.inverse() * M * NTNI * N.transpose() * W * O;
     //Eigen::MatrixXd Lambda = MInvNWN.inverse() * M * NTWN.inverse() * N.transpose() * O;
 
     // 计算控制顶点矩阵P
-    Eigen::MatrixXd P = NTNI * (N.transpose() * O - M.transpose() * Lambda);
+    Eigen::MatrixXd P = NTNI * (N.transpose() * W * O - M.transpose() * Lambda);
     //Eigen::MatrixXd P = NTWN.inverse() * (N.transpose() * O - M.transpose() * Lambda);
     //std::cout << P << std::endl;
 
@@ -119,9 +119,9 @@ void FitConstrainedBSplineSurf::BuildMatrixU(const std::vector<double>& uKnots, 
 
     // 遍历每个参数值
     for (int paramIdx = 0; paramIdx < numParams; ++paramIdx) {
-        
+
         double param = uParams[paramIdx]; // 当前等参线参数值
-        
+
         // 遍历 u 方向上的每个控制点索引
         for (int i = 0; i < numCtrlPtsU; ++i) {
             // 计算 B 样条基函数值
@@ -254,25 +254,54 @@ void FitConstrainedBSplineSurf::BuildMatrixN(const std::vector<double>& uParams,
 
     // 定义单位矩阵 I 
     // 12.19 alpha改为0.01，单位矩阵里的1改为0.1
-    //Eigen::MatrixXd I = Eigen::MatrixXd::Identity(N_hat.cols(), N_hat.cols());
-    Eigen::MatrixXd I = Eigen::MatrixXd::Zero(N_hat.cols(), N_hat.cols());
-    for (int i = 0; i < N_hat.cols(); i++)
+    // 12.30 由于修改能量，需要调整N矩阵，上面部分不再是单位矩阵
+    //Eigen::MatrixXd I = Eigen::MatrixXd::Zero(N_hat.cols(), N_hat.cols());
+    //for (int i = 0; i < N_hat.cols(); i++)
+    //{
+    //    I(i, i) = 0.01;
+    //}
+    Eigen::MatrixXd I1 = Eigen::MatrixXd::Zero((numCtrlPtsV - 2) * numCtrlPtsU, N_hat.cols()); // 行数为(m - 1)(n + 1)
+    Eigen::MatrixXd I2 = Eigen::MatrixXd::Zero((numCtrlPtsU - 2) * numCtrlPtsV, N_hat.cols()); // 行数为(n - 1)(m + 1)
+    Eigen::MatrixXd I = Eigen::MatrixXd::Zero(I1.rows() + I2.rows(), N_hat.cols()); // 行数为(n+1)(m-1)+(n-1)(m+1)
+    for (int i = 0; i < numCtrlPtsU; i++)
     {
-        I(i, i) = 0.01;
+        for (int j = 0; j < numCtrlPtsV - 2; j++)
+        {
+            I1(i * (numCtrlPtsV - 2) + j, i * numCtrlPtsV + j) = -1;
+            I1(i * (numCtrlPtsV - 2) + j, i * numCtrlPtsV + j + 1) = 2;
+            I1(i * (numCtrlPtsV - 2) + j, i * numCtrlPtsV + j + 2) = -1;
+        }
     }
+    for (int i = 0; i < numCtrlPtsV; i++)
+    {
+        for (int j = 0; j < numCtrlPtsU - 2; j++)
+        {
+            I2(i * (numCtrlPtsU - 2) + j, i + j * numCtrlPtsV) = -1;
+            I2(i * (numCtrlPtsU - 2) + j, i + (j + 1) * numCtrlPtsV) = 2;
+            I2(i * (numCtrlPtsU - 2) + j, i + (j + 2) * numCtrlPtsV) = -1;
+        }
+    }
+    //std::cout << I2 << std::endl;
+
+    I.block(0, 0, I1.rows(), N_hat.cols()) = I1;
+    I.block(I1.rows(), 0, I2.rows(), N_hat.cols()) = I2;
+
 
     // 构造矩阵 N
     Eigen::MatrixXd res = Eigen::MatrixXd::Zero(I.rows() + N_hat.rows(), I.cols());
     res.block(0, 0, I.rows(), I.cols()) = I;
     res.block(I.rows(), 0, N_hat.rows(), N_hat.cols()) = N_hat;
     N = res;
+
+    //std::cout << N << std::endl;
 }
 
 // 构建W矩阵 
-// todo: 参数(u'i,v'j) 采样点的投影点参数(u^k,v^k) 区别？
+// 12.30
 void FitConstrainedBSplineSurf::BuildMatrixW(const std::vector<double>& pntParamsU, const std::vector<double>& pntParamsV, const std::vector<double>& stdUKnots, const std::vector<double>& stdVKnots,
     int uDegree, int vDegree, int numCtrlPtsU, int numCtrlPtsV, Eigen::MatrixXd& W)
 {
+    /*
     int numParams = pntParamsU.size();
     W = Eigen::MatrixXd::Identity(numParams, numParams);
 
@@ -303,6 +332,22 @@ void FitConstrainedBSplineSurf::BuildMatrixW(const std::vector<double>& pntParam
             W(i, i) = minDistanceSquared;
         }
     }
+    */
+
+    int size = (numCtrlPtsU - 2) * numCtrlPtsV + numCtrlPtsU * (numCtrlPtsV - 2);
+    Eigen::MatrixXd W_ = Eigen::MatrixXd::Zero(size, size); // 左上角部分为对角矩阵
+    for (int i = 0; i < size; i++)
+    {
+        W_(i, i) = 0.1;
+    }
+
+    Eigen::MatrixXd I = Eigen::MatrixXd::Identity(pntParamsU.size(), pntParamsU.size());
+
+    W = Eigen::MatrixXd::Zero(W_.rows() + I.rows(), W_.rows() + I.rows());
+    W.block(0, 0, W_.rows(), W_.cols()) = W_;
+    W.block(W_.rows(), W_.cols(), I.rows(), I.cols()) = I;
+
+    //std::cout << W << std::endl;
 }
 
 // 删除矩阵的某行
@@ -312,7 +357,7 @@ void FitConstrainedBSplineSurf::removeRow(Eigen::MatrixXd& matrix, int rowToRemo
     int numCols = matrix.cols();
 
     if (rowToRemove < numRows)
-        matrix.block(rowToRemove, 0, numRows - rowToRemove, numCols) 
+        matrix.block(rowToRemove, 0, numRows - rowToRemove, numCols)
         = matrix.block(rowToRemove + 1, 0, numRows - rowToRemove, numCols);
 
     matrix.conservativeResize(numRows, numCols);

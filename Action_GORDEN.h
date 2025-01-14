@@ -67,6 +67,7 @@ public:
 	void export_brep_OCC(TopoDS_Shape shape, std::string filePath);
 	void export_step_ACIS(ENTITY* ent, std::string filePath);
 	afx_msg void OnBnClickedButtonMygordon();
+	afx_msg void OnBnClickedButtonGuidecoons();
 	afx_msg void OnBnClickedButtonAnalysis();
 };
 

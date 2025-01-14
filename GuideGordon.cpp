@@ -138,7 +138,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
 
 // 12.9 按照论文中实现
 void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vector<Standard_Real> uIsoparamParams, std::vector<Standard_Real> vIsoparamParams,
-    std::vector<Handle(Geom_BSplineCurve)> guideCurves, Handle(Geom_BSplineSurface)& guidedGordon)
+    std::vector<Handle(Geom_BSplineCurve)> guideCurves, Handle(Geom_BSplineSurface)& guidedGordon, double tol)
 {
     Handle(Geom_BSplineSurface) originSurf = Handle(Geom_BSplineSurface)::DownCast(originalGordon);
     UniformSurface(originSurf);
@@ -149,10 +149,10 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         return;
     }
 
-    ExpandKnots(originSurf);
+    //ExpandKnots(originSurf);
 
     // 定义采样点个数
-    Standard_Real num = 10;
+    Standard_Real num = 9;
 
     //std::vector<Handle(Geom_BSplineCurve)> guideCurves1;
     //guideCurves1.push_back(guideCurves[3]);
@@ -458,7 +458,10 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         Standard_Real dis = std::sqrt(x * x + y * y + z * z);
         sum1 += dis;
         std::cout << "distance: " << dis << std::endl;
-        if (dis > 2.0) std::cout << "误差过大: " << "u: " << pntParams1[pos].X() << " v: " << pntParams1[pos].Y() << std::endl;
+        if (dis > tol) 
+        {
+            std::cout << "误差过大: " << "u: " << pntParams1[pos].X() << " v: " << pntParams1[pos].Y() << std::endl;
+        }
         pos++;
     }
     std::cout << " average distance: " << sum1 / offsets1.size() << std::endl;
