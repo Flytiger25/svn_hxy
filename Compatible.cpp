@@ -340,6 +340,90 @@ std::vector<Handle(Geom_BSplineCurve)> Compatible::IterateApproximate(std::vecto
 	return IterBspineCurves;
 }
 
+Handle(Geom_BSplineCurve) Compatible::IterateApproximate(std::vector<double>& InsertKnots, const std::vector<gp_Pnt>& Pnts, std::vector<double>& PntsParams, std::vector<double>& InitKnots, int degree, int MaxIterNum, double toler)
+{
+	int itNum = 1;
+	double currentMaxError = 100;
+	Handle(Geom_BSplineCurve) IterBspineCurve;
+	std::vector<double> CurrentKnots = InitKnots;
+#ifdef PRINT_FULL_INFO
+	std::cout << std::endl;
+	std::cout << "----------------Strat Iteration----------------" << std::endl;
+	std::cout << "----------------Iteration Infor----------------" << std::endl;
+	std::cout << "Max Iteration Num = " << MaxIterNum << " " << std::endl;
+	std::cout << "Iteration degree = " << degree << " " << std::endl;
+	std::cout << "Iteration toler = " << toler << " " << std::endl;
+	std::cout << "----------------Strat----------------" << std::endl;
+#endif // PRINT_FULL_INFO
+	while (currentMaxError > toler && itNum <= MaxIterNum)
+	{
+		auto start = std::chrono::high_resolution_clock::now();
+
+		IterBspineCurve = ApproximateC(Pnts, PntsParams, CurrentKnots, degree);
+
+		auto end = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double, std::milli> duration = end - start;
+
+		cxBasicClass::KnotUpdate knotUpdate(IterBspineCurve, CurrentKnots, Pnts, PntsParams);
+		auto newKnot = knotUpdate.SelfSingleUpdate(cxBasicEnum::PARAM_BASED_BY_INTERVAL_ERROR);
+		currentMaxError = knotUpdate.getMaxError();
+#ifdef PRINT_FULL_INFO
+		std::cout << "Iteration Num = " << itNum << " The Current Error = " << currentMaxError << " The Target Error = " << toler << " The Time = " << duration.count() << " ms " << std::endl;
+#endif // PRINT_FULL_INFO
+		if (currentMaxError > toler)
+		{
+			//update knot vector
+			InsertKnots.push_back(newKnot);
+			CurrentKnots = knotUpdate.getSequences();
+}
+		else
+		{
+#ifdef PRINT_FULL_INFO
+			std::cout << "----------------End----------------" << std::endl;
+			std::cout << "Find Curve,iteration ending--------------the current error is " << currentMaxError << std::endl;
+			std::cout << "----------------End Iteration----------------" << std::endl << std::endl;
+#endif // PRINT_FULL_INFO	  
+
+			return IterBspineCurve;
+		}
+		itNum++;
+		}
+	//set check params
+#ifdef PRINT_FULL_INFO
+	std::cout << "----------------End----------------" << std::endl;
+	std::cout << "Arrive max iteration number, iteration ending--------------the current error is " << currentMaxError << std::endl;
+	std::cout << "----------------End Iteration----------------" << std::endl << std::endl;
+#endif // PRINT_FULL_INFO
+
+	//return bspline;
+	return IterBspineCurve;
+}
+
+std::vector<double> Compatible::KnotGernerationByParams(const std::vector<double>& params, int n, int p)
+{
+	int m = params.size() - 1;
+	double d = (m + 1) / (n - p + 1);
+	std::vector<double> Knots(n + p + 2);
+	int temp;
+	double alpha;
+	for (size_t i = 0; i <= p; i++)
+	{
+		Knots[i] = 0.0;
+	}
+	for (size_t j = 1; j <= n - p; j++)
+	{
+		temp = int(j * d);
+		alpha = j * d - temp;
+		Knots[p + j] = (1 - alpha) * params[temp - 1] + alpha * params[temp];
+	}
+	for (size_t i = n + 1; i <= n + p + 1; i++)
+	{
+		Knots[i] = 1;
+	}
+	return Knots;
+}
+
+
 //std::vector<double> Compatible::ApproximateCompatible(std::vector<Handle(Geom_BSplineCurve)>& Curves, std::vector<Handle(Geom_BSplineCurve)>& compatibleCurves, double toler) {
 //	if (Curves.size() <= 1) {
 //		return std::vector<double>{0};

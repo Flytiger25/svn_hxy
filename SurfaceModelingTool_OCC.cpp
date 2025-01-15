@@ -6,6 +6,7 @@
 #include "Geom_BSplineSurface.hxx"
 #include "KnotGeneration.h"
 #include "Approximate.h"
+#include "Compatible.h"
 //=======================================================================
 //function : SetSameDistribution
 //purpose  : Internal Use Only
@@ -646,8 +647,100 @@ void SurfaceModelingTool_OCC::ApproximateBoundaryCurves(std::vector<Handle(Geom_
 		}
 
 		// 初始化节点并进行拟合
-		std::vector<Standard_Real> init_knots = cxBasicFunc::KnotGernerationByParams(samplingParams, 6, 3);
+		std::vector<Standard_Real> init_knots = Compatible::KnotGernerationByParams(samplingParams, 6, 3);
 		std::vector<Standard_Real> insertKnots;
-		curve = cxBasicFunc::IterateApproximate(insertKnots, samplingPnts, samplingParams, init_knots, 3, 10, 1);
+		curve = Compatible::IterateApproximate(insertKnots, samplingPnts, samplingParams, init_knots, 3, 10, 1);
 	}
+}
+
+void SurfaceModelingTool_OCC::TrimInternalCurves(
+	std::vector<Handle(Geom_BSplineCurve)>& theInternalBSplineCurves,
+	const std::vector<Handle(Geom_BSplineCurve)>& theBoundaryCurveArray,
+	Standard_Real theToleranceDistance) {
+	for (Standard_Integer i = 0; i < theInternalBSplineCurves.size(); i++)
+	{
+		// 用于存储最近两条边界曲线的交点和裁剪参数
+		gp_Pnt replacePoints[2];
+		Standard_Real splitParams[2] = { 0 };
+		Standard_Integer foundCount = 0;
+
+		// 计算内部曲线与每条边界曲线的距离并排序
+		std::vector<std::pair<Standard_Real, Handle(Geom_BSplineCurve)>> aBoundaryCurves;
+		for (auto& boundaryCurve : theBoundaryCurveArray)
+		{
+			Standard_Real distance = ComputeCurveCurveDistance(theInternalBSplineCurves[i], boundaryCurve);
+			aBoundaryCurves.emplace_back(distance, boundaryCurve);
+		}
+
+		// 按距离从小到大排序
+		std::sort(aBoundaryCurves.begin(), aBoundaryCurves.end(),
+			[](const auto& a, const auto& b) { return a.first < b.first; });
+
+		if (aBoundaryCurves[0].first >= theToleranceDistance)
+		{
+			theInternalBSplineCurves.erase(theInternalBSplineCurves.begin() + i);
+			i--;
+		}
+
+		// 找到与内部曲线距离最近的两条边界曲线的交点
+		for (size_t j = 0; j < 2 && j < aBoundaryCurves.size(); ++j)
+		{
+			GeomAPI_ExtremaCurveCurve extrema(theInternalBSplineCurves[i], aBoundaryCurves[j].second);
+
+			if (extrema.NbExtrema() > 0)
+			{
+				gp_Pnt internalPoint, boundaryPoint;
+				Standard_Real paramOnCurve;
+				extrema.NearestPoints(internalPoint, boundaryPoint);
+				extrema.LowerDistanceParameters(splitParams[foundCount], paramOnCurve);
+
+				replacePoints[foundCount] = boundaryPoint;
+				foundCount++;
+			}
+		}
+
+		// 如果没有找到两个有效的交点，则跳过
+		if (foundCount != 2)
+			continue;
+
+		// 确保裁剪参数按升序排列
+		if (splitParams[0] > splitParams[1])
+		{
+			std::swap(splitParams[0], splitParams[1]);
+			std::swap(replacePoints[0], replacePoints[1]);
+		}
+
+		// 裁剪内部曲线并更新为新的B样条曲线
+		Handle(Geom_TrimmedCurve) trimmedCurve = new Geom_TrimmedCurve(theInternalBSplineCurves[i], splitParams[0], splitParams[1]);
+		Handle(Geom_BSplineCurve) modifiedCurve = GeomConvert::CurveToBSplineCurve(trimmedCurve, Convert_TgtThetaOver2);
+
+		// 设置裁剪后的端点
+		modifiedCurve->SetPole(1, replacePoints[0]);
+		modifiedCurve->SetPole(modifiedCurve->NbPoles(), replacePoints[1]);
+
+		// 更新内部曲线
+		theInternalBSplineCurves[i] = modifiedCurve;
+	}
+}
+
+Standard_Real SurfaceModelingTool_OCC::ComputeCurveCurveDistance(const Handle(Geom_BSplineCurve)& theCurve, const Handle(Geom_BSplineCurve)& theBoundaryCurve)
+{
+	GeomAPI_ExtremaCurveCurve aExtrema(theCurve, theBoundaryCurve);
+	// 检查是否找到了极值点
+	if (aExtrema.NbExtrema() > 0)
+	{
+		// 遍历所有极值点，找到最小距离
+		Standard_Real aMinDistance = RealLast();
+		for (Standard_Integer i = 1; i <= aExtrema.NbExtrema(); ++i)
+		{
+			Standard_Real aDist = aExtrema.Distance(i);
+			if (aDist < aMinDistance)
+			{
+				aMinDistance = aDist;
+			}
+		}
+		return aMinDistance;
+	}
+
+	return INT_MAX;
 }

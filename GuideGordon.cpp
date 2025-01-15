@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "GuideGordon.h"
-#include "Interpolate.h"
-#include "Compatible.h"
 #include "FitConstrainedBSplineSurf.h"
 
 #include <Eigen/Dense>
 #include <GeomAPI_ProjectPointOnSurf.hxx>
+#include <STEPControl_Writer.hxx>
+#include <BRepBuilderAPI_MakeFace.hxx>
 
 
 // 不拟合偏移曲面，在数据点处加上偏移量
@@ -138,7 +138,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon,
 
 // 12.9 按照论文中实现
 void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vector<Standard_Real> uIsoparamParams, std::vector<Standard_Real> vIsoparamParams,
-    std::vector<Handle(Geom_BSplineCurve)> guideCurves, Handle(Geom_BSplineSurface)& guidedGordon, double tol)
+    std::vector<Handle(Geom_BSplineCurve)> guideCurves, Handle(Geom_BSplineSurface)& guidedGordon, Standard_Boolean& isDone, double tol)
 {
     Handle(Geom_BSplineSurface) originSurf = Handle(Geom_BSplineSurface)::DownCast(originalGordon);
     UniformSurface(originSurf);
@@ -447,6 +447,7 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         }
     }
 
+    Standard_Boolean flag = Standard_True; // 是否需要继续迭代
     // 输出偏移量距离
     Standard_Real sum1 = 0;
     Standard_Integer pos = 0;
@@ -460,11 +461,14 @@ void GuideGordon::GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vect
         std::cout << "distance: " << dis << std::endl;
         if (dis > tol) 
         {
+            flag = Standard_False;
             std::cout << "误差过大: " << "u: " << pntParams1[pos].X() << " v: " << pntParams1[pos].Y() << std::endl;
         }
         pos++;
     }
     std::cout << " average distance: " << sum1 / offsets1.size() << std::endl;
+    
+    isDone = flag;
 }
 
 

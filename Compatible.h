@@ -96,6 +96,7 @@
 #include <functional>
 #include <regex>
 #include <Interpolate.h>
+#include <KnotUpdate.h>
 
 
 namespace Compatible{
@@ -116,7 +117,9 @@ namespace Compatible{
 	std::vector<Handle(Geom_BSplineCurve)> IterateApproximate(std::vector<double>& errors, std::vector<double>& InsertKnots, const std::vector<std::vector<gp_Pnt>>& Pnts,
 		std::vector<double>& Params, std::vector<double>& InitKnots,
 		int degree, int MaxIterNum, double toler);
-	
+	Handle(Geom_BSplineCurve) IterateApproximate(std::vector<double>& InsertKnots, const std::vector<gp_Pnt>& Pnts, std::vector<double>& PntsParams, std::vector<double>& InitKnots, int degree, int MaxIterNum, double toler);
+	std::vector<double> KnotGernerationByParams(const std::vector<double>& params, int n, int p);
+
 	bool isDegenerate(const Handle(Geom_BSplineCurve)& curve);
 	std::vector<double> ApproximateCompatible(std::vector<Handle(Geom_BSplineCurve)>& Curves, std::vector<Handle(Geom_BSplineCurve)>& compatibleCurves, double toler);
 

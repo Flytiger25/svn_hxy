@@ -12,7 +12,7 @@ namespace GuideGordon {
 		std::vector<Handle(Geom_BSplineCurve)> guideCurves, Handle(Geom_BSplineSurface)& guidedGordon);
 
 	void GuideGordonSurf(Handle(Geom_Surface) originalGordon, std::vector<double> uIsoparamParams, std::vector<double> vIsoparamParams,
-		std::vector<Handle(Geom_BSplineCurve)> guideCurves, Handle(Geom_BSplineSurface)& guidedGordon, double tol = 5.0);
+		std::vector<Handle(Geom_BSplineCurve)> guideCurves, Handle(Geom_BSplineSurface)& guidedGordon, Standard_Boolean& isDone, double tol = 5.0);
 
 	std::vector<gp_Pnt> SampleGuideCurve(const Handle(Geom_BSplineCurve)& curve, Standard_Integer numSamples);
 

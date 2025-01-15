@@ -41,6 +41,13 @@ public:
 
 	static int Arrange_Coons_G0(std::vector<Handle(Geom_BSplineCurve)>& curveArray, Handle(Geom_BSplineCurve)& bslpineCurve1, Handle(Geom_BSplineCurve)& bslpineCurve2, Handle(Geom_BSplineCurve)& bslpineCurve3, Handle(Geom_BSplineCurve)& bslpineCurve4, double Tol, int IsModify);
 
-	static void ApproximateBoundaryCurves(std::vector<Handle(Geom_BSplineCurve)>& curves, int samplingNum = 50);
+	static void ApproximateBoundaryCurves(std::vector<Handle(Geom_BSplineCurve)>& curves, Standard_Integer samplingNum = 50);
+
+	static void TrimInternalCurves(
+		std::vector<Handle(Geom_BSplineCurve)>& theInternalBSplineCurves,
+		const std::vector<Handle(Geom_BSplineCurve)>& theBoundaryCurveArray,
+		Standard_Real theToleranceDistance);
+
+	static Standard_Real ComputeCurveCurveDistance(const Handle(Geom_BSplineCurve)& theCurve, const Handle(Geom_BSplineCurve)& theBoundaryCurve);
 };
 

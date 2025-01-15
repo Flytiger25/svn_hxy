@@ -806,6 +806,7 @@
 #define IDC_BUTTON_GuideCoons           1746
 #define IDC_BUTTON_ADDTO                1747
 #define IDC_BUTTON_ADDTOFACELACKSET     1747
+#define IDC_BUTTON_IterateGuideCoons    1747
 #define IDC_HEALING_EDIT_MODELID        1748
 #define IDC_BUTTON_LOADTHEMODELWITHID   1749
 #define IDC_BUTTON_LOADTHEMODELWITHID2  1750
@@ -996,7 +997,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        263
 #define _APS_NEXT_COMMAND_VALUE         61271
-#define _APS_NEXT_CONTROL_VALUE         1747
+#define _APS_NEXT_CONTROL_VALUE         1748
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

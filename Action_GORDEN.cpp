@@ -126,6 +126,7 @@ BEGIN_MESSAGE_MAP(Action_GORDEN, CPropertyPage)
 	ON_BN_CLICKED(IDC_BUTTON_MYGORDON, &Action_GORDEN::OnBnClickedButtonMygordon)
 	ON_BN_CLICKED(IDC_BUTTON_Analysis, &Action_GORDEN::OnBnClickedButtonAnalysis)
 	ON_BN_CLICKED(IDC_BUTTON_GuideCoons, &Action_GORDEN::OnBnClickedButtonGuidecoons)
+	ON_BN_CLICKED(IDC_BUTTON_IterateGuideCoons, &Action_GORDEN::OnBnClickedButtonIterateguidecoons)
 END_MESSAGE_MAP()
 
 extern CSDIViewSwitchDoc* pDoc;
@@ -1175,9 +1176,10 @@ void Action_GORDEN::OnBnClickedButtonMygordon()
 		}
 	}
 	Handle(Geom_BSplineSurface) guidedGordonSurf;
-	GuideGordon::GuideGordonSurf(BRep_Tool::Surface(face), uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
-	GuideGordon::GuideGordonSurf(guidedGordonSurf, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
-	GuideGordon::GuideGordonSurf(guidedGordonSurf, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
+	Standard_Boolean isDone = false;
+	GuideGordon::GuideGordonSurf(BRep_Tool::Surface(face), uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf, isDone);
+	//GuideGordon::GuideGordonSurf(guidedGordonSurf, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
+	//GuideGordon::GuideGordonSurf(guidedGordonSurf, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
 
 	TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedGordonSurf, Precision::Confusion());
 	export_step_OCC(guidedFace, "data\\guidedGordon\\guidedGordonSurf.step");
@@ -1247,16 +1249,214 @@ void Action_GORDEN::OnBnClickedButtonGuidecoons()
 
 	std::vector<Standard_Real> uIsoparamParams;
 	std::vector<Standard_Real> vIsoparamParams;
-	Handle(Geom_BSplineSurface) guidedGordonSurf;
-	GuideGordon::GuideGordonSurf(coons, uIsoparamParams, vIsoparamParams, guideCurves, guidedGordonSurf);
-	TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedGordonSurf, Precision::Confusion());
-	export_step_OCC(guidedFace, "data\\guidedGordon\\guidedGordonSurf.step");
+	Handle(Geom_BSplineSurface) guidedSurf;
+	Standard_Boolean isDone = false;
+	GuideGordon::GuideGordonSurf(coons, uIsoparamParams, vIsoparamParams, guideCurves, guidedSurf, isDone);
+	TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedSurf, Precision::Confusion());
+	export_step_OCC(guidedFace, "data\\guidedCoons\\guidedCoonsSurf.step");
 
 
 	face_visualization_OCC(guidedFace);
 	pDoc->UpdateTreeControl();
 
-	AfxMessageBox("Gordon Created Successfully!");
+	AfxMessageBox("Coons Guided Successfully!");
+}
+
+void Action_GORDEN::OnBnClickedButtonIterateguidecoons()
+{
+	// 直接读coons曲面
+	for (int i = 23; i <= 23; i++)
+	{
+		// 获取coons
+		TopoDS_Shape shape;
+		BRep_Builder b;
+		std::ifstream is;
+
+		std::string brepName = "data\\input\\internal\\coons\\";
+		brepName += std::to_string(i);
+		brepName += "_coons.brep";
+
+		is.open(brepName);
+		BRepTools::Read(shape, is, b);
+		is.close();
+
+		TopoDS_Face coonsFace;
+		for (TopExp_Explorer explorer(shape, TopAbs_FACE); explorer.More(); explorer.Next())
+		{
+			coonsFace = TopoDS::Face(explorer.Current());
+			break;
+		}
+		if (coonsFace.IsNull()) continue;
+
+		Handle(Geom_Surface) coons = BRep_Tool::Surface(coonsFace);
+
+		// 获取guideCurves
+		std::vector<Handle(Geom_BSplineCurve)> guideCurves;
+
+		brepName = "data\\input\\internal\\";
+		brepName += std::to_string(i);
+		brepName += "_internal.brep";
+
+		is.open(brepName);
+		BRepTools::Read(shape, is, b);
+		is.close();
+
+		for (TopExp_Explorer explorer(shape, TopAbs_EDGE); explorer.More(); explorer.Next())
+		{
+			TopoDS_Edge edge = TopoDS::Edge(explorer.Current());
+			Standard_Real f, l;
+			Handle(Geom_Curve) curve = BRep_Tool::Curve(edge, f, l);
+			Handle(Geom_BSplineCurve) bsplineCurve = Handle(Geom_BSplineCurve)::DownCast(curve);
+			if (!bsplineCurve.IsNull())
+			{
+				guideCurves.push_back(bsplineCurve);
+			}
+		}
+
+		// 获取boundary
+		std::vector<Handle(Geom_BSplineCurve)> boundary;
+
+		brepName = "data\\input\\internal\\";
+		brepName += std::to_string(i);
+		brepName += "_boundary.brep";
+
+		is.open(brepName);
+		BRepTools::Read(shape, is, b);
+		is.close();
+
+		for (TopExp_Explorer explorer(shape, TopAbs_EDGE); explorer.More(); explorer.Next())
+		{
+			TopoDS_Edge edge = TopoDS::Edge(explorer.Current());
+			Standard_Real f, l;
+			Handle(Geom_Curve) curve = BRep_Tool::Curve(edge, f, l);
+			Handle(Geom_BSplineCurve) bsplineCurve = Handle(Geom_BSplineCurve)::DownCast(curve);
+			if (!bsplineCurve.IsNull())
+			{
+				boundary.push_back(bsplineCurve);
+			}
+		}
+
+		// 裁剪
+		if (i >= 19) SurfaceModelingTool_OCC::TrimInternalCurves(guideCurves, boundary, 10);
+
+		// try guide
+		std::vector<Standard_Real> uIsoparamParams;
+		std::vector<Standard_Real> vIsoparamParams;
+		Handle(Geom_BSplineSurface) guidedSurf;
+		Standard_Boolean isDone = false;
+		Standard_Integer IterateCount = 0;
+		while (!isDone && IterateCount < 5)
+		{
+			if (IterateCount >= 1) coons = guidedSurf;
+			GuideGordon::GuideGordonSurf(coons, uIsoparamParams, vIsoparamParams, guideCurves, guidedSurf, isDone);
+			IterateCount++;
+		}
+
+		TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedSurf, Precision::Confusion());
+
+		// export brep
+		brepName = "data\\guidedCoons\\";
+		brepName += std::to_string(i);
+		brepName += "_guidedCoonsSurf.step";
+		export_step_OCC(guidedFace, brepName);
+
+		face_visualization_OCC(guidedFace);
+		pDoc->UpdateTreeControl();
+	}
+
+	/*
+	for (int i = 22; i <= 22; i++)
+	{
+		// 获取boundary
+		std::vector<Handle(Geom_BSplineCurve)> boundary;
+		
+		TopoDS_Shape shape;
+		BRep_Builder b;
+		std::ifstream is;
+
+		std::string brepName = "data\\input\\internal\\";
+		brepName += std::to_string(i);
+		brepName += "_boundary.brep";
+		
+		is.open(brepName);
+		BRepTools::Read(shape, is, b);
+		is.close();
+
+		for (TopExp_Explorer explorer(shape, TopAbs_EDGE); explorer.More(); explorer.Next())
+		{
+			TopoDS_Edge edge = TopoDS::Edge(explorer.Current());
+			Standard_Real f, l;
+			Handle(Geom_Curve) curve = BRep_Tool::Curve(edge, f, l);
+			Handle(Geom_BSplineCurve) bsplineCurve = Handle(Geom_BSplineCurve)::DownCast(curve);
+			if (!bsplineCurve.IsNull())
+			{
+				boundary.push_back(bsplineCurve);
+			}
+		}
+		LogPrint::PrintInfo(boundary);
+		// 获取guideCurves
+		std::vector<Handle(Geom_BSplineCurve)> guideCurves;
+
+		brepName = "data\\input\\internal\\";
+		brepName += std::to_string(i);
+		brepName += "_internal.brep";
+
+		is.open(brepName);
+		BRepTools::Read(shape, is, b);
+		is.close();
+
+		for (TopExp_Explorer explorer(shape, TopAbs_EDGE); explorer.More(); explorer.Next())
+		{
+			TopoDS_Edge edge = TopoDS::Edge(explorer.Current());
+			Standard_Real f, l;
+			Handle(Geom_Curve) curve = BRep_Tool::Curve(edge, f, l);
+			Handle(Geom_BSplineCurve) bsplineCurve = Handle(Geom_BSplineCurve)::DownCast(curve);
+			if (!bsplineCurve.IsNull())
+			{
+				guideCurves.push_back(bsplineCurve);
+			}
+		}
+
+		SurfaceModelingTool_OCC::TrimInternalCurves(guideCurves, boundary, 10);
+		if (boundary.size() != 4) continue;
+
+		// coons
+		Handle(Geom_BSplineSurface) coons;
+		Handle(Geom_BSplineCurve) bsplineCurve1, bsplineCurve2, bsplineCurve3, bsplineCurve4;
+		//SurfaceModelingTool_OCC::ApproximateBoundaryCurves(boundary);
+		std::cout << "=-----------------------------------------=" << std::endl;
+		LogPrint::PrintInfo(boundary);
+		SurfaceModelingTool_OCC::Arrange_Coons_G0(boundary, bsplineCurve1, bsplineCurve2, bsplineCurve3, bsplineCurve4, 10, true);
+		SurfaceModelingTool_OCC::Coons_G0(bsplineCurve1, bsplineCurve2, bsplineCurve3, bsplineCurve4, coons);
+
+		TopoDS_Face coonsSurf = BRepBuilderAPI_MakeFace(coons, Precision::Confusion());
+		export_step_OCC(coonsSurf, "data\\coons\\coonsSurf.step");
+
+		// try guide
+		std::vector<Standard_Real> uIsoparamParams;
+		std::vector<Standard_Real> vIsoparamParams;
+		Handle(Geom_BSplineSurface) guidedSurf;
+		Standard_Boolean isDone = false;
+		Standard_Integer IterateCount = 0;
+		while (!isDone && IterateCount < 5)
+		{
+			if (IterateCount >= 1) coons = guidedSurf;
+			GuideGordon::GuideGordonSurf(coons, uIsoparamParams, vIsoparamParams, guideCurves, guidedSurf, isDone);
+			IterateCount++;
+		}
+
+		TopoDS_Face guidedFace = BRepBuilderAPI_MakeFace(guidedSurf, Precision::Confusion());
+		
+		// export brep
+		brepName = "data\\guidedCoons\\";
+		brepName += std::to_string(i);
+		brepName += "_guidedCoonsSurf.step";
+		export_step_OCC(guidedFace, brepName);
+
+		face_visualization_OCC(guidedFace);
+		pDoc->UpdateTreeControl();
+	}
+	*/
 }
 
 void Action_GORDEN::BuildMyGordonSurf(std::vector<Handle(Geom_BSplineCurve)> uCurves,

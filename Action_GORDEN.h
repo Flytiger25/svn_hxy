@@ -69,5 +69,6 @@ public:
 	afx_msg void OnBnClickedButtonMygordon();
 	afx_msg void OnBnClickedButtonGuidecoons();
 	afx_msg void OnBnClickedButtonAnalysis();
+	afx_msg void OnBnClickedButtonIterateguidecoons();
 };
 
